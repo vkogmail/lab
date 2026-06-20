@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schema/lab-card.schema.json",
+  "slug": "cnds-npm",
+  "title": "CNDS npm consumer",
+  "intent": "A reference app that builds UI only from published design-system npm packages, for agent-driven design and dev workflows.",
+  "move": "npm install @createnew/tokens and @createnew/ui-react, compose templates and components with agent guardrails",
+  "tags": ["design systems", "npm", "agents"],
+  "stack": ["Vite", "React"],
+  "kind": "web-demo",
+  "status": "proto",
+  "demo_url": null,
+  "repo_url": null,
+  "hero": null,
+  "featured": false,
+  "spec": "cnds"
+}

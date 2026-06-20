@@ -1,0 +1,29 @@
+{
+  "name": "@lab/cnds-npm",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Demo: agent-friendly app built only from published @createnew npm packages",
+  "type": "module",
+  "scripts": {
+    "postinstall": "node copy-tokens-fonts.mjs",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "engines": {
+    "node": ">=20.18.0"
+  },
+  "dependencies": {
+    "@createnew/tokens": "^0.1.9",
+    "@createnew/ui-react": "^0.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^7.3.1"
+  }
+}
