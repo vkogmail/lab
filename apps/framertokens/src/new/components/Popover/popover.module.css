@@ -1,0 +1,12 @@
+.popover {
+    background-color: var(--surface-elevated);
+    box-shadow: var(--shadow-high);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3xs);
+    width: fit-content;
+    min-width: 119.5px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin: var(--space-xs);
+} 

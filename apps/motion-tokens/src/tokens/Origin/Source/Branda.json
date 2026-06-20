@@ -1,0 +1,243 @@
+{
+  "patterns": {
+    "fadeIn": {
+      "value": {
+        "duration": "{moderate}",
+        "easing": "{standard}",
+        "opacityFrom": "{invisible}",
+        "opacityTo": "{visible}"
+      },
+      "type": "composition",
+      "description": "Fade in animation"
+    },
+    "fadeOut": {
+      "value": {
+        "duration": "{quick}",
+        "easing": "{standard}",
+        "opacityFrom": "{visible}",
+        "opacityTo": "{invisible}"
+      },
+      "type": "composition",
+      "description": "Fade out animation"
+    },
+    "slideUp": {
+      "value": {
+        "duration": "{moderate}",
+        "easing": "{decelerate}",
+        "translateFrom": "{medium}",
+        "translateTo": "{none}"
+      },
+      "type": "composition",
+      "description": "Slide up animation"
+    },
+    "slideDown": {
+      "value": {
+        "duration": "{moderate}",
+        "easing": "{standard}",
+        "translateFrom": "{none}",
+        "translateTo": "{small}"
+      },
+      "type": "composition",
+      "description": "Slide down animation"
+    },
+    "scaleUp": {
+      "value": {
+        "duration": "{quick}",
+        "easing": "{standard}",
+        "scaleFrom": "{base}",
+        "scaleTo": "{up-small}"
+      },
+      "type": "composition",
+      "description": "Scale up animation"
+    },
+    "scaleDown": {
+      "value": {
+        "duration": "{quick}",
+        "easing": "{standard}",
+        "scaleFrom": "{base}",
+        "scaleTo": "{down-small}"
+      },
+      "type": "composition",
+      "description": "Scale down animation"
+    }
+  },
+  "components": {
+    "button-hover": {
+      "value": {
+        "duration": "{quick}",
+        "easing": "{standard}",
+        "scaleFrom": "{base}",
+        "scaleTo": "{up-small}"
+      },
+      "type": "composition",
+      "description": "Button hover animation"
+    },
+    "button-active": {
+      "value": {
+        "duration": "200ms",
+        "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "scaleFrom": "1",
+        "scaleTo": "0.95"
+      },
+      "type": "composition",
+      "description": "Button press animation"
+    },
+    "modal-enter": {
+      "value": {
+        "duration": "{moderate}",
+        "easing": "{decelerate}",
+        "opacityFrom": "{invisible}",
+        "opacityTo": "{visible}",
+        "translateFrom": "{medium}",
+        "translateTo": "{none}"
+      },
+      "type": "composition",
+      "description": "Modal entrance animation"
+    },
+    "modal-exit": {
+      "value": {
+        "duration": "{quick}",
+        "easing": "{accelerate}",
+        "opacityFrom": "{visible}",
+        "opacityTo": "{invisible}",
+        "translateFrom": "{none}",
+        "translateTo": "{small}"
+      },
+      "type": "composition",
+      "description": "Modal exit animation"
+    },
+    "card-enter": {
+      "value": {
+        "type": "bezier",
+        "duration": "{moderate}",
+        "delay": "{none}",
+        "easing": "{standard}",
+        "opacityFrom": "1",
+        "opacityTo": "1",
+        "scaleFrom": "{base}",
+        "scaleTo": "{up-large}",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "3deg",
+        "translateFrom": "{none}",
+        "translateTo": "12px"
+      },
+      "type": "variant"
+    },
+    "card-hover": {
+      "value": {
+        "type": "bezier",
+        "duration": "{moderate}",
+        "delay": "{none}",
+        "easing": "{standard}",
+        "opacityFrom": "1",
+        "opacityTo": "1",
+        "scaleFrom": "{base}",
+        "scaleTo": "{up-medium}",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "{rotate-none}",
+        "translateFrom": "{none}",
+        "translateTo": "{tiny}"
+      },
+      "type": "variant"
+    },
+    "list-item-enter": {
+      "value": {
+        "duration": "{moderate}",
+        "easing": "{standard}",
+        "opacityFrom": "{invisible}",
+        "opacityTo": "{visible}",
+        "translateFrom": "{medium}",
+        "translateTo": "{none}"
+      },
+      "type": "composition",
+      "description": "List item entrance animation"
+    }
+  },
+  "color": {
+    "primary": {
+      "value": "#001951",
+      "type": "color",
+      "description": "Primary brand color"
+    },
+    "secondary": {
+      "value": "#E9EEFF",
+      "type": "color",
+      "description": "Secondary brand color"
+    },
+    "border": {
+      "value": "{color.secondary}",
+      "type": "color"
+    },
+    "tertiary": {
+      "value": "#F6F7F8",
+      "type": "color",
+      "description": "Tertiary brand color"
+    },
+    "Neutral": {
+      "value": "#000000",
+      "type": "color",
+      "description": "Neutral Text color"
+    },
+    "shadow": {
+      "value": "{color.primary}",
+      "type": "color",
+      "$extensions": {
+        "studio.tokens": {
+          "modify": {
+            "type": "alpha",
+            "value": "0.3",
+            "space": "lch"
+          }
+        }
+      }
+    },
+    "text": {
+      "value": "{color.primary}",
+      "type": "color"
+    },
+    "text-secondary": {
+      "value": "#465379",
+      "type": "color"
+    },
+    "bg": {
+      "primary": {
+        "value": "#F5F5F5",
+        "type": "color"
+      },
+      "secondary": {
+        "value": "#FFFFFF",
+        "type": "color"
+      }
+    }
+  },
+  "border": {
+    "radius": {
+      "default": {
+        "value": "2px",
+        "type": "borderRadius"
+      }
+    }
+  },
+  "shadow": {
+    "small": {
+      "value": {
+        "x": "0",
+        "y": "2px",
+        "blur": "8px",
+        "spread": "0",
+        "color": "{color.shadow}"
+      },
+      "type": "boxShadow"
+    },
+    "medium": {
+      "value": {
+        "x": "0",
+        "y": "4px",
+        "blur": "16px",
+        "spread": "0",
+        "color": "{color.shadow}"
+      },
+      "type": "boxShadow"
+    }
+  }
+}

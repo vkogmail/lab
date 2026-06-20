@@ -1,0 +1,213 @@
+{
+  "instant": {
+    "value": "100ms",
+    "type": "duration",
+    "description": "For micro feedback"
+  },
+  "quick": {
+    "value": "200ms",
+    "type": "duration",
+    "description": "For most interactions"
+  },
+  "moderate": {
+    "value": "300ms",
+    "type": "duration",
+    "description": "For important transitions"
+  },
+  "complex": {
+    "value": "500ms",
+    "type": "duration",
+    "description": "For elaborate sequences"
+  },
+  "stagger-delay": {
+    "value": "50ms",
+    "type": "duration",
+    "description": "Delay between staggered items in a container"
+  },
+  "standard": {
+    "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+    "type": "bezier",
+    "description": "Default, natural movement"
+  },
+  "accelerate": {
+    "value": "cubic-bezier(0.4, 0, 1, 1)",
+    "type": "bezier",
+    "description": "Emphasize beginning"
+  },
+  "decelerate": {
+    "value": "cubic-bezier(0, 0, 0.2, 1)",
+    "type": "bezier",
+    "description": "Emphasize ending"
+  },
+  "sharp": {
+    "value": "cubic-bezier(0.4, 0, 0.6, 1)",
+    "type": "bezier",
+    "description": "Energetic, bouncy"
+  },
+  "visible": {
+    "value": "1",
+    "type": "opacity",
+    "description": "Fully visible state"
+  },
+  "invisible": {
+    "value": "0",
+    "type": "opacity",
+    "description": "Fully hidden state"
+  },
+  "semi": {
+    "value": "0.5",
+    "type": "opacity",
+    "description": "Semi-transparent state"
+  },
+  "none": {
+    "value": "0px",
+    "type": "translate",
+    "description": "No translation"
+  },
+  "tiny": {
+    "value": "4px",
+    "type": "translate",
+    "description": "Subtle position shift"
+  },
+  "small": {
+    "value": "8px",
+    "type": "translate",
+    "description": "Small position shift"
+  },
+  "medium": {
+    "value": "16px",
+    "type": "translate",
+    "description": "Medium position shift"
+  },
+  "large": {
+    "value": "32px",
+    "type": "translate",
+    "description": "Large position shift"
+  },
+  "base": {
+    "value": "1",
+    "type": "scale",
+    "description": "Default scale factor"
+  },
+  "down-large": {
+    "value": "0.8",
+    "type": "scale",
+    "description": "Significant size decrease"
+  },
+  "down-medium": {
+    "value": "0.9",
+    "type": "scale",
+    "description": "Medium size decrease"
+  },
+  "down-small": {
+    "value": "0.95",
+    "type": "scale",
+    "description": "Subtle size decrease"
+  },
+  "up-small": {
+    "value": "1.05",
+    "type": "scale",
+    "description": "Subtle size increase"
+  },
+  "up-medium": {
+    "value": "1.1",
+    "type": "scale",
+    "description": "Medium size increase"
+  },
+  "up-large": {
+    "value": "1.2",
+    "type": "scale",
+    "description": "Significant size increase"
+  },
+  "up-huge": {
+    "value": "1.5",
+    "type": "scale",
+    "description": "Dramatic size increase"
+  },
+  "rotate-none": {
+    "value": "0deg",
+    "type": "rotation"
+  },
+  "rotate-small": {
+    "value": "5deg",
+    "type": "rotation"
+  },
+  "rotate-medium": {
+    "value": "10deg",
+    "type": "rotation",
+    "description": "Medium rotation"
+  },
+  "spacing": {
+    "none": {
+      "value": "0px",
+      "type": "dimension",
+      "description": "No spacing"
+    },
+    "tiny": {
+      "value": "4px",
+      "type": "dimension",
+      "description": "Tiny spacing"
+    },
+    "small": {
+      "value": "8px",
+      "type": "dimension",
+      "description": "Small spacing"
+    },
+    "medium": {
+      "value": "16px",
+      "type": "dimension",
+      "description": "Medium spacing"
+    },
+    "large": {
+      "value": "32px",
+      "type": "dimension",
+      "description": "Large spacing"
+    }
+  },
+  "scale": {
+    "base": {
+      "value": "1",
+      "type": "number",
+      "description": "Base scale"
+    },
+    "down": {
+      "large": {
+        "value": "0.8",
+        "type": "number",
+        "description": "Large scale down"
+      },
+      "medium": {
+        "value": "0.9",
+        "type": "number",
+        "description": "Medium scale down"
+      },
+      "small": {
+        "value": "0.95",
+        "type": "number",
+        "description": "Small scale down"
+      }
+    },
+    "up": {
+      "small": {
+        "value": "1.05",
+        "type": "number",
+        "description": "Small scale up"
+      },
+      "medium": {
+        "value": "1.1",
+        "type": "number",
+        "description": "Medium scale up"
+      },
+      "large": {
+        "value": "1.2",
+        "type": "number",
+        "description": "Large scale up"
+      },
+      "huge": {
+        "value": "1.5",
+        "type": "number",
+        "description": "Huge scale up"
+      }
+    }
+  }
+}

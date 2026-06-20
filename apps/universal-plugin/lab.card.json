@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schema/lab-card.schema.json",
+  "slug": "universal-plugin",
+  "title": "Token sync, Figma to Git",
+  "intent": "Two-way sync between Figma variables and a token repo, with a diff before anything lands.",
+  "move": "three-way diff across repo, Figma and conflicts; pushes edits back as a pull request",
+  "tags": ["Figma plugin", "Tokens Studio", "two-way sync"],
+  "stack": ["Figma"],
+  "kind": "figma-plugin",
+  "status": "live",
+  "demo_url": "https://lab-token-sync.vercel.app",
+  "repo_url": null,
+  "hero": null,
+  "featured": false,
+  "spec": "diff"
+}

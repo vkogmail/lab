@@ -1,0 +1,18 @@
+{
+  "source": ["src/tokens/origin/**/*.json"],
+  "platforms": {
+    "typescript": {
+      "transformGroup": "js",
+      "buildPath": "src/tokens/generated/",
+      "files": [{
+        "destination": "motion.generated.ts",
+        "format": "javascript/module",
+        "filter": {
+          "attributes": {
+            "category": "Motion"
+          }
+        }
+      }]
+    }
+  }
+} 

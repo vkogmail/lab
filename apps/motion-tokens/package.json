@@ -1,0 +1,45 @@
+{
+  "name": "@lab/motion-tokens",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run watch:tokens & vite\" \"npm run serve\"",
+    "build": "npm run tokens && tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "tokens": "node build-tokens.js",
+    "watch:tokens": "chokidar \"src/tokens/Origin/Source/**/*.json\" -c \"npm run tokens\"",
+    "start": "node --experimental-specifier-resolution=node dist/server.js",
+    "build:server": "tsc -p tsconfig.server.json",
+    "serve": "npm run build:server && npm run start",
+    "predev": "node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\"",
+    "prebuild": "node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\"",
+    "prevercel-build": "node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\""
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "motion": "^10.18.0",
+    "rc-slider": "^11.1.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vercel/node": "^3.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  }
+}

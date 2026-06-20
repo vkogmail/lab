@@ -1,0 +1,34 @@
+{
+  "name": "@lab/background-shade",
+  "version": "2.0.0",
+  "description": "Intelligent background color generation from images",
+  "type": "module",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon --ignore 'public/tokens/**' --ignore 'public/styles/tokens.css' server.js",
+    "tokens": "style-dictionary build --config sd.config.mjs",
+    "tokens:watch": "nodemon --watch public/tokens/Foundation --watch public/tokens/Theme --watch public/tokens/Mode --ext json --exec npm run tokens",
+    "dev:all": "concurrently \"npm run tokens:watch\" \"npm run dev\"",
+    "vercel-build": "npm run tokens",
+    "build": "npm run tokens",
+    "test": "node test.js",
+    "cleanup": "node cleanup.js",
+    "postinstall": "npm run tokens",
+    "predev": "node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\"",
+    "prebuild": "node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\"",
+    "prevercel-build": "node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\"",
+    "covers": "node scripts/download-covers.mjs"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "style-dictionary": "^4.3.3"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.0"
+  }
+}

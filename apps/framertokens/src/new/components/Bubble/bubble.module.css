@@ -1,0 +1,20 @@
+.bubble {
+    width: var(--size-3xs);  /* 6px */
+    height: var(--size-3xs);  /* 6px */
+    border-radius: 50%;        /* Make it circular */
+    display: inline-block;
+    border: 1px solid var(--color-black-alpha);  /* Using our design system variable */
+}
+
+/* Color variants */
+.danger {
+    background-color: var(--color-danger);
+}
+
+.success {
+    background-color: var(--color-success);
+}
+
+.info {
+    background-color: var(--color-primary);
+} 

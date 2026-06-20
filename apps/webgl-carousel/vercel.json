@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "ignoreCommand": "bash -c 'B=$VERCEL_GIT_PREVIOUS_SHA; test -n \"$B\" && git cat-file -e \"$B\" 2>/dev/null && git diff --quiet \"$B\" HEAD -- . ../_landing && exit 0; exit 1'"
+}

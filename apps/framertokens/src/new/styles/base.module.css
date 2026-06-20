@@ -1,0 +1,229 @@
+:root {
+    /* Core Colors - RGB Values */
+    --color-grey-100-rgb: 243, 243, 243;
+    --color-grey-200-rgb: 238, 238, 238;
+    --color-grey-300-rgb: 221, 221, 221;
+    --color-grey-400-rgb: 153, 153, 153;
+    --color-grey-500-rgb: 102, 102, 102;
+    --color-grey-600-rgb: 118, 118, 118;
+    --color-grey-900-rgb: 51, 51, 51;
+    --color-blue-500-rgb: 0, 153, 255;
+    --color-red-500-rgb: 255, 51, 102;
+    --color-green-500-rgb: 31, 199, 120;
+    --color-cyan-500-rgb: 0, 204, 255;
+    --color-purple-500-rgb: 119, 85, 255;
+    --color-indigo-500-rgb: 102, 136, 255;
+    --color-grey-0-rgb: 255, 255, 255;
+    --color-grey-50-rgb: 249, 249, 249;
+    --color-grey-950-rgb: 26, 26, 26;
+    --color-grey-1000-rgb: 0, 0, 0;
+
+    /* Grey Scale - Derived from RGB Values */
+    --color-grey-0: rgb(var(--color-grey-0-rgb));
+    --color-grey-50: rgb(var(--color-grey-50-rgb));
+    --color-grey-100: rgb(var(--color-grey-100-rgb));
+    --color-grey-200: rgb(var(--color-grey-200-rgb));
+    --color-grey-300: rgb(var(--color-grey-300-rgb));
+    --color-grey-400: rgb(var(--color-grey-400-rgb));
+    --color-grey-500: rgb(var(--color-grey-500-rgb));
+    --color-grey-600: rgb(var(--color-grey-600-rgb));
+    --color-grey-900: rgb(var(--color-grey-900-rgb));
+    --color-grey-950: rgb(var(--color-grey-950-rgb));
+    --color-grey-1000: rgb(var(--color-grey-1000-rgb));
+
+    --color-blue-500: rgb(var(--color-blue-500-rgb));
+    --color-red-500: rgb(var(--color-red-500-rgb));
+    --color-green-500: rgb(var(--color-green-500-rgb));
+    --color-cyan-500: rgb(var(--color-cyan-500-rgb));
+    --color-purple-500: rgb(var(--color-purple-500-rgb));
+    --color-indigo-500: rgb(var(--color-indigo-500-rgb));
+
+    /* Opacity Values */
+    --opacity-50: 0.05;
+    --opacity-100: 0.10;
+    --opacity-150: 0.15;
+    --opacity-200: 0.20;
+    --opacity-500: 0.5;
+    --opacity-600: 0.6;
+    --opacity-700: 0.7;
+    --opacity-1000: 1.0;
+
+    /* Alpha Colors */
+    --color-white-alpha: rgba(var(--color-grey-0-rgb), var(--opacity-200));
+    --color-black-alpha: rgba(var(--color-grey-100-rgb), var(--opacity-200));
+    --color-grey-alpha: rgba(var(--color-grey-200-rgb), var(--opacity-500));
+    --color-swatch-border: rgba(0, 0, 0, 0.2);
+
+    /* Semantic Colors */
+    --color-primary: var(--color-blue-500);
+    --color-primary-hover: color-mix(in srgb, var(--color-blue-500) 90%, black 10%);
+    --color-danger: var(--color-red-500);
+    --color-danger-hover: color-mix(in srgb, var(--color-red-500) 90%, black 10%);
+    --color-success: var(--color-green-500);
+    --color-success-hover: color-mix(in srgb, var(--color-green-500) 90%, black 10%);
+
+    /* Text Colors */
+    --text-primary: var(--color-grey-900);
+    --text-secondary: var(--color-grey-500);
+    --text-tertiary: var(--color-grey-400);
+    --text-inverse: var(--color-grey-0);
+    --text-inverse-soft: rgba(var(--color-grey-0-rgb), var(--opacity-700));
+
+    /* Surface Colors */
+    --surface-body: var(--color-grey-0);
+    --surface-base: var(--color-grey-200);
+    --surface-primary: var(--color-grey-0);
+    --surface-secondary: var(--color-grey-100);
+    --surface-elevated: var(--color-grey-0);
+    --surface-inset: var(--color-grey-100);
+    --surface-raised: var(--color-grey-0);
+    --surface-floating: var(--color-grey-0);
+
+    /* Spacing Scale */
+    --space-2xs: 0.25rem;   /* 4px */
+    --space-3xs: 0.375rem;  /* 6px */
+    --space-xs: 0.5rem;     /* 8px */
+    --space-sm: 0.75rem;    /* 12px */
+    --space-md: 1rem;       /* 16px */
+    --space-lg: 1.5rem;     /* 24px */
+    --space-xl: 2rem;       /* 32px */
+
+    /* Fixed Dimensions */
+    --size-3xs: 0.375rem;  /* 6px */
+    --size-2xs: 1.25rem;   /* 20px */
+    --size-xs: 0.875rem;   /* 14px */
+    --size-xxs: 1.375rem;  /* NEW: 22px for swatches */
+    --size-base: 1.625rem; /* 26px */
+    --size-sm: 1.88rem;    /* 30px */
+    --size-md: 5.19rem;    /* 83px */
+
+    /* Border Radius Scale */
+    --radius-2xs: 0.12rem; /* 2px */
+    --radius-xs: 0.25rem;  /* 4px */
+    --radius-sm: 0.38rem;  /* 6px */
+    --radius-md: 0.5rem;   /* 8px */
+    --radius-lg: 1rem;     /* 16px */
+
+    /* Border Width */
+    --border-width-sm: 0.06rem;  /* 1px */
+    --border-width-md: 0.125rem; /* 2px */
+
+    /* Shadow Structure */
+    --shadow-xs: 0px 1px 2px rgba(0, 0, 0, 0.1);  /* NEW: for segmented control and similar */
+    --shadow-medium: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-high: 0px 10px 30px rgba(0, 0, 0, 0.15);
+
+    /* Animation */
+    --transition-fast: 0.1s ease;
+    --transition-base: 0.2s ease;
+    --transition-slow: 0.3s ease;
+
+    /* Interactive States */
+    --state-selected: var(--color-purple-500);  /* Purple in both modes */
+    --state-selected-text: var(--color-purple-500); /* NEW: Purple in light mode */
+
+    /* Fixed Colors - Not affected by dark mode */
+    --color-white: rgb(255, 255, 255);  /* NEW: Always white */
+
+    /* Typography Presets */
+    --heading-1-size: var(--font-size-lg);
+    --heading-1-weight: var(--font-weight-semibold);
+    --heading-1-line-height: var(--line-height-2xl);
+    --heading-1-family: var(--font-family);
+
+        --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    
+        --font-size-2xs: 0.62rem;  /* 10px */
+        --font-size-xs: 0.75rem;   /* 12px */
+        --font-size-sm: 0.81rem;   /* 13px */
+        --font-size-md: 0.88rem;   /* 14px */
+        --font-size-lg: 1rem;      /* 16px */
+        --font-size-xl: 1.38rem;   /* 22px */
+    
+        --line-height-2xs: 0.75rem;  /* 12px */
+        --line-height-xs: 0.81rem;   /* 13px */
+        --line-height-sm: 0.94rem;   /* 15px */
+        --line-height-md: 1.12rem;   /* 18px */
+        --line-height-lg: 1.19rem;   /* 19px */
+        --line-height-xl: 1.31rem;   /* 21px */
+        --line-height-2xl: 1.5rem;   /* 24px */
+        --line-height-3xl: 2.06rem;  /* 33px */
+    
+        --font-weight-regular: 400;
+        --font-weight-medium: 500;
+        --font-weight-semibold: 600;
+        --font-weight-bold: 700;
+    
+        --letter-spacing-tight: -0.05rem;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Core Colors - RGB Values Dark */
+        --color-grey-0-rgb: 0, 0, 0;
+        --color-grey-50-rgb: 17, 17, 17;
+        --color-grey-100-rgb: 51, 51, 51;
+        --color-grey-200-rgb: 68, 68, 68;
+        --color-grey-300-rgb: 85, 85, 85;
+        --color-grey-400-rgb: 119, 119, 119;
+        --color-grey-500-rgb: 153, 153, 153;
+        --color-grey-600-rgb: 137, 137, 137;
+        --color-grey-900-rgb: 238, 238, 238;
+        --color-grey-950-rgb: 245, 245, 245;
+        --color-grey-1000-rgb: 255, 255, 255;
+
+        /* Brand Colors - RGB Values Dark */
+        --color-blue-500-rgb: 51, 170, 255;
+        --color-red-500-rgb: 255, 77, 122;
+        --color-green-500-rgb: 35, 221, 132;
+        --color-cyan-500-rgb: 0, 214, 255;
+        --color-purple-500-rgb: 136, 102, 255;
+        --color-indigo-500-rgb: 119, 153, 255;
+
+        /* Text Colors - Dark */
+        --text-primary: var(--color-grey-1000);
+        --text-secondary: var(--color-grey-500);
+        --text-tertiary: var(--color-grey-400);
+        --text-inverse: var(--color-grey-0);
+        --text-inverse-soft: rgba(var(--color-grey-0-rgb), var(--opacity-700));
+
+        /* Surface Elevation Colors */
+        --surface-body: var(--color-grey-0);
+        --surface-base: var(--color-grey-200);
+        --surface-primary: var(--color-grey-0);
+        --surface-secondary: rgb(43, 43, 43);  /* #2B2B2B for segmented control background */
+        --surface-elevated: var(--color-grey-200);
+        --surface-inset: rgb(43, 43, 43);      /* #2B2B2B for segmented control background */
+        --surface-raised: var(--color-grey-200);
+        --surface-floating: rgb(85, 85, 85);   /* #555555 for sliding element */
+
+        /* Shadow Colors - Dark - still using black but with different opacity */
+        --shadow-xs: 0px 1px 2px rgba(0, 0, 0, 0.2);
+        --shadow-medium: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        --shadow-high: 0px 10px 30px rgba(0, 0, 0, 0.3);
+
+        /* Interactive States - Dark */
+        --state-selected: var(--color-purple-500);  /* Keep purple in dark mode */
+        --state-selected-text: var(--color-white); /* NEW: White text in dark mode */
+
+        /* Semantic Colors - Dark Mode */
+        --color-primary: var(--color-blue-500);
+        --color-primary-hover: color-mix(in srgb, var(--color-blue-500) 90%, black 10%);
+        --color-danger: color-mix(in srgb, var(--color-red-500) 90%, black 10%);  /* Dimmed in dark mode */
+        --color-danger-hover: color-mix(in srgb, var(--color-red-500) 80%, black 20%);
+        --color-success: color-mix(in srgb, var(--color-green-500) 90%, black 10%);  /* Dimmed in dark mode */
+        --color-success-hover: color-mix(in srgb, var(--color-green-500) 80%, black 20%);
+
+        --color-swatch-border: rgba(255, 255, 255, 0.3);  /* NEW: 30% white for dark mode */
+    }
+}
+
+/* Effect Classes */
+.shadow-medium {
+    box-shadow: var(--shadow-medium);
+}
+
+.shadow-high {
+    box-shadow: var(--shadow-high);
+}

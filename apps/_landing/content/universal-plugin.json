@@ -1,0 +1,31 @@
+{
+  "label": "Token sync",
+  "headline": "Figma variables ↔ Git",
+  "lead": "Two-way sync between Figma variables and a token repo, with a three-way diff before anything lands.",
+  "asideIntro": "An anonymized Figma plugin panel for pulling design tokens from a Git repo into Figma variables, and pushing edits back as a pull request.",
+  "heroAlt": "The token sync plugin open in Figma on a laptop, browsing colour variable collections with the pull and push panel.",
+  "aside": [
+    "Configure provider, repository, and credentials in settings",
+    "Pull Tokens Studio JSON into collections, modes, and styles",
+    "Push Figma edits back to the repo with a clean diff",
+    "Typography and shadow composites map to native Figma styles"
+  ],
+  "modal": [
+    {
+      "title": "Setup",
+      "body": "<p>Install the plugin from <code>manifest.json</code> in the repo. Connect your Git provider (GitHub or Azure DevOps), repository, and personal access token in the settings tab.</p>"
+    },
+    {
+      "title": "Pull: repo → Figma",
+      "body": "<ul><li>Reads Tokens Studio JSON from the configured branch</li><li>Creates or maps Figma variable collections and modes via <code>$themes.json</code></li><li>Imports typography and box-shadow tokens as native text and effect styles</li></ul>"
+    },
+    {
+      "title": "Push: Figma → repo",
+      "body": "<ul><li>Exports variable and style changes back to token JSON</li><li>Opens a pull request instead of writing directly to main</li><li>Three-way diff compares repo, Figma, and conflicts before apply</li></ul>"
+    },
+    {
+      "title": "This page",
+      "body": "<p>This page shows the plugin in a device mockup. Variable binding, Git fetch, and PR creation run inside Figma: install it from the repo to use it on a real file.</p>"
+    }
+  ]
+}

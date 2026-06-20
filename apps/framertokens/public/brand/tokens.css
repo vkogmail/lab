@@ -1,0 +1,50 @@
+:root {
+  /* Typography */
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+
+  /* Layout */
+  --maxw: 1320px;
+  --gut: 40px;
+  --section-y: clamp(30px, 4.5vw, 62px);
+  --nav-top: max(12px, env(safe-area-inset-top));
+  --nav-bottom: max(18px, env(safe-area-inset-bottom));
+  --lab-nav-height: 52px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --spring: linear(0, 0.006, 0.025, 0.101, 0.205, 0.404, 0.62, 0.86, 1.04, 1.146, 1.184, 1.169, 1.124, 1.075, 1.038, 1.016, 1.006, 1.001, 1);
+  --dur: .62s;
+  --dur-fast: .45s;
+}
+
+[data-theme="dark"] {
+  --bg: #0c0c0d;
+  --bg2: #141416;
+  --ink: #f4f1ea;
+  --ink-soft: #9b968d;
+  --ink-faint: #8a8475;
+  --line: rgba(244, 241, 234, 0.14);
+  --line-soft: rgba(244, 241, 234, 0.07);
+  --accent: #9ef0b0;
+  --accent-text: #9ef0b0;
+  --nav-bg: rgba(18, 18, 20, 0.6);
+  --nav-border: rgba(244, 241, 234, 0.12);
+  --grid: rgba(244, 241, 234, 0.035);
+}
+
+[data-theme="light"] {
+  --bg: #f3f1ea;
+  --bg2: #eae7dd;
+  --ink: #16150f;
+  --ink-soft: #6a655c;
+  --ink-faint: #696254;
+  --line: rgba(22, 21, 15, 0.16);
+  --line-soft: rgba(22, 21, 15, 0.07);
+  --accent: #1a8f55;
+  --accent-text: #147544;
+  --nav-bg: rgba(243, 241, 234, 0.65);
+  --nav-border: rgba(22, 21, 15, 0.10);
+  --grid: rgba(22, 21, 15, 0.04);
+}

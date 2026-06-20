@@ -1,0 +1,362 @@
+[
+  {
+    "id": "catcher-in-the-rye",
+    "isbn": "9780316769174",
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger"
+  },
+  {
+    "id": "to-kill-a-mockingbird",
+    "isbn": "9780061120084",
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee"
+  },
+  {
+    "id": "hitchhikers-guide",
+    "isbn": "9780345391803",
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "author": "Douglas Adams"
+  },
+  {
+    "id": "great-gatsby",
+    "isbn": "9780743273565",
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald"
+  },
+  {
+    "id": "the-alchemist",
+    "isbn": "9780062315007",
+    "title": "The Alchemist",
+    "author": "Paulo Coelho"
+  },
+  {
+    "id": "where-the-wild-things-are",
+    "isbn": "9780064431781",
+    "title": "Where the Wild Things Are",
+    "author": "Maurice Sendak"
+  },
+  {
+    "id": "crawdads-sing",
+    "isbn": "9780735219090",
+    "title": "Where the Crawdads Sing",
+    "author": "Delia Owens"
+  },
+  {
+    "id": "1984",
+    "isbn": "9780451524935",
+    "title": "1984",
+    "author": "George Orwell"
+  },
+  {
+    "id": "project-hail-mary",
+    "isbn": "9780593135204",
+    "title": "Project Hail Mary",
+    "author": "Andy Weir"
+  },
+  {
+    "id": "all-the-light",
+    "isbn": "9781501173219",
+    "title": "All the Light We Cannot See",
+    "author": "Anthony Doerr"
+  },
+  {
+    "id": "middlesex",
+    "isbn": "9780312425296",
+    "title": "Middlesex",
+    "author": "Jeffrey Eugenides"
+  },
+  {
+    "id": "girl-on-the-train",
+    "isbn": "9781594634024",
+    "title": "The Girl on the Train",
+    "author": "Paula Hawkins"
+  },
+  {
+    "id": "seven-husbands",
+    "isbn": "9781501139239",
+    "title": "The Seven Husbands of Evelyn Hugo",
+    "author": "Taylor Jenkins Reid"
+  },
+  {
+    "id": "beloved",
+    "isbn": "9781400033416",
+    "title": "Beloved",
+    "author": "Toni Morrison"
+  },
+  {
+    "id": "hunger-games",
+    "isbn": "9780545425117",
+    "title": "The Hunger Games",
+    "author": "Suzanne Collins"
+  },
+  {
+    "id": "kite-runner",
+    "isbn": "9781594480003",
+    "title": "The Kite Runner",
+    "author": "Khaled Hosseini"
+  },
+  {
+    "id": "handmaids-tale",
+    "isbn": "9780385490818",
+    "title": "The Handmaid's Tale",
+    "author": "Margaret Atwood"
+  },
+  {
+    "id": "dune",
+    "isbn": "9780441172719",
+    "title": "Dune",
+    "author": "Frank Herbert"
+  },
+  {
+    "id": "braiding-sweetgrass",
+    "isbn": "9781571313560",
+    "title": "Braiding Sweetgrass",
+    "author": "Robin Wall Kimmerer"
+  },
+  {
+    "id": "the-road",
+    "isbn": "9780307387899",
+    "title": "The Road",
+    "author": "Cormac McCarthy"
+  },
+  {
+    "id": "invisible-man",
+    "isbn": "9780679732761",
+    "title": "Invisible Man",
+    "author": "Ralph Ellison"
+  },
+  {
+    "id": "pachinko",
+    "isbn": "9781455563920",
+    "title": "Pachinko",
+    "author": "Min Jin Lee"
+  },
+  {
+    "id": "little-fires-everywhere",
+    "isbn": "9780735224292",
+    "title": "Little Fires Everywhere",
+    "author": "Celeste Ng"
+  },
+  {
+    "id": "atomic-habits",
+    "isbn": "9780735211292",
+    "title": "Atomic Habits",
+    "author": "James Clear"
+  },
+  {
+    "id": "sapiens",
+    "isbn": "9780062316097",
+    "title": "Sapiens",
+    "author": "Yuval Noah Harari"
+  },
+  {
+    "id": "pride-and-prejudice",
+    "isbn": "9780141439518",
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen"
+  },
+  {
+    "id": "frankenstein",
+    "isbn": "9780143131847",
+    "title": "Frankenstein",
+    "author": "Mary Shelley"
+  },
+  {
+    "id": "joy-luck-club",
+    "isbn": "9780143038092",
+    "title": "The Joy Luck Club",
+    "author": "Amy Tan"
+  },
+  {
+    "id": "secret-history",
+    "isbn": "9781400031702",
+    "title": "The Secret History",
+    "author": "Donna Tartt"
+  },
+  {
+    "id": "bell-jar",
+    "isbn": "9780061148514",
+    "title": "The Bell Jar",
+    "author": "Sylvia Plath"
+  },
+  {
+    "id": "lottery-and-other-stories",
+    "isbn": "9780374529536",
+    "title": "The Lottery and Other Stories",
+    "author": "Shirley Jackson"
+  },
+  {
+    "id": "it",
+    "isbn": "9781501142970",
+    "title": "It",
+    "author": "Stephen King"
+  },
+  {
+    "id": "my-brilliant-friend",
+    "isbn": "9781609450786",
+    "title": "My Brilliant Friend",
+    "author": "Elena Ferrante"
+  },
+  {
+    "id": "educated",
+    "isbn": "9780399590504",
+    "title": "Educated",
+    "author": "Tara Westover"
+  },
+  {
+    "id": "circe",
+    "isbn": "9780316556347",
+    "title": "Circe",
+    "author": "Madeline Miller"
+  },
+  {
+    "id": "one-hundred-years-of-solitude",
+    "isbn": "9780060883287",
+    "title": "One Hundred Years of Solitude",
+    "author": "Gabriel García Márquez"
+  },
+  {
+    "id": "crime-and-punishment",
+    "isbn": "9780143058144",
+    "title": "Crime and Punishment",
+    "author": "Fyodor Dostoevsky"
+  },
+  {
+    "id": "moby-dick",
+    "isbn": "9780142437247",
+    "title": "Moby-Dick",
+    "author": "Herman Melville"
+  },
+  {
+    "id": "jane-eyre",
+    "isbn": "9780142437209",
+    "title": "Jane Eyre",
+    "author": "Charlotte Brontë"
+  },
+  {
+    "id": "wuthering-heights",
+    "isbn": "9780141439556",
+    "title": "Wuthering Heights",
+    "author": "Emily Brontë"
+  },
+  {
+    "id": "dracula",
+    "isbn": "9780141439846",
+    "title": "Dracula",
+    "author": "Bram Stoker"
+  },
+  {
+    "id": "dorian-gray",
+    "isbn": "9780141439570",
+    "title": "The Picture of Dorian Gray",
+    "author": "Oscar Wilde"
+  },
+  {
+    "id": "brave-new-world",
+    "isbn": "9780060850524",
+    "title": "Brave New World",
+    "author": "Aldous Huxley"
+  },
+  {
+    "id": "fahrenheit-451",
+    "isbn": "9781451673319",
+    "title": "Fahrenheit 451",
+    "author": "Ray Bradbury"
+  },
+  {
+    "id": "lord-of-the-flies",
+    "isbn": "9780399501487",
+    "title": "Lord of the Flies",
+    "author": "William Golding"
+  },
+  {
+    "id": "grapes-of-wrath",
+    "isbn": "9780143039433",
+    "title": "The Grapes of Wrath",
+    "author": "John Steinbeck"
+  },
+  {
+    "id": "east-of-eden",
+    "isbn": "9780142004234",
+    "title": "East of Eden",
+    "author": "John Steinbeck"
+  },
+  {
+    "id": "maus",
+    "isbn": "9780679406419",
+    "title": "Maus",
+    "author": "Art Spiegelman"
+  },
+  {
+    "id": "love-in-the-time-of-cholera",
+    "isbn": "9780307474728",
+    "title": "Love in the Time of Cholera",
+    "author": "Gabriel García Márquez"
+  },
+  {
+    "id": "station-eleven",
+    "isbn": "9780385353304",
+    "title": "Station Eleven",
+    "author": "Emily St. John Mandel"
+  },
+  {
+    "id": "the-overstory",
+    "isbn": "9780393635522",
+    "title": "The Overstory",
+    "author": "Richard Powers"
+  },
+  {
+    "id": "born-a-crime",
+    "isbn": "9780399588174",
+    "title": "Born a Crime",
+    "author": "Trevor Noah"
+  },
+  {
+    "id": "the-glass-castle",
+    "isbn": "9780743247542",
+    "title": "The Glass Castle",
+    "author": "Jeannette Walls"
+  },
+  {
+    "id": "becoming",
+    "isbn": "9781524763138",
+    "title": "Becoming",
+    "author": "Michelle Obama"
+  },
+  {
+    "id": "rebecca",
+    "isbn": "9780380730407",
+    "title": "Rebecca",
+    "author": "Daphne du Maurier"
+  },
+  {
+    "id": "the-count-of-monte-cristo",
+    "isbn": "9780140449266",
+    "title": "The Count of Monte Cristo",
+    "author": "Alexandre Dumas"
+  },
+  {
+    "id": "treasure-island",
+    "isbn": "9780141321004",
+    "title": "Treasure Island",
+    "author": "Robert Louis Stevenson"
+  },
+  {
+    "id": "alice-in-wonderland",
+    "isbn": "9780141439761",
+    "title": "Alice's Adventures in Wonderland",
+    "author": "Lewis Carroll"
+  },
+  {
+    "id": "the-little-prince",
+    "isbn": "9780156012195",
+    "title": "The Little Prince",
+    "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "id": "sun-also-rises",
+    "isbn": "9780684801223",
+    "title": "The Sun Also Rises",
+    "author": "Ernest Hemingway"
+  }
+]

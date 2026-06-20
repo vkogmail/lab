@@ -1,0 +1,65 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Typography Classes */
+.textHeading1 {
+    font-family: var(--font-family);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-2xl);
+}
+
+.textBody {
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-md);
+}
+
+.textButton {
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-xs);
+    line-height: 12px;
+}
+
+.textInput {
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-xs);
+}
+
+.textLabel {
+    font-size: var(--font-size-xs);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-md);
+}
+
+.textNotification {
+    font-size: var(--font-size-2xs);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-md);
+    text-transform: uppercase;
+}
+
+.textTooltip {
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-2xs);  /* 10px */
+    line-height: var(--line-height-sm);  /* 15px */
+}
+
+.textTooltipValue {
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-2xs);  /* 10px */
+    line-height: var(--line-height-md);  /* 18px */
+}
+
+/* etc... */ 

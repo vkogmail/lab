@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-repo-url="https://github.com/vkogmail/lab/tree/main/apps/dither-image" data-theme="dark" data-lab-title="Theme-aware dithering" data-lab-description="A photo rebuilt as ordered dots that recolor with the active theme.">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dither image · Lab</title>
+    <script src="/brand/theme-init.js"></script>
+    <script src="/brand/meta.js"></script>
+    <link rel="stylesheet" href="/brand/brand.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="/brand/header.js"></script>
+</head>
+<body>
+    <main id="app">
+        <header class="demo-header">
+            <div class="demo-header-main">
+                <p class="label">Dither image</p>
+                <h1>Ordered and error-diffusion dither</h1>
+                <p class="lead">Image dithering with Bayer matrices and classic error-diffusion algorithms, tinted from lab accent tokens.</p>
+            </div>
+            <div class="demo-actions">
+                <button id="shareBtn" class="btn ghost" type="button">Share</button>
+            </div>
+        </header>
+
+        <div class="demo-layout">
+            <aside class="settings-panel" aria-label="Dither settings">
+                <details class="settings-group" open>
+                    <summary>
+                        <span>Algorithm</span>
+                        <span class="settings-id">#20</span>
+                    </summary>
+                    <label class="field-label" for="algorithmSelect">Algorithm</label>
+                    <select id="algorithmSelect" class="field-select">
+                        <option value="bayer-4">Bayer 4×4</option>
+                        <option value="bayer-8">Bayer 8×8</option>
+                        <option value="bayer-16" selected>Bayer 16×16</option>
+                        <option value="floyd-steinberg">Floyd–Steinberg</option>
+                        <option value="atkinson">Atkinson</option>
+                    </select>
+                </details>
+            </aside>
+
+            <div class="hero-photo" id="ditherHost">
+                <img id="ditherFallback" src="/assets/sample.jpg" alt="The Great Gatsby cover" width="800" height="1200">
+                <canvas id="ditherCanvas" aria-hidden="true"></canvas>
+            </div>
+        </div>
+    </main>
+    <script src="/brand/chrome.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

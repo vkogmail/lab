@@ -1,0 +1,22 @@
+{
+  "name": "@lab/universal-plugin",
+  "version": "1.0.0",
+  "description": "Anonymized Figma plugin for token synchronization",
+  "main": "code.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "preview:landing": "npm run build && vite preview",
+    "sync:ui": "node inline-ui-css.mjs",
+    "predev": "node ../_landing/build-plugin-landing.mjs && node inline-ui-css.mjs && node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\"",
+    "prebuild": "node ../_landing/build-plugin-landing.mjs && node inline-ui-css.mjs && node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\"",
+    "prevercel-build": "node ../_landing/build-plugin-landing.mjs && node inline-ui-css.mjs && node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\""
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "author": "",
+  "license": "MIT"
+}

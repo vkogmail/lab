@@ -1,0 +1,82 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ * Generated on Sat, 20 Jun 2026 08:59:22 GMT
+ */
+
+:root {
+  --color-brand-primary-50: #e6f2ef;
+  --color-brand-primary-75: #cde5e0;
+  --color-brand-primary-100: #6bb2a3;
+  --color-brand-primary-200: #2b917b;
+  --color-brand-primary-300: #007a60;
+  --color-brand-primary-400: #005543;
+  --color-brand-primary-500: #003c30;
+  --color-brand-primary-600: #01231c;
+  --color-brand-secondary-50: #eff3ff;
+  --color-brand-secondary-75: #d6e0ff;
+  --color-brand-secondary-100: #a2b8ff;
+  --color-brand-secondary-200: #7a99ff;
+  --color-brand-secondary-300: #5f84ff;
+  --color-brand-secondary-400: #435cb3;
+  --color-brand-secondary-500: #2d4490;
+  --color-brand-secondary-600: #17285f;
+  --color-neutral-50: #e6e6e6;
+  --color-neutral-75: #d6d6d6;
+  --color-neutral-100: #a6a6a6;
+  --color-neutral-200: #808080;
+  --color-neutral-300: #666666;
+  --color-neutral-400: #4d4d4d;
+  --color-neutral-500: #333333;
+  --color-neutral-600: #1a1a1a;
+  --color-other-black: #000000;
+  --color-other-white: #ffffff;
+  --oklch-saturation-10: 0.0774;
+  --oklch-saturation-20: 0.1125;
+  --oklch-saturation-30: 0.1430;
+  --oklch-saturation-40: 0.1700;
+  --oklch-saturation-50: 0.1700;
+  --oklch-saturation-60: 0.1477;
+  --oklch-saturation-70: 0.0515;
+  --oklch-saturation-80: 0.0292;
+  --oklch-lightness-10: 80.80%;
+  --oklch-lightness-20: 32.40%;
+  --oklch-lightness-30: 42.50%;
+  --oklch-lightness-40: 55.00%;
+  --oklch-lightness-50: 63.00%;
+  --oklch-lightness-60: 74.80%;
+  --oklch-lightness-70: 89.50%;
+  --oklch-lightness-80: 94.80%;
+  --oklch-hue-dynamic: 337.45;
+  --color-static-10: var(--color-brand-primary-600);
+  --color-static-20: var(--color-brand-primary-500);
+  --color-static-30: var(--color-brand-primary-400);
+  --color-static-40: var(--color-brand-primary-300);
+  --color-static-50: var(--color-brand-primary-200);
+  --color-static-60: var(--color-brand-primary-100);
+  --color-static-70: var(--color-brand-primary-75);
+  --color-static-80: var(--color-brand-primary-50);
+  --color-dynamic-10: oklch(var(--oklch-lightness-10) var(--oklch-saturation-10) var(--oklch-hue-dynamic));
+  --color-dynamic-20: oklch(var(--oklch-lightness-20) var(--oklch-saturation-20) var(--oklch-hue-dynamic));
+  --color-dynamic-30: oklch(var(--oklch-lightness-30) var(--oklch-saturation-30) var(--oklch-hue-dynamic));
+  --color-dynamic-40: oklch(var(--oklch-lightness-40) var(--oklch-saturation-40) var(--oklch-hue-dynamic));
+  --color-dynamic-50: oklch(var(--oklch-lightness-50) var(--oklch-saturation-50) var(--oklch-hue-dynamic));
+  --color-dynamic-60: oklch(var(--oklch-lightness-60) var(--oklch-saturation-60) var(--oklch-hue-dynamic));
+  --color-dynamic-70: oklch(var(--oklch-lightness-70) var(--oklch-saturation-70) var(--oklch-hue-dynamic));
+  --color-dynamic-80: oklch(var(--oklch-lightness-80) var(--oklch-saturation-80) var(--oklch-hue-dynamic));
+  --color-roles-platform-base-surface: var(--color-other-white);
+  --color-roles-platform-main-on-surface-inverse: var(--color-other-white);
+  --color-roles-folio-base-surface: var(--color-other-white);
+  --color-roles-folio-main-on-surface-inverse: var(--color-other-white);
+  --color-roles-platform-main-surface-low: var(--color-static-80);
+  --color-roles-platform-main-surface: var(--color-static-70);
+  --color-roles-platform-main-surface-high: var(--color-static-40);
+  --color-roles-platform-main-on-surface: var(--color-static-40);
+  --color-roles-platform-main-border: var(--color-static-40);
+  --color-roles-platform-main-border-low: var(--color-static-70);
+  --color-roles-folio-main-surface: var(--color-dynamic-70);
+  --color-roles-folio-main-surface-low: var(--color-dynamic-80);
+  --color-roles-folio-main-surface-high: var(--color-dynamic-40);
+  --color-roles-folio-main-on-surface: var(--color-dynamic-40);
+  --color-roles-folio-main-border: var(--color-dynamic-60);
+  --color-roles-folio-main-border-low: var(--color-dynamic-50);
+}

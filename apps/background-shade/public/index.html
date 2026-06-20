@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lab-title="Background shade from a cover" data-lab-description="A background that derives a balanced color scale from an image, so the page takes its tone from the content.">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background shade — Lab</title>
+    <script src="/brand/theme-init.js"></script>
+    <script src="/brand/meta.js"></script>
+    <link rel="stylesheet" href="/brand/brand.css">
+    <script src="/brand/header.js"></script>
+    <link rel="preload" href="styles/tokens.css" as="style">
+    <link rel="preload" href="styles/main.css" as="style">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fast-average-color@9.4.0/dist/index.browser.min.js"></script>
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div id="status" class="status info" hidden aria-live="polite">Ready to extract colors</div>
+
+    <main id="app">
+        <header class="demo-header">
+            <div class="demo-header-main">
+                <p class="label">Background shade</p>
+                <h1>Cover-driven color scales</h1>
+                <p class="lead">Extract a dominant hue and build a perceptual OKLCH ramp from any image.</p>
+            </div>
+            <div class="demo-actions">
+                <button id="howItWorksBtn" class="btn ghost" type="button">How it works</button>
+                <button id="shareBtn" class="btn ghost" type="button">Share</button>
+            </div>
+        </header>
+
+        <div class="result-container">
+            <button id="reload-btn" class="btn ghost refresh-btn" type="button" aria-label="Change cover">
+                <span class="refresh-label">Change cover</span>
+                <span class="refresh-icon" aria-hidden="true">↻</span>
+            </button>
+            <div class="main-content">
+                <div class="image-section">
+                    <div class="cover-toolbar">
+                        <div class="book">
+                            <div class="book-cover">
+                                <div class="effect"></div>
+                                <div class="light"></div>
+                                <img id="current-image" class="current-image" crossorigin="anonymous" alt="">
+                            </div>
+                            <div class="book-inside"></div>
+                            <div class="tooltip">
+                                <div class="tooltip-content">
+                                    <div class="tooltip-title">Cover Color Extraction</div>
+                                    <div class="tooltip-subtitle">
+                                        UI adapts to match the cover's palette
+                                    </div>
+                                </div>
+                                <div class="tooltip-arrow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="color-info-section">
+                    <div class="color-info dynamic-surface" data-section="extracted-color">
+                        <h3>Extracted color</h3>
+                        <div id="extracted-swatch" class="swatch extracted-color-swatch"></div>
+                        <div id="extracted-info" class="color-info-text"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="color-scale" class="color-scale dynamic-surface">
+                <h3>Color system</h3>
+                <div class="scale-steps-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <div id="howItWorksModal" class="modal" hidden>
+        <div class="modal-content">
+            <button id="closeModal" class="close-btn" type="button" aria-label="Close">&times;</button>
+            <h2>How it works</h2>
+
+            <div class="explanation-section">
+                <h3>Color extraction</h3>
+                <p>The system analyzes book covers to identify meaningful accent colors, focusing on vibrant, saturated hues that work well as UI elements.</p>
+                <ul>
+                    <li>Extracts numerous color samples from the image</li>
+                    <li>Filters out colors that are too light, dark, or desaturated</li>
+                    <li>Selects the most vibrant and suitable color</li>
+                    <li>Provides smart fallbacks if no ideal color is found</li>
+                </ul>
+            </div>
+
+            <div class="explanation-section">
+                <h3>OKLCH color space</h3>
+                <p>Colors are processed in the perceptually uniform OKLCH color space, offering better hue preservation and intuitive manipulation.</p>
+                <ul>
+                    <li>L = Lightness (0-100%): How bright the color appears</li>
+                    <li>C = Chroma (0-0.4): Color intensity/saturation</li>
+                    <li>H = Hue (0-360°): Position on the color wheel</li>
+                    <li>Only the hue (H) is extracted from each image</li>
+                </ul>
+            </div>
+
+            <div class="explanation-section">
+                <h3>Hybrid color system</h3>
+                <p>The application uses a refined hybrid approach for optimal performance and designer control:</p>
+                <ul>
+                    <li><strong>Direct CSS Variables:</strong> For extracted colors — immediate visual feedback</li>
+                    <li><strong>Design Token System:</strong> For designer changes — maintains design system integrity</li>
+                    <li>Color hue changes are applied directly to CSS variables without server requests</li>
+                    <li>Generated color scales follow perceptually balanced lightness and chroma values</li>
+                </ul>
+            </div>
+
+            <div class="explanation-section">
+                <h3>Modern architecture</h3>
+                <p>The system is built for modern browsers with efficient design:</p>
+                <ul>
+                    <li>Native OKLCH color support for accurate color representation</li>
+                    <li>Consolidated color management in a single, cohesive API</li>
+                    <li>Style Dictionary integration for design token processing</li>
+                    <li>Optimized CSS with dynamic variables for performance</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="lib/index.js" type="module"></script>
+    <script src="js/app.js" type="module"></script>
+    <script src="/brand/chrome.js"></script>
+</body>
+</html>

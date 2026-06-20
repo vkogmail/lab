@@ -1,0 +1,32 @@
+[
+  {
+    "id": "4745294b2aa1bf1176a789d767e32d33cc22887f",
+    "name": "Colors",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "Foundation/Color": "source",
+      "Theme/Default": "enabled"
+    },
+    "group": "Semantic",
+    "$figmaCollectionId": "VariableCollectionId:92:10",
+    "$figmaModeId": "92:0",
+    "$figmaVariableReferences": {
+      "Color.Static.10": "2279d120b25f7a289b1e9f7672428457d277a674",
+      "Color.Static.20": "4b3471b06f27d1a7d87208dd786f18a30a62814d",
+      "Color.Static.30": "72373177fd903aa4fc5805843b09eced96278b99",
+      "Color.Static.40": "9e3472a8ff27d96db5e2f5d78858b47a66e49f6c",
+      "Color.Static.50": "0fcfd0163d1b222736de90378eb19edf97662db4",
+      "Color.Static.60": "43ee3a2f7fcda33079d7dea61df918b608e947d5",
+      "Color.Static.70": "f9186d0946fbf1e7b1e4eb6e3734f296a0c23e3f",
+      "Color.Static.80": "7d9b615b98258a9477d18843148107678902b0c9",
+      "Color.Dynamic.10": "3133ee715b26fcb974fcfba9e4dbe7b7ac60d9ad",
+      "Color.Dynamic.20": "53078b7def37782aaafd5ae9062a3077ea978c42",
+      "Color.Dynamic.30": "e69a600d638b20a85bbdd65e6a9fc596a3218dc5",
+      "Color.Dynamic.40": "80c55756670346f38052e7c63eff36185db47d2d",
+      "Color.Dynamic.50": "c81bdab779aaf00495bd75e89ba281d3c8e0e38c",
+      "Color.Dynamic.60": "c60dd01b52cb94bfc642a36e4c8a4d6d4fab2235",
+      "Color.Dynamic.70": "ffa0e28457e3e3776efaaf050c6cd327bcae2358",
+      "Color.Dynamic.80": "2153dcd7c2cc1509eb2c0eae53deb213c398b6e2"
+    }
+  }
+]

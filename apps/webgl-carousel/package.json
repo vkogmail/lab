@@ -1,0 +1,17 @@
+{
+  "name": "webgl-carousel",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predev": "node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\"",
+    "prebuild": "node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\"",
+    "prevercel-build": "node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\""
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

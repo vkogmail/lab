@@ -1,0 +1,807 @@
+/* Updated Plugin CSS */
+
+/* Layout Structure */
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: var(--framer-color-bg);
+  border-bottom: 1px solid var(--framer-color-divider);
+  z-index: 1000;
+  padding: 8px 12px;
+  flex: 0 0 auto;
+}
+
+.app-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden; /* Prevent double scrollbars */
+}
+
+.sidebar {
+  flex: 0 0 30%;
+  min-width: 200px;
+  border-right: 1px solid var(--framer-color-divider);
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.content {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: 100%;
+}
+
+/* Token Groups Layout */
+.token-groups-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.token-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%; /* Force full width */
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.group-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--framer-color-text);
+}
+
+.token-row {
+  display: flex;
+  flex-wrap: wrap; /* Changed from nowrap to wrap */
+  gap: 8px;
+  width: 100%; /* Force full width */
+  margin-bottom: 24px; /* Add space between groups */
+}
+
+/* Swatch Container and Base Styles */
+.token-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px;
+}
+
+.swatch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Color Swatch Specific */
+.swatch-color {
+  padding: 4px;
+}
+
+.swatch-color .color-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--framer-color-divider);
+  position: relative;
+}
+
+.swatch-color .swatch-label {
+  display: none;
+}
+
+.token-swatches .swatch-color {
+  margin-right: -12px;
+}
+
+.token-swatches .swatch-color:last-child {
+  margin-right: 0;
+}
+
+/* Other Swatch Types */
+.swatch-other {
+  background-color: var(--framer-color-bg-secondary);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.swatch-label {
+  font-size: 14px;
+  color: var(--framer-color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Selection States */
+.swatch.swatch-color.selected::before {
+  display: none;
+}
+
+.swatch.swatch-other.selected::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: inherit;
+  border: 2px solid var(--framer-color-tint);
+  z-index: 0;
+}
+
+.swatch.selected .color-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--framer-color-tint);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Tooltip Styles */
+.tooltip {
+  display: none;
+  position: absolute;
+  background: var(--framer-color-tint);
+  color: var(--framer-color-text-reversed);
+  padding: 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: normal;
+  z-index: 9999;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+  max-width: 400px;
+  min-width: 75px; /* Added minimum width */
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: var(--framer-color-tint);
+}
+
+.tooltip-label {
+  margin: 0;
+  text-align: left;
+}
+
+.tooltip-value {
+  background: var(--framer-color-tint-dark);
+  padding: 2px 4px;
+  border-radius: 2px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.swatch:hover .tooltip {
+  display: flex;
+  
+  /* Check if tooltip would go off-screen and flip if needed */
+  @media (max-height: 100px) {
+    bottom: auto;
+    top: calc(100% + 8px);
+    
+    /* Flip the arrow */
+    &::after {
+      bottom: auto;
+      top: -4px;
+      transform: translateX(-50%) rotate(225deg);
+    }
+  }
+}
+
+/* Adjust horizontal position if close to edges */
+.swatch:first-child .tooltip {
+  left: 0;
+  transform: translateX(0);
+}
+
+.swatch:last-child .tooltip {
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+
+/* Adjust the arrow for edge cases */
+.swatch:first-child .tooltip::after {
+  left: 16px; /* Align with the center of the color dot */
+  transform: rotate(45deg);
+}
+
+.swatch:last-child .tooltip::after {
+  left: auto;
+  right: 16px;
+  transform: rotate(45deg);
+}
+
+/* Theme Select */
+.theme-select {
+  padding: 4px;
+  font-size: 14px;
+  border: 1px solid var(--framer-color-divider);
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 8px;
+  background-color: var(--framer-color-bg);
+  color: var(--framer-color-text);
+}
+
+.theme-select:hover {
+  background-color: var(--framer-color-bg-hover);
+}
+
+.theme-select:focus {
+  outline: none;
+  border-color: var(--framer-color-primary);
+}
+
+/* Token Set List */
+.token-set-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.token-set-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  margin: 0 4px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.token-set-item.child {
+  padding-left: 32px;
+}
+
+.token-set-item:not(.selected):hover {
+  background-color: var(--framer-color-hover);
+}
+
+.token-set-item.selected {
+  background-color: var(--framer-color-tint-dimmed);
+}
+
+.token-set-item .toggle {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  transition: transform 0.2s ease;
+}
+
+.token-set-item .toggle.has-children {
+  cursor: pointer;
+}
+
+.token-set-item .toggle.expanded {
+  transform: rotate(90deg);
+}
+
+.token-set-item .token-name {
+  flex: 1;
+  color: var(--framer-color-text);
+}
+
+/* Checkbox Styles */
+.token-set-item input[type="checkbox"] {
+  margin: 0;
+  accent-color: var(--framer-color-tint);
+  cursor: pointer;
+}
+
+input[type="checkbox"]:indeterminate {
+  background-color: var(--framer-color-tint);
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='2' y='5' width='8' height='2' fill='white'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  border-color: var(--framer-color-tint);
+}
+
+input[type="checkbox"]:indeterminate:hover {
+  background-color: var(--framer-color-tint);
+  border-color: var(--framer-color-tint);
+}
+
+/* Add these styles for the top bar */
+.top-bar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: var(--framer-color-bg);
+  border-bottom: 1px solid var(--framer-color-divider);
+  z-index: 1000;
+  padding: 8px 12px;
+}
+
+.top-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.top-bar-right {
+  display: flex;
+  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Content area */
+.content-area {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Buttons */
+.sync-button,
+.debug-button,
+.settings-button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--framer-color-divider);
+  background: var(--framer-color-surface);
+  cursor: pointer;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  width: fit-content; /* Make buttons fit their content */
+}
+
+.sync-button:hover,
+.debug-button:hover,
+.settings-button:hover {
+  background: var(--framer-color-hover);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.modal-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--framer-color-bg);
+  opacity: 0.85;
+}
+
+.modal-content {
+  position: relative;
+  z-index: 1;
+  background: var(--framer-color-surface);
+  border-radius: 8px;
+  width: 480px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--framer-color-divider);
+  background: var(--framer-color-surface);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  overflow: visible; /* Change from auto to visible */
+}
+
+/* Form Styles */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--framer-color-text);
+}
+
+.form-group input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--framer-color-divider);
+  background: var(--framer-color-bg);
+  font-size: 13px;
+  color: var(--framer-color-text);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--framer-color-tint);
+}
+
+.close-button {
+  padding: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--framer-color-surface);
+  border: 1px solid var(--framer-color-divider);
+  color: var(--framer-color-text);
+}
+
+/* Button States */
+.test-button:hover,
+.save-button:hover,
+.close-button:hover {
+  filter: brightness(0.95);
+}
+
+.test-button:disabled,
+.save-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.test-button.success {
+  background-color: var(--framer-color-success-dimmed);
+  color: var(--framer-color-success);
+  border-color: var(--framer-color-success);
+}
+
+/* Status Messages */
+.error-message {
+  margin: 16px 0;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: var(--framer-color-error-dimmed);
+  color: var(--framer-color-error);
+  font-size: 13px;
+}
+
+.status-message {
+  margin: 16px 0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.status-message.success {
+  background-color: var(--framer-color-success-dimmed, #e6f4ea);
+  color: var(--framer-color-success, #137333);
+}
+
+.status-message.error {
+  background-color: var(--framer-color-error-dimmed, #fce8e6);
+  color: var(--framer-color-error, #c5221f);
+}
+
+.test-button.success {
+  background-color: var(--framer-color-success-dimmed, #e6f4ea);
+  color: var(--framer-color-success, #137333);
+  border-color: var(--framer-color-success, #137333);
+}
+
+.sync-progress {
+  margin-left: 12px;
+  color: var(--framer-color-text-tertiary);
+  font-size: 14px;
+}
+
+.sync-button {
+  /* ... existing styles ... */
+  transition: all 0.2s ease;
+}
+
+.sync-button.syncing {
+  background-color: var(--framer-color-disabled);
+  cursor: not-allowed;
+}
+
+.last-sync {
+  color: var(--framer-color-text-tertiary);
+  font-size: 13px;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.loading-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--framer-color-bg);
+  opacity: 0.7;
+  z-index: 0;  /* Ensure it's behind the content */
+}
+
+/* Add this to ensure the loader is above the overlay background */
+.loading-overlay > div {
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove any absolute positioning or transforms */
+.modal-body .button-group button {
+  position: static;
+  transform: none;
+}
+
+/* Modal Buttons */
+.modal-body .button-group {
+  display: flex;
+  flex-direction: column; /* Change to column layout */
+  gap: 8px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.modal-body .button-group button {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Optional: For larger screens */
+@media (min-width: 480px) {
+  .modal-body .button-group {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  
+  .modal-body .button-group button {
+    width: auto;
+    min-width: 120px;
+  }
+}
+
+.modal-body .button-group .test-button {
+  background: var(--framer-color-surface);
+  border: 1px solid var(--framer-color-divider);
+  color: var(--framer-color-text);
+}
+
+.modal-body .button-group .save-button {
+  background: var(--framer-color-tint);
+  border: 1px solid var(--framer-color-tint);
+  color: white;
+}
+
+/* Button States */
+.modal-body .button-group button:hover {
+  filter: brightness(0.95);
+}
+
+.modal-body .button-group button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.modal-body .button-group .test-button.success {
+  background-color: var(--framer-color-success-dimmed);
+  color: var(--framer-color-success);
+  border-color: var(--framer-color-success);
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.loading-message {
+  color: var(--framer-color-text);
+  font-size: 14px;
+  text-align: center;
+  max-width: 300px; /* Prevent very long messages from stretching too wide */
+  line-height: 1.4;
+}
+
+.custom-theme-select {
+  position: relative;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.theme-select-header {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid var(--framer-color-divider);
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--framer-color-bg);
+  color: var(--framer-color-text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 -10px; /* Compensate for sidebar padding */
+  width: calc(100% + 20px); /* Make it full width including the compensated padding */
+}
+
+.theme-options {
+  position: absolute;
+  top: calc(100% - 1px); /* Overlap the border to avoid double line */
+  left: -10px;
+  right: -10px;
+  background-color: var(--framer-color-bg);
+  border: 1px solid var(--framer-color-divider);
+  border-radius: 0 0 4px 4px; /* Round only bottom corners */
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.theme-option {
+  padding: 8px;
+  margin: 0 4px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--framer-color-text);
+  border-radius: 4px;
+}
+
+.theme-option:hover {
+  background-color: var(--framer-color-hover);
+}
+
+.theme-option.selected {
+  background-color: var(--framer-color-tint-dimmed);
+}
+
+/* Remove custom checkbox styles and reuse token-set-item input styles */
+.theme-option input[type="checkbox"] {
+  margin: 0;
+  accent-color: var(--framer-color-tint);
+  cursor: pointer;
+}
+
+/* When dropdown is open, adjust header border radius */
+.custom-theme-select.open .theme-select-header {
+  border-radius: 4px 4px 0 0; /* Round only top corners */
+  border-bottom-color: transparent; /* Hide bottom border when open */
+}
+
+.selection-count {
+  position: sticky;
+  bottom: 0;
+  padding: 8px 16px;
+  background-color: var(--background);
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sync-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--framer-color-divider);
+  background: var(--framer-color-surface);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.sync-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px; /* Make emoji slightly larger */
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.sync-button.syncing .sync-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

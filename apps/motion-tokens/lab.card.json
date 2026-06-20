@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schema/lab-card.schema.json",
+  "slug": "motion-tokens",
+  "title": "Motion tokens",
+  "intent": "Motion treated as tokens, the same as color or spacing, so easing and timing stay consistent and portable.",
+  "move": "easing, duration and delay captured as named tokens, previewed live; brand variants on top are a bonus",
+  "tags": ["motion", "design tokens", "easing"],
+  "stack": ["Vite", "React"],
+  "kind": "web-demo",
+  "status": "live",
+  "demo_url": "https://lab-motion-tokens.vercel.app",
+  "repo_url": null,
+  "hero": null,
+  "featured": true,
+  "spec": "curve"
+}

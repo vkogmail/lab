@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schema/lab-card.schema.json",
+  "slug": "background-shade",
+  "title": "Background shade from a cover",
+  "intent": "A background that derives a balanced color scale from an image, so the page takes its tone from the content.",
+  "move": "extract a dominant hue, build a perceptual ramp in OKLCH, expose it as design tokens",
+  "tags": ["OKLCH", "color extraction", "design tokens"],
+  "stack": ["Node", "Express"],
+  "kind": "web-demo",
+  "status": "live",
+  "demo_url": "https://lab-background-shade.vercel.app",
+  "repo_url": null,
+  "hero": null,
+  "featured": true,
+  "spec": "shade"
+}

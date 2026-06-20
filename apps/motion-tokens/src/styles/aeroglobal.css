@@ -1,0 +1,30 @@
+.theme-aeroglobal {
+  --color-primary: #8b4518;
+  --color-secondary: #f4eadc;
+  --color-tertiary: #faf7f2;
+  --color-border: #e8dcc8;
+  --color-shadow: rgba(139, 69, 24, 0.18);
+  --color-text: #2c2419;
+  --color-text-secondary: #6b5d4f;
+  --color-bg-primary: #f4eadc;
+  --color-bg-secondary: #fffdf9;
+  --color-Neutral: #2c2419;
+  --shadow-small: 0 2px 8px 0 rgba(139, 69, 24, 0.12);
+  --shadow-medium: 0 8px 24px 0 rgba(139, 69, 24, 0.14);
+  --border-radius-default: 10px;
+}
+
+[data-theme="dark"] .theme-aeroglobal {
+  --color-primary: #d4956a;
+  --color-secondary: #2a221b;
+  --color-tertiary: #1e1914;
+  --color-border: rgba(212, 149, 106, 0.22);
+  --color-shadow: rgba(0, 0, 0, 0.35);
+  --color-text: #f4eadc;
+  --color-text-secondary: #a89888;
+  --color-bg-primary: #221c17;
+  --color-bg-secondary: #1a1612;
+  --color-Neutral: #f4eadc;
+  --shadow-small: 0 2px 8px 0 rgba(0, 0, 0, 0.28);
+  --shadow-medium: 0 10px 28px 0 rgba(0, 0, 0, 0.38);
+}

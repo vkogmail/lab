@@ -1,0 +1,326 @@
+@import "./tokens.css";
+@import "./nav.css";
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  transition: background .5s ease, color .5s ease;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: calc(var(--nav-bottom) + var(--lab-nav-height) + 12px);
+  box-sizing: border-box;
+}
+
+/* Signature radial background (portfolio) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 85% 8%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 10% 90%, color-mix(in srgb, var(--accent) 4%, transparent), transparent 50%);
+  opacity: .9;
+}
+
+h1, h2, h3, .label {
+  font-family: var(--serif);
+  font-weight: 300;
+  letter-spacing: -.02em;
+}
+
+.label {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+button, .btn {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 100px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all .2s var(--ease-out);
+}
+
+button:hover, .btn:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent-text);
+}
+
+.btn.ghost {
+  border-color: var(--line);
+  color: var(--ink-soft);
+}
+
+.btn.ghost:hover {
+  color: var(--ink);
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.btn.primary:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--accent) 88%, var(--ink));
+  color: var(--bg);
+  border-color: transparent;
+}
+
+/* Shared demo page chrome */
+.demo-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 32px;
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+.demo-header-main {
+  max-width: 58ch;
+}
+
+.demo-header .label {
+  margin: 0 0 10px;
+  font-size: clamp(21px, 1.9vw, 28px);
+  color: var(--accent-text);
+}
+
+.demo-header h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(32px, 4.5vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+.demo-header .lead {
+  margin: 14px 0 0;
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.demo-actions .btn.ghost.is-copied {
+  color: var(--accent-text);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.demo-actions a.btn.ghost {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --gut: 20px;
+  }
+
+  .demo-header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: clamp(16px, 3vw, 24px);
+    gap: 12px 20px;
+  }
+
+  .demo-header h1 {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+
+  .demo-header .lead {
+    font-size: 15px;
+    margin-top: 10px;
+  }
+}
+
+/* How it works modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(72px, 10vh, 96px) 20px 40px;
+  background-color: color-mix(in srgb, var(--bg) 35%, transparent);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow-y: auto;
+}
+
+.modal[hidden] {
+  display: none !important;
+}
+
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.lab-modal-open .demo-actions {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-content {
+  background-color: var(--bg2);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 40px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  width: min(700px, 100%);
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  transform: translateY(-12px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.modal.show .modal-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-content h2 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 300;
+  color: var(--ink);
+  margin: 0 0 28px;
+  padding-right: 40px;
+}
+
+.modal-content h3 {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 1.5rem 0 0.75rem;
+}
+
+.modal-content h3:first-of-type {
+  margin-top: 0;
+}
+
+.modal-content p,
+.modal-content li {
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.modal-content a {
+  color: var(--accent-text);
+}
+
+.modal-content pre {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  overflow-x: auto;
+}
+
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+.close-btn:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.explanation-section {
+  margin-bottom: 32px;
+}
+
+.explanation-section:last-child {
+  margin-bottom: 0;
+}
+
+.explanation-section h3 {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.explanation-section p {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.explanation-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.explanation-section li {
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.explanation-section li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 24px;
+    padding: 24px;
+    width: calc(100% - 48px);
+  }
+}

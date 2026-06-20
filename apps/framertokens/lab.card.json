@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schema/lab-card.schema.json",
+  "slug": "framertokens",
+  "title": "Framer token sync",
+  "intent": "Pull design tokens into Framer and create variables from them.",
+  "move": "a Framer plugin that maps a token file onto Framer variable collections",
+  "tags": ["Framer plugin", "design tokens", "variables"],
+  "stack": ["Framer"],
+  "kind": "framer-plugin",
+  "status": "live",
+  "demo_url": "https://lab-framertokens.vercel.app",
+  "repo_url": null,
+  "hero": null,
+  "featured": false,
+  "spec": "grid"
+}

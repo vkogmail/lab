@@ -1,0 +1,320 @@
+{
+  "patterns": {
+    "fadeIn": {
+      "value": {
+        "type": "bezier",
+        "duration": "{moderate}",
+        "delay": "{none}",
+        "easing": "{standard}",
+        "opacityFrom": "0",
+        "opacityTo": "1",
+        "scaleFrom": "{base}",
+        "scaleTo": "{base}",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "-4deg",
+        "translateFrom": "{none}",
+        "translateTo": "{none}"
+      },
+      "type": "variant"
+    },
+    "fadeOut": {
+      "value": {
+        "type": "bezier",
+        "duration": "300ms",
+        "delay": "0ms",
+        "easing": "cubic-bezier(0.4, 0, 1, 1)",
+        "opacityFrom": "1",
+        "opacityTo": "0",
+        "scaleFrom": "1",
+        "scaleTo": "1",
+        "rotateFrom": "0deg",
+        "rotateTo": "0deg",
+        "translateFrom": "0px",
+        "translateTo": "0px"
+      },
+      "type": "composition",
+      "description": "Playful fade out animation"
+    },
+    "slideUp": {
+      "value": {
+        "type": "bezier",
+        "duration": "{moderate}",
+        "delay": "{none}",
+        "easing": "{standard}",
+        "opacityFrom": "0",
+        "opacityTo": "1",
+        "scaleFrom": "{base}",
+        "scaleTo": "{base}",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "{rotate-none}",
+        "translateFrom": "{large}",
+        "translateTo": "{none}"
+      },
+      "type": "variant"
+    },
+    "slideDown": {
+      "value": {
+        "type": "bezier",
+        "duration": "{moderate}",
+        "delay": "{none}",
+        "easing": "{standard}",
+        "opacityFrom": "0",
+        "opacityTo": "1",
+        "scaleFrom": "{base}",
+        "scaleTo": "{base}",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "{rotate-none}",
+        "translateFrom": "{none}",
+        "translateTo": "{large}"
+      },
+      "type": "variant"
+    },
+    "scaleUp": {
+      "value": {
+        "type": "bezier",
+        "duration": "{moderate}",
+        "delay": "{none}",
+        "easing": "{standard}",
+        "opacityFrom": "0",
+        "opacityTo": "1",
+        "scaleFrom": "{base}",
+        "scaleTo": "1.5",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "{rotate-none}",
+        "translateFrom": "{none}",
+        "translateTo": "{none}"
+      },
+      "type": "variant"
+    },
+    "scaleDown": {
+      "value": {
+        "type": "bezier",
+        "duration": "{moderate}",
+        "delay": "{none}",
+        "easing": "{standard}",
+        "opacityFrom": "0",
+        "opacityTo": "1",
+        "scaleFrom": "{base}",
+        "scaleTo": "0.8",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "{rotate-none}",
+        "translateFrom": "{none}",
+        "translateTo": "{none}"
+      },
+      "type": "variant"
+    },
+    "list-item-enter": {
+      "value": {
+        "type": "bezier",
+        "duration": "500ms",
+        "delay": "0ms",
+        "easing": "cubic-bezier(0.4, 0, 0.6, 1)",
+        "opacityFrom": "0",
+        "opacityTo": "1",
+        "scaleFrom": "0.8",
+        "scaleTo": "1",
+        "rotateFrom": "15deg",
+        "rotateTo": "0deg",
+        "translateFrom": "32px",
+        "translateTo": "0px"
+      },
+      "type": "composition",
+      "description": "Energetic list item entrance animation with rotation"
+    }
+  },
+  "components": {
+    "button-hover": {
+      "value": {
+        "type": "bezier",
+        "duration": "{quick}",
+        "delay": "{none}",
+        "easing": "{standard}",
+        "opacityFrom": "{visible}",
+        "opacityTo": "{visible}",
+        "scaleFrom": "{base}",
+        "scaleTo": "{up-small}",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "{rotate-none}",
+        "translateFrom": "{none}",
+        "translateTo": "{none}"
+      },
+      "type": "composition",
+      "description": "Button hover animation"
+    },
+    "button-active": {
+      "value": {
+        "type": "bezier",
+        "duration": "{quick}",
+        "delay": "{none}",
+        "easing": "{standard}",
+        "opacityFrom": "{visible}",
+        "opacityTo": "{visible}",
+        "scaleFrom": "{base}",
+        "scaleTo": "{down-small}",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "{rotate-none}",
+        "translateFrom": "{none}",
+        "translateTo": "{none}"
+      },
+      "type": "composition",
+      "description": "Button press animation"
+    },
+    "modal-enter": {
+      "value": {
+        "type": "bezier",
+        "duration": "{moderate}",
+        "delay": "{none}",
+        "easing": "{decelerate}",
+        "opacityFrom": "{invisible}",
+        "opacityTo": "{visible}",
+        "scaleFrom": "{down-small}",
+        "scaleTo": "{base}",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "{rotate-none}",
+        "translateFrom": "{medium}",
+        "translateTo": "{none}"
+      },
+      "type": "composition",
+      "description": "Modal entrance animation"
+    },
+    "modal-exit": {
+      "value": {
+        "type": "bezier",
+        "duration": "{quick}",
+        "delay": "{none}",
+        "easing": "{accelerate}",
+        "opacityFrom": "{visible}",
+        "opacityTo": "{invisible}",
+        "scaleFrom": "{base}",
+        "scaleTo": "{base}",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "{rotate-none}",
+        "translateFrom": "{none}",
+        "translateTo": "{small}"
+      },
+      "type": "composition",
+      "description": "Modal exit animation"
+    },
+    "card-enter": {
+      "value": {
+        "type": "bezier",
+        "duration": "{moderate}",
+        "delay": "{none}",
+        "easing": "{standard}",
+        "opacityFrom": "1",
+        "opacityTo": "1",
+        "scaleFrom": "{base}",
+        "scaleTo": "1.4",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "16deg",
+        "translateFrom": "{none}",
+        "translateTo": "{none}"
+      },
+      "type": "variant"
+    },
+    "card-hover": {
+      "value": {
+        "type": "bezier",
+        "duration": "{moderate}",
+        "delay": "{none}",
+        "easing": "{standard}",
+        "opacityFrom": "1",
+        "opacityTo": "1",
+        "scaleFrom": "{base}",
+        "scaleTo": "1.35",
+        "rotateFrom": "{rotate-none}",
+        "rotateTo": "6deg",
+        "translateFrom": "{none}",
+        "translateTo": "{none}"
+      },
+      "type": "variant"
+    }
+  },
+  "color": {
+    "primary": {
+      "value": "#00A1DE",
+      "type": "color",
+      "description": "Primary brand color"
+    },
+    "secondary": {
+      "value": "#E9F8FF",
+      "type": "color",
+      "description": "Secondary brand color"
+    },
+    "tertiary": {
+      "value": "#F6F7F8",
+      "type": "color",
+      "description": "Tertiary brand color"
+    },
+    "border": {
+      "value": "{color.secondary}",
+      "type": "color"
+    },
+    "shadow": {
+      "value": "{color.primary}",
+      "type": "color",
+      "$extensions": {
+        "studio.tokens": {
+          "modify": {
+            "type": "alpha",
+            "value": "0.3",
+            "space": "lch"
+          }
+        }
+      }
+    },
+    "text": {
+      "value": "#FFFFFF",
+      "type": "color"
+    },
+    "text-secondary": {
+      "value": "#B3E5FC",
+      "type": "color"
+    },
+    "bg": {
+      "primary": {
+        "value": "{color.secondary}",
+        "type": "color"
+      },
+      "secondary": {
+        "value": "#FFFFFF",
+        "type": "color"
+      }
+    },
+    "Neutral": {
+      "value": "#000000",
+      "type": "color",
+      "description": "Neutral Text color"
+    }
+  },
+  "border": {
+    "radius": {
+      "default": {
+        "value": "8px",
+        "type": "borderRadius"
+      }
+    }
+  },
+  "shadow": {
+    "small": {
+      "value": {
+        "x": "0",
+        "y": "2px",
+        "blur": "8px",
+        "spread": "0",
+        "color": "{color.shadow}"
+      },
+      "type": "boxShadow"
+    },
+    "medium": {
+      "value": {
+        "x": "0",
+        "y": "4px",
+        "blur": "16px",
+        "spread": "0",
+        "color": "{color.shadow}"
+      },
+      "type": "boxShadow"
+    }
+  }
+}

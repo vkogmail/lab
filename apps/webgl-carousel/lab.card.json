@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schema/lab-card.schema.json",
+  "slug": "webgl-carousel",
+  "title": "WebGL warp carousel",
+  "intent": "A carousel that bends and blurs its cards in a shader as they move.",
+  "move": "OGL shaders for warp, progressive blur and chromatic aberration, fed by DOM rasterization",
+  "tags": ["WebGL", "OGL", "shaders"],
+  "stack": ["WebGL", "OGL"],
+  "kind": "web-demo",
+  "status": "live",
+  "demo_url": "https://lab-webgl-carousel.vercel.app",
+  "repo_url": null,
+  "hero": null,
+  "featured": true,
+  "spec": "warp"
+}

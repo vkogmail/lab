@@ -1,0 +1,124 @@
+{
+  "FontSizes": {
+    "3000": {
+      "value": "{FontSizes.300}",
+      "type": "fontSizes"
+    },
+    "4000": {
+      "value": "{FontSizes.600}",
+      "type": "fontSizes"
+    },
+    "6000": {
+      "value": "{FontSizes.900}",
+      "type": "fontSizes"
+    },
+    "8000": {
+      "value": "{FontSizes.1200}",
+      "type": "fontSizes"
+    },
+    "10000": {
+      "value": "{FontSizes.1400}",
+      "type": "fontSizes"
+    },
+    "11000": {
+      "value": "{FontSizes.1500}",
+      "type": "fontSizes"
+    }
+  },
+  "LineHeights": {
+    "3000": {
+      "value": "22",
+      "type": "lineHeights"
+    },
+    "4000": {
+      "value": "28.6",
+      "type": "lineHeights"
+    },
+    "6000": {
+      "value": "39.6",
+      "type": "lineHeights"
+    },
+    "8000": {
+      "value": "56",
+      "type": "lineHeights"
+    },
+    "10000": {
+      "value": "72",
+      "type": "lineHeights"
+    },
+    "11000": {
+      "value": "88",
+      "type": "lineHeights"
+    }
+  },
+  "ScreenWidth": {
+    "base": {
+      "value": "1240",
+      "type": "dimension"
+    }
+  },
+  "Columns": {
+    "base": {
+      "value": "12",
+      "type": "dimension"
+    }
+  },
+  "ColumnWidth": {
+    "base": {
+      "value": "100%",
+      "type": "dimension"
+    }
+  },
+  "Gutter": {
+    "base": {
+      "value": "24",
+      "type": "dimension"
+    }
+  },
+  "Offset": {
+    "base": {
+      "value": "48",
+      "type": "dimension"
+    }
+  },
+  "ContainerWidth": {
+    "base": {
+      "value": "1128",
+      "type": "dimension"
+    }
+  },
+  "Padding": {
+    "Default": {
+      "value": "40",
+      "type": "spacing"
+    }
+  },
+  "Spacing": {
+    "Small": {
+      "value": "32",
+      "type": "spacing"
+    },
+    "Medium": {
+      "value": "56",
+      "type": "spacing"
+    },
+    "Large": {
+      "value": "88",
+      "type": "spacing"
+    },
+    "ExtraLarge": {
+      "value": "144",
+      "type": "spacing"
+    }
+  },
+  "Margin": {
+    "Large": {
+      "value": "72",
+      "type": "spacing"
+    },
+    "Small": {
+      "value": "48",
+      "type": "spacing"
+    }
+  }
+}

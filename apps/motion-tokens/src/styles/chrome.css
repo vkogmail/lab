@@ -1,0 +1,118 @@
+/* App-specific chrome — shared demo-header/modal/buttons live in /brand/brand.css */
+
+.app {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gut) clamp(48px, 6vw, 80px);
+  box-sizing: border-box;
+}
+
+.motion-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.motion-theme-toggle__label {
+  font-family: var(--sans);
+  font-weight: 500;
+}
+
+.main-content {
+  width: 100%;
+  min-width: 0;
+}
+
+.product-demo {
+  width: 100%;
+  max-width: 100%;
+  color: var(--color-text);
+  border-radius: 22px;
+  overflow: visible;
+  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+[data-theme="dark"] .product-demo {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.motion-token-readout {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-default);
+  padding: 16px 18px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.motion-token-readout__label {
+  margin: 0 0 4px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.motion-token-readout__imprint {
+  margin: 0 0 14px;
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--color-primary);
+}
+
+.motion-token-readout__block + .motion-token-readout__block {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+}
+
+.motion-token-readout__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 10px;
+  margin-bottom: 8px;
+}
+
+.motion-token-readout__name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.motion-token-readout__path {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+.motion-token-readout__values {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.motion-token-readout__values li {
+  color: var(--color-text-secondary);
+  padding: 2px 0;
+  word-break: break-word;
+}
+
+.motion-token-readout__hint {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}

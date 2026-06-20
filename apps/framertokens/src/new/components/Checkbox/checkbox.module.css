@@ -1,0 +1,77 @@
+.checkbox {
+    width: 14px;
+    height: 14px;
+    border-radius: var(--radius-2xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: var(--transition-base);
+    position: relative;
+}
+
+/* Primary variant (blue) */
+.checkbox {
+    background-color: rgba(var(--color-blue-500-rgb), var(--opacity-100));
+}
+
+.checkbox:checked {
+    background-color: var(--color-primary);
+}
+
+/* Purple variant */
+.checkbox.purple {
+    background-color: rgba(var(--color-purple-500-rgb), var(--opacity-100));
+}
+
+/* Purple variant on purple background */
+.menuItem.selected .checkbox.purple:not(:checked) {
+    background-color: rgba(var(--color-purple-500-rgb), var(--opacity-200)); /* Darker for better visibility */
+}
+
+.checkbox.purple:checked {
+    background-color: var(--color-purple-500);
+}
+
+/* Inverted variant */
+.checkbox.inverted {
+    background-color: rgba(var(--color-grey-0-rgb), var(--opacity-200));
+}
+
+.checkbox.inverted:checked {
+    background-color: var(--color-white);
+}
+
+/* Checkmark */
+.checkbox:checked::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-white);
+    mask-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.5 6L5 8.5L9.5 4' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    mask-position: center;
+    mask-repeat: no-repeat;
+}
+
+/* Inverted checkmark */
+.checkbox.inverted:checked::after {
+    background: var(--color-primary);
+}
+
+.checkbox.inverted.purple:checked::after {
+    background: var(--color-purple-500);
+}
+
+/* Intermediate state */
+.checkbox.intermediate:checked::after {
+    mask-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 6H9' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* Disabled state */
+.checkbox:disabled {
+    cursor: not-allowed;
+    background-color: var(--surface-inset);
+    border: 1px solid var(--color-grey-alpha);
+}

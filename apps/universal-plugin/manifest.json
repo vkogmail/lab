@@ -1,0 +1,14 @@
+{
+  "name": "Lab Token Sync",
+  "id": "1646833286534347684",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "permissions": ["currentuser"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["https://dev.azure.com"],
+    "reasoning": "Reads and writes design-token JSON in the Git Provider repo to sync with Figma variables."
+  }
+}

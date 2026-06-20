@@ -1,0 +1,2 @@
+# Include synced brand assets even though root .gitignore excludes public/brand/
+!public/brand/

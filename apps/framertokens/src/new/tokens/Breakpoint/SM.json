@@ -1,0 +1,72 @@
+{
+  "ScreenWidth": {
+    "base": {
+      "value": "600",
+      "type": "dimension"
+    }
+  },
+  "Columns": {
+    "base": {
+      "value": "8",
+      "type": "dimension"
+    }
+  },
+  "ColumnWidth": {
+    "base": {
+      "value": "100%",
+      "type": "dimension"
+    }
+  },
+  "Gutter": {
+    "base": {
+      "value": "6",
+      "type": "dimension"
+    }
+  },
+  "Offset": {
+    "base": {
+      "value": "32",
+      "type": "dimension"
+    }
+  },
+  "ContainerWidth": {
+    "base": {
+      "value": "Auto",
+      "type": "dimension"
+    }
+  },
+  "Padding": {
+    "Default": {
+      "value": "32",
+      "type": "spacing"
+    }
+  },
+  "Spacing": {
+    "Small": {
+      "value": "24",
+      "type": "spacing"
+    },
+    "Medium": {
+      "value": "40",
+      "type": "spacing"
+    },
+    "Large": {
+      "value": "72",
+      "type": "spacing"
+    },
+    "ExtraLarge": {
+      "value": "112",
+      "type": "spacing"
+    }
+  },
+  "Margin": {
+    "Large": {
+      "value": "64",
+      "type": "spacing"
+    },
+    "Small": {
+      "value": "40",
+      "type": "spacing"
+    }
+  }
+}

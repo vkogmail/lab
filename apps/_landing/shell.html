@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-repo-url="{{repoUrl}}" data-theme="dark" data-lab-title="{{title}}" data-lab-description="{{intent}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>{{title}} · Lab</title>
+    <script src="/brand/theme-init.js"></script>
+    <script src="/brand/meta.js"></script>
+    <link rel="stylesheet" href="/brand/brand.css">
+    <link rel="stylesheet" href="/brand/landing.css">
+    <script src="/brand/header.js"></script>
+    <style>
+      @media (min-width: 900px) {
+        .demo-preview.has-aside.hero-layout { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
+      }
+      .hero-shot { margin: 0; }
+      .hero-shot img { display: block; width: 100%; height: auto; border-radius: 18px;
+        border: 1px solid var(--line); box-shadow: 0 32px 64px color-mix(in srgb, var(--bg) 35%, transparent); }
+      .hero-placeholder { aspect-ratio: 16/10; border-radius: 18px; border: 1px dashed var(--line);
+        background: color-mix(in srgb, var(--accent) 6%, transparent); }
+    </style>
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <div class="demo-header-main">
+                <p class="label">{{label}}</p>
+                <h1>{{headline}}</h1>
+                <p class="lead">{{lead}}</p>
+            </div>
+            <div class="demo-actions">
+                <button id="howItWorksBtn" class="btn ghost" type="button">How it works</button>
+                <button id="shareBtn" class="btn ghost" type="button">Share</button>
+            </div>
+        </header>
+
+        <div class="demo-preview has-aside hero-layout">
+            {{hero}}
+            <div class="demo-aside">
+                <div>
+                    <h2>What you are looking at</h2>
+                    <p>{{asideIntro}}</p>
+                </div>
+                <ul>
+                    {{asideList}}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="howItWorksModal" class="modal" hidden>
+        <div class="modal-content">
+            <button id="closeModal" class="close-btn" type="button" aria-label="Close">&times;</button>
+            <h2>How it works</h2>
+            {{modalSections}}
+        </div>
+    </div>
+
+    <script src="/brand/chrome.js"></script>
+</body>
+</html>

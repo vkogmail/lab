@@ -1,0 +1,46 @@
+.tooltip {
+    position: relative;
+    background: var(--color-primary);
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+    color: var(--color-white);
+    white-space: normal;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-width: 400px;
+    min-width: 75px;
+    width: fit-content;
+}
+
+/* Arrow */
+.tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    background: inherit;
+    z-index: -1;
+}
+
+/* Value box */
+.tooltip-value {
+    background: var(--color-primary-hover);
+    padding: 2px 4px;
+    border-radius: var(--radius-2xs);
+    word-break: break-word;
+    position: relative;
+    z-index: 1;
+}
+
+/* Purple variant */
+.tooltip.purple {
+    background: var(--color-purple-500);
+}
+
+.tooltip.purple .tooltip-value {
+    background: color-mix(in srgb, var(--color-purple-500) 90%, black 10%);
+} 

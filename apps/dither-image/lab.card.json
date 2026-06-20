@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schema/lab-card.schema.json",
+  "slug": "dither-image",
+  "title": "Theme-aware dithering",
+  "intent": "A photo rebuilt as ordered dots that recolor with the active theme.",
+  "move": "4×4 Bayer ordered dither on an offscreen canvas, recomputed on resize",
+  "tags": ["canvas", "Bayer 4×4", "theme-reactive"],
+  "stack": ["Canvas", "JS"],
+  "kind": "web-demo",
+  "status": "live",
+  "demo_url": "https://lab-dither-image.vercel.app",
+  "repo_url": null,
+  "hero": null,
+  "featured": true,
+  "spec": "dither"
+}

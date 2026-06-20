@@ -1,0 +1,72 @@
+{
+  "Color": {
+    "Static": {
+      "10": {
+        "value": "{Color.brandPrimary.600}",
+        "type": "color"
+      },
+      "20": {
+        "value": "{Color.brandPrimary.500}",
+        "type": "color"
+      },
+      "30": {
+        "value": "{Color.brandPrimary.400}",
+        "type": "color"
+      },
+      "40": {
+        "value": "{Color.brandPrimary.300}",
+        "type": "color"
+      },
+      "50": {
+        "value": "{Color.brandPrimary.200}",
+        "type": "color"
+      },
+      "60": {
+        "value": "{Color.brandPrimary.100}",
+        "type": "color"
+      },
+      "70": {
+        "value": "{Color.brandPrimary.75}",
+        "type": "color"
+      },
+      "80": {
+        "value": "{Color.brandPrimary.50}",
+        "type": "color"
+      }
+    },
+    "Dynamic": {
+      "10": {
+        "value": "oklch({OKLCH.Lightness.10} {OKLCH.Saturation.10} {OKLCH.Hue.Dynamic})",
+        "type": "color"
+      },
+      "20": {
+        "value": "oklch({OKLCH.Lightness.20} {OKLCH.Saturation.20} {OKLCH.Hue.Dynamic})",
+        "type": "color"
+      },
+      "30": {
+        "value": "oklch({OKLCH.Lightness.30} {OKLCH.Saturation.30} {OKLCH.Hue.Dynamic})",
+        "type": "color"
+      },
+      "40": {
+        "value": "oklch({OKLCH.Lightness.40} {OKLCH.Saturation.40} {OKLCH.Hue.Dynamic})",
+        "type": "color"
+      },
+      "50": {
+        "value": "oklch({OKLCH.Lightness.50} {OKLCH.Saturation.50} {OKLCH.Hue.Dynamic})",
+        "type": "color"
+      },
+      "60": {
+        "value": "oklch({OKLCH.Lightness.60} {OKLCH.Saturation.60} {OKLCH.Hue.Dynamic})",
+        "type": "color"
+      },
+      "70": {
+        "value": "oklch({OKLCH.Lightness.70} {OKLCH.Saturation.70} {OKLCH.Hue.Dynamic})",
+        "type": "color"
+      },
+      "80": {
+        "value": "oklch({OKLCH.Lightness.80} {OKLCH.Saturation.80} {OKLCH.Hue.Dynamic})",
+        "type": "color"
+      }
+    }
+  }
+}

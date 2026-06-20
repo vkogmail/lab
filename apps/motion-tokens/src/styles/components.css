@@ -1,0 +1,50 @@
+.spring-range-input {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-bg-secondary);
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+.spring-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px var(--color-shadow);
+  transition: transform 0.1s ease;
+}
+
+.spring-range-input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px var(--color-shadow);
+  transition: transform 0.1s ease;
+}
+
+.spring-range-input::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.spring-range-input::-moz-range-thumb:hover {
+  transform: scale(1.1);
+}
+
+.spring-range-input:active::-webkit-slider-thumb {
+  transform: scale(0.9);
+}
+
+.spring-range-input:active::-moz-range-thumb {
+  transform: scale(0.9);
+} 

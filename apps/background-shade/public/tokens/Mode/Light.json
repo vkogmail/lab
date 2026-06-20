@@ -1,0 +1,72 @@
+{
+  "ColorRoles": {
+    "Platform": {
+      "BaseSurface": {
+        "value": "{Color.Other.White}",
+        "type": "color"
+      },
+      "MainSurfaceLow": {
+        "value": "{Color.Static.80}",
+        "type": "color"
+      },
+      "MainSurface": {
+        "value": "{Color.Static.70}",
+        "type": "color"
+      },
+      "MainSurfaceHigh": {
+        "value": "{Color.Static.40}",
+        "type": "color"
+      },
+      "MainOnSurface": {
+        "value": "{Color.Static.40}",
+        "type": "color"
+      },
+      "MainOnSurfaceInverse": {
+        "value": "{Color.Other.White}",
+        "type": "color"
+      },
+      "MainBorder": {
+        "value": "{Color.Static.40}",
+        "type": "color"
+      },
+      "MainBorderLow": {
+        "value": "{Color.Static.70}",
+        "type": "color"
+      }
+    },
+    "Folio": {
+      "BaseSurface": {
+        "value": "{Color.Other.White}",
+        "type": "color"
+      },
+      "MainSurface": {
+        "value": "{Color.Dynamic.70}",
+        "type": "color"
+      },
+      "MainSurfaceLow": {
+        "value": "{Color.Dynamic.80}",
+        "type": "color"
+      },
+      "MainSurfaceHigh": {
+        "value": "{Color.Dynamic.40}",
+        "type": "color"
+      },
+      "MainOnSurface": {
+        "value": "{Color.Dynamic.40}",
+        "type": "color"
+      },
+      "MainOnSurfaceInverse": {
+        "value": "{Color.Other.White}",
+        "type": "color"
+      },
+      "MainBorder": {
+        "value": "{Color.Dynamic.60}",
+        "type": "color"
+      },
+      "MainBorderLow": {
+        "value": "{Color.Dynamic.50}",
+        "type": "color"
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "buildCommand": "node -e \"import fs from 'fs'; import {execSync} from 'child_process'; const p='../../packages/brand/sync.mjs'; if (fs.existsSync(p)) execSync('node '+p,{stdio:'inherit'});\" && npm run tokens && vite build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "rewrites": [
+    {
+      "source": "/save-token",
+      "destination": "/api/save-token"
+    },
+    {
+      "source": "/check-build-status",
+      "destination": "/api/check-build-status"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Credentials",
+          "value": "true"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://afaeroglobal.vercel.app"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+        }
+      ]
+    }
+  ],
+  "ignoreCommand": "bash -c 'B=$VERCEL_GIT_PREVIOUS_SHA; test -n \"$B\" && git cat-file -e \"$B\" 2>/dev/null && git diff --quiet \"$B\" HEAD -- . ../_landing && exit 0; exit 1'"
+}

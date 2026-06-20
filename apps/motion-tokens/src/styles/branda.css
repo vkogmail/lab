@@ -1,0 +1,30 @@
+.theme-branda {
+  --color-primary: #7a1020;
+  --color-secondary: #ece8ea;
+  --color-border: #ddd6da;
+  --color-tertiary: #f5f3f4;
+  --color-Neutral: #14080c;
+  --color-shadow: rgba(20, 8, 12, 0.22);
+  --color-text: #14080c;
+  --color-text-secondary: #5c4a50;
+  --color-bg-primary: #ece8ea;
+  --color-bg-secondary: #ffffff;
+  --shadow-small: 0 2px 8px 0 rgba(20, 8, 12, 0.16);
+  --shadow-medium: 0 10px 28px 0 rgba(20, 8, 12, 0.2);
+  --border-radius-default: 3px;
+}
+
+[data-theme="dark"] .theme-branda {
+  --color-primary: #e05a72;
+  --color-secondary: #1a1216;
+  --color-border: rgba(224, 90, 114, 0.22);
+  --color-tertiary: #141014;
+  --color-Neutral: #f0eaec;
+  --color-shadow: rgba(0, 0, 0, 0.35);
+  --color-text: #f0eaec;
+  --color-text-secondary: #9a8a90;
+  --color-bg-primary: #1a1216;
+  --color-bg-secondary: #141014;
+  --shadow-small: 0 2px 8px 0 rgba(0, 0, 0, 0.28);
+  --shadow-medium: 0 10px 28px 0 rgba(0, 0, 0, 0.38);
+}

@@ -1,0 +1,8 @@
+.DS_Store
+src/.DS_Store
+.vercel
+dist
+
+# Local-only dev scratch and standalone component demos — not part of the plugin
+src/TEMP/
+src/examples/

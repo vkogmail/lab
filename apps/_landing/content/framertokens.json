@@ -1,0 +1,31 @@
+{
+  "label": "Framer token sync",
+  "headline": "Tokens into Framer variables",
+  "lead": "Connect a token repo, browse the sets, and apply values to selected canvas layers, or map them onto Framer variable collections.",
+  "asideIntro": "A Framer plugin that reads Tokens Studio JSON from GitHub and surfaces color, typography, and shadow tokens in a compact panel.",
+  "heroAlt": "The Framer token sync plugin open in Framer on a laptop and an iPhone, browsing colour token sets.",
+  "aside": [
+    "Authenticate with GitHub and point at a token repository",
+    "Parse token sets and theme metadata from <code>$themes.json</code>",
+    "Apply token values to selected Framer layers",
+    "Create or update Framer variable collections from token structure"
+  ],
+  "modal": [
+    {
+      "title": "Inside Framer",
+      "body": "<p>Install the plugin from the repo and open it on a Framer project. Connect your GitHub account and select the repository that holds your Tokens Studio export.</p>"
+    },
+    {
+      "title": "Token browser",
+      "body": "<ul><li>Lists color, typography, and shadow tokens from the repo</li><li>Respects theme modes defined in <code>$themes.json</code></li><li>Shows resolved values with metadata for traceability</li></ul>"
+    },
+    {
+      "title": "Apply to canvas",
+      "body": "<ul><li>Select one or more layers, pick a token, apply</li><li>Map token groups onto Framer variable collections</li><li>Updates propagate when token values change in the repo</li></ul>"
+    },
+    {
+      "title": "This page",
+      "body": "<p>This page shows the plugin in a device mockup. The live token browsing and apply run inside Framer: install it from the repo to use it on a real project.</p>"
+    }
+  ]
+}

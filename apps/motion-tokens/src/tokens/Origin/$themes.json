@@ -1,0 +1,22 @@
+[
+  {
+    "id": "704da52e3adeff49018efc490973f5ad9be7562b",
+    "name": "AeroGlobal",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "Source/Core": "source",
+      "Source/Aeroglobal": "enabled"
+    },
+    "group": "Brand"
+  },
+  {
+    "id": "6997e0229bc83d67dce7b920b840b2813959df70",
+    "name": "AeroGlobal",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "Source/Core": "source",
+      "Source/Branda": "enabled"
+    },
+    "group": "Brand"
+  }
+]

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-repo-url="https://github.com/vkogmail/lab/tree/main/apps/webgl-carousel" data-theme="dark" data-lab-title="WebGL warp carousel" data-lab-description="A carousel that bends and blurs its cards in a shader as they move.">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>WebGL Carousel · Lab</title>
+    <script src="/brand/theme-init.js"></script>
+    <script src="/brand/meta.js"></script>
+    <link rel="stylesheet" href="/brand/brand.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="/brand/header.js"></script>
+</head>
+<body class="webgl-carousel-demo">
+    <div id="app">
+        <header class="demo-header">
+            <div class="demo-header-main">
+                <p class="label">WebGL carousel</p>
+                <h1>Warp, blur, and chromatic edge</h1>
+                <p class="lead">Cards bend in a shader as they move, the same carousel shell as the portfolio case studies.</p>
+            </div>
+            <div class="demo-actions">
+                <button id="howItWorksBtn" class="btn ghost" type="button">How it works</button>
+                <button id="shareBtn" class="btn ghost" type="button">Share</button>
+            </div>
+        </header>
+
+        <div class="carousel-stage">
+            <div class="cz-pager" id="czPager" tabindex="-1">
+                <div class="cz-track" id="czTrack"></div>
+            </div>
+            <canvas class="cz-canvas" id="czCanvas"></canvas>
+            <div class="cz-edges" aria-hidden="true"></div>
+
+            <nav class="cz-bar" aria-label="Carousel navigation">
+                <button class="cz-ctrl" id="czPrev" aria-label="Previous slide">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 9 12l6-6"/></svg>
+                </button>
+                <div class="cz-dots" id="czDots"></div>
+                <button class="cz-ctrl" id="czNext" aria-label="Next slide">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <div id="howItWorksModal" class="modal" hidden>
+        <div class="modal-content">
+            <button id="closeModal" class="close-btn" type="button" aria-label="Close">&times;</button>
+            <h2>How it works</h2>
+
+            <div class="explanation-section">
+                <h3>Same shell as the portfolio</h3>
+                <p>This demo uses the carousel from the case-study viewer: a flat DOM track for the active slide, with a full-screen WebGL canvas layered on top for the curved neighbour peeks.</p>
+                <ul>
+                    <li>Swipe or drag horizontally to move between slides</li>
+                    <li>Arrow keys, dots, and trackpad horizontal scroll also work</li>
+                    <li>At rest, the centre card stays live DOM; the shader only owns the side peeks</li>
+                </ul>
+            </div>
+
+            <div class="explanation-section">
+                <h3>What the shader does</h3>
+                <p>While a slide moves, the fragment shader warps the rasterized strip and adds depth cues at the edges:</p>
+                <ul>
+                    <li><strong>Warp</strong>: cards bend away from the viewport centre</li>
+                    <li><strong>Progressive blur</strong>: side peeks soften as they recede</li>
+                    <li><strong>Desaturation</strong>: edge pixels grey out toward the rim</li>
+                    <li><strong>Chromatic edge</strong>: motion splits colour channels with a green accent fringe</li>
+                    <li><strong>Edge noise</strong>: subtle liquify on the leading/trailing edges while moving</li>
+                </ul>
+            </div>
+
+            <div class="explanation-section">
+                <h3>DOM → texture</h3>
+                <p>Each slide is rasterized from the DOM with <code>modern-screenshot</code>, composited into a horizontal strip, and sampled in the shader. Theme colours come from CSS variables so light/dark switches stay in sync.</p>
+            </div>
+
+            <div class="explanation-section">
+                <h3>Tweak the effect live</h3>
+                <p>Add <code>?tune</code> to the URL to open a slider panel: blur strength, aberration, spring physics, rest curve, and more. Use <strong>Copy values</strong> in the panel to grab the current settings.</p>
+                <p>Example: <a href="?tune">open with tuning panel</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/brand/chrome.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

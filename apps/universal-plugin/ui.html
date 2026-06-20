@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab Token Sync</title>
+<style>
+/* Lab plugin panel — mirrors packages/brand tokens (must be inlined in ui.html for Figma) */
+:root {
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --bg: #0c0c0d;
+  --bg2: #141416;
+  --ink: #f4f1ea;
+  --ink-soft: #b8b2a8;
+  --ink-faint: #a39d92;
+  --line: rgba(244, 241, 234, 0.14);
+  --line-soft: rgba(244, 241, 234, 0.07);
+  --accent: #9ef0b0;
+  --accent-text: #9ef0b0;
+  --accent-dim: rgba(158, 240, 176, 0.14);
+  --accent-border: rgba(158, 240, 176, 0.35);
+  --accent-focus: rgba(158, 240, 176, 0.5);
+  --ok-bg: rgba(158, 240, 176, 0.12);
+  --ok-fg: #9ef0b0;
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 85% 8%, rgba(158, 240, 176, 0.07), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 10% 90%, rgba(158, 240, 176, 0.04), transparent 50%);
+  opacity: .9;
+}
+
+input, button, textarea { font: inherit; color: inherit; }
+
+.app {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 14px;
+}
+.main { flex: 0 0 auto; }
+svg { display: block; }
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  flex: 0 0 34px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+}
+.brand h1 {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  line-height: 1.15;
+}
+.brand p { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
+
+.head-actions { display: flex; gap: 8px; }
+.iconbtn.spin svg { animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.hint { font-size: 11px; color: var(--ink-soft); line-height: 1.5; margin-top: 10px; }
+
+.iconbtn {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s var(--ease-out), color .15s var(--ease-out), border-color .15s var(--ease-out);
+}
+.iconbtn:hover {
+  background: rgba(158, 240, 176, 0.08);
+  color: var(--ink);
+  border-color: var(--accent-border);
+}
+.iconbtn.sm { width: 26px; height: 26px; }
+.iconbtn.active {
+  color: var(--accent-text);
+  border-color: rgba(158, 240, 176, 0.4);
+  background: var(--accent-dim);
+}
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.modal { position: fixed; inset: 0; z-index: 50; display: none; }
+.modal.open { display: block; }
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+.settings {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 14px 14px 16px;
+  background: var(--bg);
+  border-top: 0;
+  border-radius: 0 0 14px 14px;
+  box-shadow: 0 16px 40px -14px rgba(0, 0, 0, .55);
+  animation: drop .18s var(--ease-out);
+}
+@keyframes drop {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: none; }
+}
+.settings-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.settings-head .conn-label { margin-bottom: 0; }
+.head-right { display: flex; align-items: center; gap: 8px; }
+.sec-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.sec-label .ic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  color: var(--ink-faint);
+}
+.field-label, .conn-label { margin-bottom: 7px; }
+
+.meta {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  overflow: hidden;
+  margin-bottom: 13px;
+}
+.meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 11px;
+}
+.meta-row + .meta-row { border-top: 1px solid var(--line-soft); }
+.meta-k {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.meta-k .ic { color: var(--ink-faint); display: flex; }
+.meta-v {
+  flex: 1;
+  min-width: 0;
+  font: 11.5px/1.3 var(--mono);
+  color: var(--ink);
+  text-align: right;
+  border: 1px solid transparent;
+  background: transparent;
+  outline: none;
+  padding: 3px 0;
+  border-radius: 6px;
+}
+.meta.editing .meta-v {
+  text-align: left;
+  background: var(--bg);
+  border-color: var(--line);
+  padding: 5px 8px;
+  color: var(--ink);
+}
+.meta.editing .meta-v:focus {
+  border-color: var(--accent-focus);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+.input-wrap { position: relative; }
+#pat {
+  width: 100%;
+  padding: 9px 36px 9px 11px;
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  font: 12px var(--mono);
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+#pat:focus {
+  border-color: var(--accent-focus);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+#pat::placeholder { color: var(--ink-faint); }
+.eye {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-faint);
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.eye:hover {
+  color: var(--ink);
+  background: rgba(158, 240, 176, 0.08);
+}
+.eye .off { display: none; }
+.eye.showing .on { display: none; }
+.eye.showing .off { display: block; }
+.save-row { display: flex; justify-content: flex-end; margin-top: 10px; }
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 13px;
+}
+.tab {
+  position: relative;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 7px;
+  font: 600 13px var(--sans);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background .15s var(--ease-out), color .15s var(--ease-out), border-color .15s var(--ease-out);
+}
+.tab:hover:not(.active) { color: var(--ink); }
+.tab.active {
+  background: var(--bg);
+  color: var(--ink);
+  border-color: var(--line);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+}
+.tab.active .arrow { color: var(--accent-text); }
+.arrow { font-size: 14px; line-height: 1; }
+
+.pane { display: none; animation: fade .2s var(--ease-out); }
+.pane.active { display: block; }
+@keyframes fade {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.pane .desc { font-size: 12px; color: var(--ink-soft); line-height: 1.55; margin-bottom: 0; }
+
+.stack { display: flex; flex-direction: column; gap: 8px; }
+.btn {
+  padding: 10px 12px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  width: 100%;
+  font: 600 13px var(--sans);
+  cursor: pointer;
+  transition: background .15s var(--ease-out), color .15s var(--ease-out), border-color .15s var(--ease-out), transform .15s var(--ease-out);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+.btn.primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: transparent;
+}
+.btn.primary:hover:not(:disabled) {
+  background: #b9f2c8;
+  transform: translateY(-1px);
+}
+.btn.primary:active:not(:disabled) { transform: translateY(0); }
+.btn.secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn.secondary:hover:not(:disabled) {
+  border-color: var(--accent-border);
+  background: var(--accent-dim);
+}
+.btn.sm { width: auto; padding: 6px 14px; font-size: 12px; border-radius: 100px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.saved {
+  background: var(--ok-bg);
+  color: var(--ok-fg);
+  border-color: rgba(158, 240, 176, 0.25);
+}
+.btn.saved:disabled { opacity: 1; cursor: default; }
+
+.badge {
+  display: none;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 5px;
+  border-radius: 999px;
+  font: 700 10px/17px var(--sans);
+  text-align: center;
+  color: var(--bg);
+  background: var(--accent);
+  margin-left: 4px;
+}
+.badge.visible { display: inline-block; }
+
+.dock {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-soft);
+}
+.console-head {
+  flex: 0 0 auto;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.console {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 10px 11px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font: 11px/1.5 var(--mono);
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--ink);
+}
+.console:empty::before {
+  content: "Run a check to see changes…";
+  color: var(--ink-faint);
+}
+.l-ok { color: var(--ok-fg); }
+.l-warn { color: #e9c46a; }
+.l-dim { color: var(--ink-faint); }
+.action-bar { flex: 0 0 auto; }
+.action-bar .pane-action { display: none; width: 100%; }
+.action-bar .pane-action.visible { display: inline-flex; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb {
+  background: rgba(244, 241, 234, 0.18);
+  border-radius: 8px;
+}
+</style>
+</head>
+<body>
+  <div class="app">
+    <div class="main">
+
+    <header>
+      <div class="brand">
+        <div class="mark">
+          <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="5" fill="#9ef0b0"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Lab Token Sync</h1>
+          <p>Sync design tokens to variables</p>
+        </div>
+      </div>
+      <div class="head-actions">
+        <button id="refresh" class="iconbtn" title="Re-check for changes">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13.7 8a5.7 5.7 0 1 1-1.8-4.1M13.7 1.8v3.2h-3.2"/></svg>
+        </button>
+        <button id="settings-btn" class="iconbtn" title="Connection settings">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.1999 7.08501L2.4999 6.24501C1.7299 5.31501 2.5299 3.92501 3.7199 4.13501L4.7999 4.31501C5.4899 4.43501 6.1599 4.04501 6.3999 3.38501L6.7799 2.35501C7.1999 1.22501 8.7999 1.22501 9.2199 2.35501L9.5999 3.38501C9.8399 4.03501 10.5199 4.42501 11.1999 4.30501L12.2799 4.11501C13.4699 3.91501 14.2699 5.29501 13.4999 6.22501L12.7999 7.06501C12.3499 7.60501 12.3599 8.37501 12.7999 8.91501L13.4999 9.75501C14.2699 10.685 13.4699 12.075 12.2799 11.865L11.1999 11.685C10.5099 11.565 9.8399 11.955 9.5999 12.615L9.2199 13.645C8.7999 14.775 7.1999 14.775 6.7799 13.645L6.3999 12.615C6.1599 11.965 5.4799 11.575 4.7999 11.695L3.7199 11.885C2.5299 12.085 1.7299 10.705 2.4999 9.77501L3.1999 8.93501C3.6499 8.39501 3.6399 7.62501 3.1999 7.08501ZM6.0699 8.01501C6.0699 9.07501 6.9299 9.94501 7.9999 9.93501C9.0699 9.92501 9.9299 9.07501 9.9199 8.00501C9.9099 6.93501 9.0599 6.07501 7.9899 6.08501C6.9199 6.09501 6.0599 6.94501 6.0699 8.01501Z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Settings (modal) -->
+    <div class="modal" id="modal">
+      <div class="modal-backdrop" id="modal-bg"></div>
+      <div class="card settings">
+      <div class="settings-head">
+        <span class="sec-label conn-label"><span class="ic"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 9.4l2.8-2.8M7 4.6l.8-.8a2.5 2.5 0 0 1 3.5 3.5l-.8.8M9 11.4l-.8.8a2.5 2.5 0 0 1-3.5-3.5l.8-.8"/></svg></span>Connection</span>
+        <div class="head-right">
+          <button id="conn-edit" class="iconbtn" type="button" title="Edit connection">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 1.5a1.414 1.414 0 0 1 2 2L5.5 11.5 2 12l.5-3.5L11.5 1.5z"/></svg>
+          </button>
+          <button id="settings-close" class="iconbtn" title="Close">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2.665 13.335 13.335 2.665M13.335 13.335 2.665 2.665"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="meta" id="meta">
+        <div class="meta-row">
+          <span class="meta-k"><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 7v13M7 7v13M21 7.96v11.08c0 .53-.43.96-.96.96H3.96c-.53 0-.96-.43-.96-.96V7.96c0-.53.43-.96.96-.96h16.08c.53 0 .96.43.96.96ZM15 5.1c0-.61-.49-1.1-1.1-1.1h-3.8C9.49 4 9 4.49 9 5.1V7h6V5.1Z"/></svg></span>Workspace</span>
+          <input class="meta-v" id="m-workspace" type="text" readonly spellcheck="false" placeholder="e.g. my-org" />
+        </div>
+        <div class="meta-row">
+          <span class="meta-k"><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v11.99c0 .56.45 1.01 1.01 1.01h15.98c.56 0 1.01-.45 1.01-1.01V8.5c0-.56-.45-1-1-1h-8l-2-2.5H4c-.55 0-1 .45-1 1Z"/></svg></span>Project</span>
+          <input class="meta-v" id="m-project" type="text" readonly spellcheck="false" placeholder="e.g. design-system" />
+        </div>
+        <div class="meta-row">
+          <span class="meta-k"><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3H6.01C5.45 3 5 3.45 5 4.01v15.98C5 20.55 5.45 21 6.01 21h11.98c.56 0 1.01-.45 1.01-1.01V10M12 3v7h7M12 3l7 7"/></svg></span>Repository</span>
+          <input class="meta-v" id="m-repo" type="text" readonly spellcheck="false" placeholder="e.g. tokens" />
+        </div>
+        <div class="meta-row">
+          <span class="meta-k"><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="7.5" r="2.4"/><path d="M6 8.4v7.2M18 9.9c0 3.5-3 4.1-6 4.1"/></svg></span>Branch</span>
+          <input class="meta-v" id="m-branch" type="text" readonly spellcheck="false" placeholder="main" />
+        </div>
+      </div>
+
+      <label class="field">
+        <span class="sec-label field-label">
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 26h-3.33v3.33L16 31h-3.33v3.33L11 36H6v-5l12.35-12.35a8.5 8.5 0 1 1 5 5"/><path d="M31 13.08a2.08 2.08 0 1 1-4.17 0 2.08 2.08 0 0 1 4.17 0Z"/></svg></span>
+          Personal Access Token
+        </span>
+        <div class="input-wrap">
+          <input id="pat" type="password" placeholder="Git Provider PAT" />
+          <button id="eye" class="eye" type="button" title="Show / hide">
+            <svg class="on" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8s2.6-5 7-5 7 5 7 5-2.6 5-7 5-7-5-7-5Z"/><circle cx="8" cy="8" r="2"/></svg>
+            <svg class="off" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l12 12M6.5 6.6a2 2 0 0 0 2.8 2.8M4.2 4.3C2.3 5.5 1 8 1 8s2.6 5 7 5c1.2 0 2.2-.3 3.2-.8M9 3.1C8.7 3 8.4 3 8 3 3.6 3 1 8 1 8m14 0s-1-1.9-2.8-3.4"/></svg>
+          </button>
+        </div>
+      </label>
+      <p class="hint" id="pat-hint"></p>
+      <div class="save-row"><button id="save" class="btn primary sm">Save Settings</button></div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-pane="pull"><span class="arrow">↓</span> Pull<span class="badge" id="badge-pull"></span></button>
+      <button class="tab" data-pane="push"><span class="arrow">↑</span> Push<span class="badge" id="badge-push"></span></button>
+    </div>
+
+    <!-- Pull: repo → Figma -->
+    <div class="pane active" id="pane-pull">
+      <p class="desc">Bring repo token changes into Figma. Review in the console below, then update (undo with ⌘Z).</p>
+    </div>
+
+    <!-- Push: Figma → repo -->
+    <div class="pane" id="pane-push">
+      <p class="desc">Send your Figma edits to the repo — one branch + one PR per designer, updated on each push.</p>
+    </div>
+
+    </div>
+
+    <div class="dock">
+      <div class="console-head" id="console-label">Pull changes</div>
+      <div class="console" id="log"></div>
+      <div class="action-bar">
+        <button id="apply" class="btn primary pane-action visible" disabled>Update variables &amp; styles</button>
+        <button id="pushApply" class="btn primary pane-action" disabled>Push changes</button>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+  var $ = function (id) { return document.getElementById(id); };
+
+  var DEFAULTS = { workspace: '', project: '', repo: '', branch: 'main', pat: '' };
+  var CONN = Object.assign({}, DEFAULTS);
+  var saved = Object.assign({}, DEFAULTS);
+  var editing = false;
+  var CHECK = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.37 8.51 7 11.14l4.62-5.27"/></svg>';
+  var EDIT_ICON = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 1.5a1.414 1.414 0 0 1 2 2L5.5 11.5 2 12l.5-3.5L11.5 1.5z"/></svg>';
+  var CANCEL_ICON = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2.665 13.335 13.335 2.665M13.335 13.335 2.665 2.665"/></svg>';
+  var CONN_FIELDS = { 'm-workspace': 'workspace', 'm-project': 'project', 'm-repo': 'repo', 'm-branch': 'branch' };
+
+  function readAll() { var a = { pat: $('pat').value.trim() }; for (var id in CONN_FIELDS) a[CONN_FIELDS[id]] = $(id).value.trim(); return a; }
+  function fillConn(s) { for (var id in CONN_FIELDS) $(id).value = s[CONN_FIELDS[id]] || ''; }
+
+  function readForm() {
+    var a = readAll();
+    // Generic Git Provider URL — currently using Azure DevOps API structure as default
+    return { orgUrl: 'https://dev.azure.com/' + a.workspace, project: a.project, repo: a.repo, branch: a.branch, pat: a.pat };
+  }
+
+  function hasPat(v) { return !!(v && String(v).trim()); }
+
+  function fillForm(s) {
+    saved = Object.assign({}, DEFAULTS, s || {});
+    CONN = saved;
+    fillConn(saved); $('pat').value = saved.pat || '';
+    setEditing(false); updateSaveState(); updatePatHint();
+    if (hasPat(saved.pat) && saved.workspace) checkActive(true);
+    else { openSettings(true); }
+  }
+
+  function updatePatHint() {
+    $('pat-hint').textContent = hasPat($('pat').value)
+      ? 'Stored locally on this machine.'
+      : 'A token is required — the plugin can’t reach the repo without it.';
+  }
+
+  function setEditing(on) {
+    editing = on;
+    $('meta').classList.toggle('editing', on);
+    for (var id in CONN_FIELDS) $(id).readOnly = !on;
+    var btn = $('conn-edit');
+    btn.classList.toggle('active', on);
+    btn.title = on ? 'Cancel' : 'Edit connection';
+    btn.innerHTML = on ? CANCEL_ICON : EDIT_ICON;
+  }
+
+  function updateSaveState() {
+    var a = readAll();
+    var same = a.pat === saved.pat && a.workspace === saved.workspace && a.project === saved.project && a.repo === saved.repo && a.branch === saved.branch;
+    var clean = same && hasPat(a.pat);
+    var btn = $('save');
+    if (clean) { btn.className = 'btn saved sm'; btn.disabled = true; btn.innerHTML = '<span>Saved</span>' + CHECK; }
+    else { btn.className = 'btn primary sm'; btn.disabled = false; btn.textContent = 'Save Settings'; }
+  }
+  function openSettings(open) {
+    $('modal').classList.toggle('open', open);
+    $('settings-btn').classList.toggle('active', open);
+    if (!open) { setEditing(false); fillConn(saved); $('pat').value = saved.pat || ''; updateSaveState(); }
+  }
+
+  $('conn-edit').onclick = function () {
+    if (editing) { fillConn(saved); setEditing(false); updateSaveState(); }
+    else setEditing(true);
+  };
+
+  var logs = { pull: [], push: [] };
+
+  function appendLogEl(line, level) {
+    var el = document.createElement('div');
+    if (level === 'ok') el.className = 'l-ok'; else if (level === 'warn') el.className = 'l-warn'; else if (level === 'dim') el.className = 'l-dim';
+    el.textContent = line;
+    $('log').appendChild(el);
+    $('log').scrollTop = $('log').scrollHeight;
+  }
+
+  function log(line, level, pane) {
+    pane = pane || currentDir();
+    logs[pane].push({ line: line, level: level });
+    if (currentDir() === pane) appendLogEl(line, level);
+  }
+
+  function clearLogs() { logs.pull = []; logs.push = []; }
+
+  function showConsole(pane) {
+    $('console-label').textContent = pane === 'push' ? 'Push changes' : 'Pull changes';
+    $('log').innerHTML = '';
+    logs[pane].forEach(function (e) { appendLogEl(e.line, e.level); });
+    $('apply').classList.toggle('visible', pane === 'pull');
+    $('pushApply').classList.toggle('visible', pane === 'push');
+  }
+
+  var tokensCache = null;
+  var lastStatus = null;
+
+  function currentDir() { return document.querySelector('.tab.active').dataset.pane; }
+
+  window.onmessage = function (e) {
+    var msg = e.data.pluginMessage; if (!msg) return;
+    if (msg.type === 'settings') fillForm(msg.settings || {});
+    if (msg.type === 'log') log(msg.line, msg.level, msg.pane || 'pull');
+    if (msg.type === 'status') {
+      lastStatus = msg;
+      $('refresh').classList.remove('spin');
+      renderTabs();
+    }
+    if (msg.type === 'done' && !msg.dryRun) { checkActive(false); }
+    if (msg.type === 'push-plan') runPush(msg);
+  };
+
+  async function requestPlan() {
+    var s = readForm(); if (!hasPat(s.pat)) { openSettings(true); return; }
+    try { if (!tokensCache) tokensCache = await fetchAllTokens(s); parent.postMessage({ pluginMessage: { type: 'push', payload: tokensCache } }, '*'); }
+    catch (err) { log('✗ ' + err.message, 'warn', 'push'); }
+  }
+
+  async function runPush(plan) {
+    var s = readForm();
+    $('pushApply').disabled = true;
+    $('pushApply').textContent = 'Pushing …';
+    log('────── PUSHING ──────', 'dim', 'push');
+    log('Branch:  ' + plan.branch, 'dim', 'push');
+    log('Changes: ' + plan.changes.length + ' token(s) in ' + Object.keys(plan.files).length + ' file(s)', 'dim', 'push');
+    plan.changes.forEach(function (c) { log('  ↑ [' + c.mode + '] ' + c.path + ': ' + c.before + ' → ' + c.after, 'info', 'push'); });
+    try {
+      await gitProviderCommitAndPR(s, plan);
+    } catch (err) {
+      log('✗ Push failed: ' + err.message, 'warn', 'push');
+      $('pushApply').disabled = false;
+      $('pushApply').textContent = 'Push ' + plan.changes.length + ' change' + (plan.changes.length === 1 ? '' : 's');
+    }
+  }
+
+  // ── Git Provider REST helpers (Azure DevOps implementation) ────────────────
+  function gitHeaders(pat) { return { Authorization: 'Basic ' + btoa(':' + pat), Accept: 'application/json', 'Content-Type': 'application/json' }; }
+  function repoBase(s) { return s.orgUrl.replace(/\/+$/, '') + '/' + encodeURIComponent(s.project) + '/_apis/git/repositories/' + encodeURIComponent(s.repo); }
+
+  async function gitRefSha(s, branch) {
+    var url = repoBase(s) + '/refs?filter=heads/' + encodeURIComponent(branch) + '&api-version=7.1';
+    var res = await fetch(url, { headers: gitHeaders(s.pat) });
+    if (!res.ok) throw new Error('refs: ' + res.status + ' ' + res.statusText);
+    var refs = ((await res.json()).value || []);
+    var exact = refs.find(function (r) { return r.name === 'refs/heads/' + branch; });
+    return exact ? exact.objectId : null;
+  }
+
+  async function gitActivePRs(s, branch) {
+    var url = repoBase(s) + '/pullrequests?searchCriteria.sourceRefName=refs/heads/' + encodeURIComponent(branch) + '&searchCriteria.status=active&api-version=7.1';
+    var res = await fetch(url, { headers: gitHeaders(s.pat) });
+    if (!res.ok) throw new Error('PRs: ' + res.status + ' ' + res.statusText);
+    return (await res.json()).value || [];
+  }
+
+  async function gitProviderCommitAndPR(s, plan) {
+    var branch = plan.branch;
+    var targetBranch = s.branch || 'main';
+    log('Resolving branches …', 'dim', 'push');
+    var branchSha = await gitRefSha(s, branch);
+    var targetSha = await gitRefSha(s, targetBranch);
+    if (!targetSha) throw new Error('Target branch "' + targetBranch + '" not found.');
+
+    var isNew = !branchSha;
+    var oldOid = isNew ? targetSha : branchSha;
+
+    var changes = [];
+    for (var setName in plan.files) {
+      changes.push({
+        changeType: 'edit',
+        item: { path: '/tokens/' + setName + '.json' },
+        newContent: { content: JSON.stringify(plan.files[setName], null, 2), contentType: 'rawtext' }
+      });
+    }
+
+    var pushBody = {
+      refUpdates: [{ name: 'refs/heads/' + branch, oldObjectId: oldOid }],
+      commits: [{ comment: plan.gist.title, changes: changes }]
+    };
+
+    log('Committing to ' + branch + ' …', 'dim', 'push');
+    var pushRes = await fetch(repoBase(s) + '/pushes?api-version=7.1', {
+      method: 'POST', headers: gitHeaders(s.pat), body: JSON.stringify(pushBody)
+    });
+    if (!pushRes.ok) {
+      var errText = ''; try { errText = (await pushRes.json()).message || ''; } catch (e) { errText = await pushRes.text(); }
+      throw new Error('Push failed: ' + (errText || pushRes.status));
+    }
+    log('✓ Committed ' + changes.length + ' file(s) to ' + branch, 'ok', 'push');
+
+    var prs = await gitActivePRs(s, branch);
+    if (prs.length) {
+      var prId = prs[0].pullRequestId;
+      log('Updating PR #' + prId + ' …', 'dim', 'push');
+      var patchRes = await fetch(repoBase(s) + '/pullrequests/' + prId + '?api-version=7.1', {
+        method: 'PATCH', headers: gitHeaders(s.pat),
+        body: JSON.stringify({ title: plan.gist.title, description: plan.gist.body })
+      });
+      if (!patchRes.ok) log('⚠ Could not update PR description.', 'warn', 'push');
+      else log('✓ Updated PR #' + prId, 'ok', 'push');
+    } else {
+      log('Creating pull request …', 'dim', 'push');
+      var prRes = await fetch(repoBase(s) + '/pullrequests?api-version=7.1', {
+        method: 'POST', headers: gitHeaders(s.pat),
+        body: JSON.stringify({
+          sourceRefName: 'refs/heads/' + branch,
+          targetRefName: 'refs/heads/' + targetBranch,
+          title: plan.gist.title,
+          description: plan.gist.body
+        })
+      });
+      if (!prRes.ok) { var prErr = ''; try { prErr = (await prRes.json()).message || ''; } catch (e) {} log('⚠ Commit landed but PR failed: ' + (prErr || prRes.status), 'warn', 'push'); }
+      else { var pr = await prRes.json(); log('✓ Created PR #' + pr.pullRequestId, 'ok', 'push'); }
+    }
+    tokensCache = null;
+    checkActive(true);
+  }
+
+  function renderTabs() {
+    if (!lastStatus) return;
+    var p = lastStatus.pull, a = $('apply');
+    a.classList.remove('saved', 'primary');
+    if (p.nothingToDo) {
+      a.classList.add('saved');
+      a.disabled = true;
+      a.innerHTML = '<span>In sync</span>' + CHECK;
+    } else {
+      a.classList.add('primary');
+      a.disabled = false;
+      a.textContent = 'Update variables & styles (' + p.count + ')';
+    }
+    var pu = lastStatus.push, pa = $('pushApply');
+    pa.classList.remove('saved', 'primary');
+    if (pu.nothingToDo) {
+      pa.classList.add('saved');
+      pa.disabled = true;
+      pa.innerHTML = '<span>Nothing to push</span>';
+    } else {
+      pa.classList.add('primary');
+      pa.disabled = false;
+      pa.textContent = 'Push ' + pu.count + ' change' + (pu.count === 1 ? '' : 's');
+    }
+    renderBadges();
+    showConsole(currentDir());
+  }
+  function renderBadges() {
+    if (!lastStatus) return;
+    var pullCount = lastStatus.pull.nothingToDo ? 0 : lastStatus.pull.count;
+    var pushCount = lastStatus.push.nothingToDo ? 0 : lastStatus.push.count;
+    setBadge('badge-pull', pullCount);
+    setBadge('badge-push', pushCount);
+  }
+  function setBadge(id, count) {
+    var el = $(id); if (!el) return;
+    if (count > 0) { el.textContent = count; el.classList.add('visible'); }
+    else { el.textContent = ''; el.classList.remove('visible'); }
+  }
+
+  async function checkActive(force) {
+    var s = readForm();
+    if (!hasPat(s.pat) || !s.workspace) { openSettings(true); return; }
+    $('refresh').classList.add('spin');
+    clearLogs();
+    showConsole(currentDir());
+    try {
+      if (force || !tokensCache) tokensCache = await fetchAllTokens(s);
+      parent.postMessage({ pluginMessage: { type: 'pull', payload: tokensCache, dryRun: true } }, '*');
+    } catch (err) { $('refresh').classList.remove('spin'); log('✗ ' + err.message, 'warn', 'pull'); }
+  }
+
+  function updateRefreshTooltip() { $('refresh').title = currentDir() === 'pull' ? 'Re-fetch the repo' : 'Re-scan your Figma variables'; }
+
+  $('settings-btn').onclick = function () { openSettings(!$('modal').classList.contains('open')); };
+  $('settings-close').onclick = function () { openSettings(false); };
+  $('modal-bg').onclick = function () { openSettings(false); };
+
+  $('eye').onclick = function () {
+    var input = $('pat'), showing = input.type === 'text';
+    input.type = showing ? 'password' : 'text';
+    this.classList.toggle('showing', !showing);
+  };
+
+  $('pat').addEventListener('input', function () { updateSaveState(); updatePatHint(); });
+  for (var _id in CONN_FIELDS) $(_id).addEventListener('input', updateSaveState);
+  fillConn(saved); updatePatHint();
+
+  function selectTab(pane) {
+    Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (x) { x.classList.toggle('active', x.dataset.pane === pane); });
+    Array.prototype.forEach.call(document.querySelectorAll('.pane'), function (x) { x.classList.toggle('active', x.id === 'pane-' + pane); });
+    showConsole(pane);
+    updateRefreshTooltip();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (t) {
+    t.onclick = function () { selectTab(t.dataset.pane); };
+  });
+
+  $('refresh').onclick = function () { checkActive(currentDir() === 'pull'); };
+  updateRefreshTooltip();
+
+  $('save').onclick = function () {
+    var all = readAll();
+    parent.postMessage({ pluginMessage: { type: 'save-settings', settings: all } }, '*');
+    saved = all; CONN = all; setEditing(false); updateSaveState();
+    tokensCache = null;
+    if (hasPat(all.pat) && all.workspace) checkActive(true);
+  };
+
+  function itemUrl(s, path) {
+    var base = s.orgUrl.replace(/\/+$/, '') + '/' + encodeURIComponent(s.project) + '/_apis/git/repositories/' + encodeURIComponent(s.repo) + '/items';
+    var qs = new URLSearchParams({ path: path, 'api-version': '7.1', download: 'true', 'versionDescriptor.version': s.branch || 'main', 'versionDescriptor.versionType': 'branch' });
+    return base + '?' + qs.toString();
+  }
+  async function fetchItem(s, path) {
+    var res = await fetch(itemUrl(s, path), { headers: { Authorization: 'Basic ' + btoa(':' + s.pat), Accept: '*/*' } });
+    if (!res.ok) throw new Error(res.status + ' ' + res.statusText + ' — ' + path);
+    var text = await res.text(); var json;
+    try { json = JSON.parse(text); } catch (err) { throw new Error('Bad JSON for ' + path); }
+    if (json && json.objectId && typeof json.content === 'string') json = JSON.parse(json.content);
+    return json;
+  }
+  async function fetchAllTokens(s) {
+    log('Fetching $themes.json …', 'dim', 'pull');
+    var themes = await fetchItem(s, '/tokens/$themes.json');
+    var setPaths = {};
+    themes.forEach(function (th) { var sel = th.selectedTokenSets || {}; Object.keys(sel).forEach(function (k) { if (sel[k] === 'enabled') setPaths[k] = true; }); });
+    var keys = Object.keys(setPaths);
+    log('Fetching ' + keys.length + ' token sets …', 'dim', 'pull');
+    var sets = {};
+    for (var i = 0; i < keys.length; i++) sets[keys[i]] = await fetchItem(s, '/tokens/' + keys[i] + '.json');
+    return { themes: themes, sets: sets };
+  }
+  $('apply').onclick = function () {
+    if (!tokensCache) { checkActive(true); return; }
+    $('apply').disabled = true; log('Applying …', 'dim', 'pull');
+    parent.postMessage({ pluginMessage: { type: 'pull', payload: tokensCache, dryRun: false } }, '*');
+  };
+
+  $('pushApply').onclick = function () { requestPlan(); };
+
+  showConsole('pull');
+</script>
+</body>
+</html>

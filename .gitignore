@@ -1,0 +1,46 @@
+node_modules
+.turbo
+dist
+.next
+out
+build
+.DS_Store
+**/.vite/
+.env
+.env.*
+.vercel
+*.log
+*.zip
+
+# Private monorepo — local only, never push to vkogmail/lab
+AGENTS.md
+LAB-INVENTORY.yaml
+LAB-INVENTORY.md
+LAB-INVENTORY.full.yaml
+LAB-SHOWCASE.md
+BACKLOG.md
+LAB-PLAN.md
+LAB-MIGRATION-PLAN.md
+docs/
+scripts/
+schema/
+templates/
+.cursor/
+turbo.json
+package.json
+package-lock.json
+packages/
+assets/
+README.public.md
+
+# public/brand/ is vendored into apps for GitHub; sync from packages/brand locally when tokens change
+
+# Portfolio / publish ops — not for repo visitors
+apps/*/showcase/
+apps/*/publish/
+
+# Plugin marketing landings — generated inside app dirs at build (never commit)
+apps/universal-plugin/index.html
+apps/framertokens/landing.html
+apps/*/public/hero.jpg
+templates/landing/

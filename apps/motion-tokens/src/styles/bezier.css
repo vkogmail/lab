@@ -1,0 +1,619 @@
+/**
+ * Variables
+ */
+* {
+  margin: 0;
+}
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333;
+  --link-color: #0b0080;
+  --link-visited-color: #0b0080;
+  --button-bg: #f5f5f5;
+  --button-border: #999;
+  --button-hover-bg: #fff;
+  --button-active-bg: #ddd;
+  --input-bg: #fff;
+  --input-border: #999;
+  --input-focus-border: #333;
+  --header-bg: #e4e4e4;
+  --header-border: #999;
+  --grid-color: rgba(0,0,0,.1);
+  --grid-size: 40px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a1a1a;
+    --text-color: #fff;
+    --link-color: #809fff;
+    --link-visited-color: #809fff;
+    --button-bg: #333;
+    --button-border: #666;
+    --button-hover-bg: #444;
+    --button-active-bg: #222;
+    --input-bg: #333;
+    --input-border: #666;
+    --input-focus-border: #999;
+    --header-bg: #333;
+    --header-border: #666;
+    --grid-color: rgba(255,255,255,.1);
+  }
+}
+
+#preview > canvas,
+#library > a,
+header > p {
+  transition: 1s;
+}
+
+#importexport > textarea,
+code {
+  font-family: Consolas, 'Andale Mono', monospace;
+}
+
+/**
+ * Styles
+ */
+.bezier-editor-container {
+  display: grid;
+  grid-template:
+    "curve header header" auto
+    "curve preview library" auto
+    "curve . ." auto
+    / 300px 480px 1fr;
+  gap: 2rem;
+  font: 100%/1.5 Helvetica Neue, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: 220%;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--link-visited-color);
+}
+
+h1 > a {
+  font-size: clamp(1.2rem, 2vw + .75rem, 2.5rem);
+  white-space: nowrap;
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  padding: .3em .8em;
+  border: 1px solid var(--button-border);
+  border-radius: .3em;
+  white-space: nowrap;
+  background: var(--button-bg);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--button-hover-bg);
+}
+
+button:active {
+  background: var(--button-active-bg);
+}
+
+header {
+  grid-area: header;
+  padding: 1em;
+  background: var(--header-bg);
+  border-bottom: 2px solid var(--header-border);
+}
+
+header h1 {
+  font-weight: normal;
+  font-size: 120%;
+}
+
+header h1 code {
+  font-family: Monaco, 'Lucida Console', monospace;
+  font-size: 90%;
+}
+
+#curve-display {
+  grid-area: curve;
+  justify-self: center;
+}
+
+.coordinate-plane {
+  position: relative;
+  width: 300px;
+  height: 600px;
+  margin: 2em auto;
+  background:
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+}
+
+.coordinate-plane::before,
+.coordinate-plane::after {
+  position: absolute;
+  bottom: 25%;
+  left: 0;
+  width: 100%;
+  padding: .3em .5em;
+  box-sizing: border-box;
+  color: rgba(0,0,0,.6);
+  text-transform: uppercase;
+  font-size: 75%;
+  line-height: 1;
+}
+
+.coordinate-plane::before {
+  content: 'Progression';
+  border-bottom: 1px solid;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+}
+
+.coordinate-plane::after {
+  content: 'Time';
+  border-top: 1px solid;
+  margin-bottom: -1.5em;
+}
+
+.coordinate-plane:hover::before {
+  content: 'Progression (' attr(data-progression) '%)';
+}
+
+.coordinate-plane:hover::after {
+  content: 'Time (' attr(data-time) '%)';
+}
+
+#save {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+}
+
+.control-point {
+  position: absolute;
+  z-index: 1;
+  width: 1.2em;
+  height: 1.2em;
+  margin: -.6em;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: move;
+}
+
+#P0, #P3 {
+  cursor: not-allowed;
+}
+
+#P0 {
+  left: 0;
+  top: 100%;
+}
+
+#P1 {
+  background: #ff0088;
+}
+
+#P2 {
+  background: #00aabb;
+}
+
+#P3 {
+  left: 100%;
+  top: 0;
+}
+
+#P1x, #P1y {
+  color: #f08;
+}
+
+#P2x, #P2y {
+  color: #0ab;
+}
+
+canvas#curve {
+  background: #f0f0f0;
+  background: linear-gradient(-45deg, transparent 49%, rgba(0,0,0,.1) 49%, rgba(0,0,0,.1) 51%, transparent 51%) center no-repeat,
+    repeating-linear-gradient(white, white 20px, transparent 20px, transparent 40px) no-repeat,
+    linear-gradient(transparent, rgba(0,0,0,.06) 25%, rgba(0,0,0,.06) 75%, transparent);
+  background-size: 100% 50%, 100% 50%, auto;
+  background-position: 25%, 0, 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+section > h1 {
+  margin-bottom: .2em;
+  font-size: 200%;
+  font-weight: normal;
+}
+
+section > h1 + p {
+  margin: -.5em 0 1em 0;
+  color: gray;
+}
+
+#preview {
+  grid-area: preview;
+}
+
+#preview h1 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+#preview h1 button {
+  float: right;
+}
+
+#preview p {
+  margin: 1em 0;
+}
+
+#preview label {
+  margin-right: .5em;
+}
+
+#preview input {
+  width: 3em;
+}
+
+#preview canvas {
+  display: inline-block;
+  border: 2px solid var(--header-border);
+  margin: .5em;
+  background: var(--bg-color);
+}
+
+#preview canvas.move {
+  margin-left: 80%;
+  transition: 1s margin;
+}
+
+#preview button {
+  background: rgba(0,0,0,.3);
+  color: white;
+  border: 0;
+  padding: .4em .8em;
+  border-radius: .3em;
+  font: bold 60% Helvetica Neue, sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#preview button:hover {
+  background: rgba(0,0,0,.4);
+}
+
+#preview button:active {
+  background: rgba(0,0,0,.5);
+}
+
+#library {
+  grid-area: library;
+}
+
+#library h1 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+#library h1 button {
+  float: right;
+  margin-left: .4em;
+}
+
+#library p {
+  margin: 1em 0;
+}
+
+#library footer {
+  margin-top: 2em;
+  font-size: 80%;
+}
+
+#importexport {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1em;
+  border: 1px solid var(--button-border);
+  border-radius: .3em;
+  background: var(--bg-color);
+  box-shadow: .1em .1em .8em rgba(0,0,0,.3);
+}
+
+#importexport.show {
+  display: block;
+}
+
+#importexport label {
+  display: block;
+  margin: .4em 0;
+}
+
+#importexport textarea {
+  display: block;
+  width: 30em;
+  height: 20em;
+  margin: 1em 0;
+  font: 90% Monaco, 'Lucida Console', monospace;
+  background: var(--input-bg);
+  color: inherit;
+  border: 1px solid var(--input-border);
+}
+
+#importexport button {
+  margin-right: .4em;
+}
+
+.copied {
+  position: fixed;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: .4em .8em;
+  border-radius: .3em;
+  background: rgba(0,0,0,.8);
+  color: white;
+  font-size: 90%;
+  animation: fade-out .5s 1s forwards;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+.library-curve {
+  display: inline-block;
+  margin: .4em;
+  padding: .4em;
+  border: 1px solid var(--button-border);
+  border-radius: .3em;
+  background: var(--button-bg);
+  cursor: pointer;
+}
+
+.library-curve:hover {
+  background: var(--button-hover-bg);
+}
+
+.library-curve.selected {
+  background: var(--button-active-bg);
+}
+
+.library-curve canvas {
+  display: block;
+  border: 2px solid var(--header-border);
+  margin: .4em auto;
+  background: var(--bg-color);
+}
+
+.library-curve .coordinates {
+  font: 90% Monaco, 'Lucida Console', monospace;
+}
+
+#copybuttons {
+  display: inline-block;
+  margin-left: 1em;
+  position: relative;
+}
+
+#copybuttons button {
+  padding: .1em .4em;
+  margin-left: .4em;
+}
+
+#copyoptions {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  margin-top: .3em;
+  padding: .4em;
+  border: 1px solid var(--button-border);
+  border-radius: .3em;
+  background: var(--bg-color);
+  box-shadow: .1em .1em .8em rgba(0,0,0,.3);
+}
+
+#copyoptions.show {
+  display: block;
+}
+
+#copyoptions input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: .2em 0;
+}
+
+#copybuttons.copyoptions-open #copyoptions {
+  display: block;
+}
+
+#copybuttons.copied::after {
+  content: 'Copied!';
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: .5em;
+  background: #4CAF50;
+  color: white;
+  padding: .4em .8em;
+  border-radius: .3em;
+  font: bold 60% Helvetica Neue, sans-serif;
+  animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.bezier-editor {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.bezier-editor canvas {
+  background: transparent;
+}
+
+.bezier-editor-container svg text {
+  display: none;
+}
+
+.bezier-editor-layout {
+  padding: 24px;
+  min-height: 100vh;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: center;
+}
+
+.bezier-editor-panel {
+  width: 800px;
+  background: white;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bezier-editor-panel h3 {
+  margin: 0 0 24px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.token-configuration {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.token-set-selector,
+.token-list {
+  margin-bottom: 24px;
+}
+
+.token-set-selector label,
+.token-list label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+
+.token-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: white;
+}
+
+.token-select:focus {
+  outline: none;
+  border-color: #0066ff;
+  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
+}
+
+.bezier-value {
+  font-family: monospace;
+  font-size: 13px;
+  color: #666;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.existing-tokens {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 200px);
+  margin-top: 24px;
+}
+
+.token-content {
+  flex: 1;
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.token-section {
+  margin-top: 24px;
+}
+
+.token-section:first-child {
+  margin-top: 0;
+}
+
+.token-section h5 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.token-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  background: #f8f8f8;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.token-row:last-child {
+  margin-bottom: 0;
+}
+
+.token-name {
+  font-family: monospace;
+  font-size: 12px;
+  color: #666;
+}
+
+.token-value {
+  font-family: monospace;
+  font-size: 12px;
+  color: #1a1a1a;
+  white-space: pre-wrap;
+} 

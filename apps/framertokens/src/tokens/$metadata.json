@@ -1,0 +1,16 @@
+{
+  "tokenSetOrder": [
+    "Foundation/Core",
+    "Typography",
+    "Brand/Acme",
+    "Brand/Legacy",
+    "Theme/Light",
+    "Theme/Dark",
+    "Breakpoint/XS",
+    "Breakpoint/SM",
+    "Breakpoint/MD",
+    "Breakpoint/LG",
+    "Breakpoint/XL",
+    "Components"
+  ]
+}
