@@ -1,0 +1,56 @@
+/* Ticket → result view — demo chrome (token-only styling). */
+.tickets {
+  display: grid;
+  gap: var(--spacing-l);
+}
+
+.tickets__lead {
+  color: var(--color-foreground-muted);
+  max-width: 78ch;
+}
+
+.ticket__request {
+  font-style: italic;
+  color: var(--color-foreground-default);
+  margin: 0;
+  line-height: var(--line-height-normal);
+}
+
+.ticket__block {
+  margin: var(--spacing-m) 0 0;
+}
+
+.ticket__label {
+  display: block;
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-foreground-muted);
+  margin-bottom: var(--spacing-xs);
+}
+
+.ticket__kim {
+  margin: 0;
+  padding-left: var(--spacing-l);
+  color: var(--color-foreground-muted);
+  display: grid;
+  gap: var(--spacing-xs);
+}
+
+.ticket__link {
+  all: unset;
+  cursor: pointer;
+  color: var(--color-brand-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.ticket__link:hover {
+  text-decoration: underline;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-m);
+}

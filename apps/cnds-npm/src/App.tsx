@@ -11,7 +11,9 @@ import {
   TextField,
   type ColumnDef,
 } from "@createnew/ui-react";
-import { DEMO_SECTIONS, type DemoSection } from "./demo-sections";
+import { NAV_GROUPS, type DemoSection } from "./demo-sections";
+import { ReviewItemDetail } from "./screens/ReviewItemDetail";
+import { Tickets } from "./Tickets";
 
 const TOKEN_SWATCHES = [
   { label: "--color-surface-default", css: "var(--color-surface-default)" },
@@ -21,7 +23,7 @@ const TOKEN_SWATCHES = [
   { label: "--color-foreground-default", css: "var(--color-foreground-default)" },
   { label: "--color-foreground-muted", css: "var(--color-foreground-muted)" },
   { label: "--color-border-subtle", css: "var(--color-border-subtle)" },
-  { label: "--color-signal-success", css: "var(--color-signal-success)" },
+  { label: "--signal-background-good", css: "var(--signal-background-good)" },
 ];
 
 type FlowRow = {
@@ -39,7 +41,7 @@ const FLOW_ROWS: FlowRow[] = [
 ];
 
 export function App() {
-  const [section, setSection] = useState<DemoSection>("overview");
+  const [section, setSection] = useState<DemoSection>("tickets");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [role, setRole] = useState("design");
 
@@ -70,15 +72,20 @@ export function App() {
         </div>
 
         <nav className="demo-nav" aria-label="Demo sections">
-          {DEMO_SECTIONS.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              data-active={section === item.id}
-              onClick={() => setSection(item.id)}
-            >
-              {item.label}
-            </button>
+          {NAV_GROUPS.map((group) => (
+            <div key={group.group} className="demo-nav__group">
+              <span className="demo-nav__group-title">{group.group}</span>
+              {group.items.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  data-active={section === item.id}
+                  onClick={() => setSection(item.id)}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
           ))}
         </nav>
 
@@ -89,6 +96,12 @@ export function App() {
       </aside>
 
       <main className="demo-main">
+        {section === "tickets" && (
+          <section className="demo-panel">
+            <Tickets onOpen={setSection} />
+          </section>
+        )}
+
         {section === "overview" && (
           <section className="demo-panel">
             <h2>Agent development with npm packages</h2>
@@ -231,6 +244,12 @@ import { Button, PageTemplate, DataTable } from "@createnew/ui-react";`}</pre>
                 }
               />
             </PageTemplate>
+          </section>
+        )}
+
+        {section === "review-detail" && (
+          <section className="demo-panel">
+            <ReviewItemDetail />
           </section>
         )}
 

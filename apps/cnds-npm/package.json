@@ -8,7 +8,11 @@
     "postinstall": "node copy-tokens-fonts.mjs",
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "drift": "node scripts/smoke-test.mjs",
+    "visual": "playwright test",
+    "smoke": "node scripts/smoke-test.mjs --build && npm run visual",
+    "hooks:install": "git config core.hooksPath .githooks"
   },
   "engines": {
     "node": ">=20.18.0"
@@ -20,6 +24,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.4.1",

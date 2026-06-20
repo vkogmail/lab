@@ -1,0 +1,83 @@
+/* ActivityTimeline — token-only layout. No hex/rgb/hsl. */
+
+.cnds-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--spacing-l);
+}
+
+.cnds-timeline--empty {
+  display: block;
+  padding: var(--spacing-l);
+  border: 1px dashed var(--color-border-subtle);
+  border-radius: var(--radius-m);
+  background: var(--color-surface-sunken);
+  color: var(--color-foreground-muted);
+  font-size: var(--text-body-font-size);
+  font-family: var(--text-body-font-family);
+  line-height: var(--text-body-line-height);
+  text-align: center;
+}
+
+.cnds-timeline__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--spacing-m);
+  position: relative;
+}
+
+/* The vertical connector rail between events. */
+.cnds-timeline__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cnds-timeline__item:not(:last-child) .cnds-timeline__rail::after {
+  content: "";
+  flex: 1;
+  width: 2px;
+  margin-top: var(--spacing-xs);
+  background: var(--color-border-subtle);
+  border-radius: var(--radius-full);
+}
+
+.cnds-timeline__body {
+  display: grid;
+  gap: var(--spacing-xs);
+  padding-bottom: var(--spacing-s);
+  min-width: 0;
+}
+
+.cnds-timeline__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-s);
+}
+
+.cnds-timeline__actor {
+  font-family: var(--text-body-strong-font-family);
+  font-size: var(--text-body-strong-font-size);
+  font-weight: var(--text-body-strong-font-weight);
+  line-height: var(--text-body-strong-line-height);
+  color: var(--color-foreground-default);
+}
+
+.cnds-timeline__action {
+  margin: 0;
+  font-family: var(--text-body-font-family);
+  font-size: var(--text-body-font-size);
+  line-height: var(--text-body-line-height);
+  color: var(--color-foreground-default);
+}
+
+.cnds-timeline__time {
+  font-family: var(--text-caption-font-family);
+  font-size: var(--text-caption-font-size);
+  font-weight: var(--text-caption-font-weight);
+  line-height: var(--text-caption-line-height);
+  color: var(--color-foreground-muted);
+}
