@@ -1,42 +1,12 @@
-export type DemoSection =
-  | "tickets"
-  | "overview"
-  | "tokens"
-  | "components"
-  | "templates"
-  | "flows"
-  | "agents";
+export type DemoSection = "tickets" | "how";
 
 /**
- * Grouped nav: the three KINDS of things, so the hierarchy reads clearly.
- *  - Work: the tickets (the story). The only primary entry.
- *  - Building blocks: what the agent composes from (reference).
- *  - About: how the method works.
- * Note: "review-detail" is intentionally NOT in the nav — it's a ticket RESULT,
- * reached by drilling into its ticket, not a peer of the reference exhibits.
+ * Two destinations, matching what we're actually building:
+ *  - the work (ticket → result), and
+ *  - how it works (the method — why agent output is trustworthy and how it improves).
+ * The design system itself is not re-exhibited here — it lives in the playground.
  */
-export const NAV_GROUPS: Array<{
-  group: string;
-  items: Array<{ id: DemoSection; label: string }>;
-}> = [
-  {
-    group: "Work",
-    items: [{ id: "tickets", label: "Ticket → result" }],
-  },
-  {
-    group: "Building blocks",
-    items: [
-      { id: "tokens", label: "Tokens" },
-      { id: "components", label: "Components" },
-      { id: "templates", label: "Templates" },
-      { id: "flows", label: "Composed flow" },
-    ],
-  },
-  {
-    group: "About the method",
-    items: [
-      { id: "overview", label: "Overview" },
-      { id: "agents", label: "Agent workflow" },
-    ],
-  },
+export const NAV_ITEMS: Array<{ id: DemoSection; label: string }> = [
+  { id: "tickets", label: "Ticket → result" },
+  { id: "how", label: "How it works" },
 ];
