@@ -28,11 +28,25 @@ A screen that only handles "data present" is not done.
 - Define the **end state** explicitly (confirmation + clear next action). Don't dead-end.
 - Make destructive/irreversible actions confirm; make everything else forgiving (undo > confirm).
 
+## Semantic HTML & headings (build the page out of meaning)
+- Use real elements: `<main>`, `<nav>`, `<header>`, `<footer>`, labelled `<section>`, `<ul>/<ol>`
+  for lists, `<button>` for actions and `<a>` for navigation, `<dl>` for key/value.
+- **Exactly one `<h1>`** per page (its subject). Headings increase by one level — **never skip**
+  (no `h1 → h3`). Heading level reflects *structure*, not visual size (size comes from tokens).
+- Page content lives inside a `<main>` landmark; label repeated regions
+  (`aria-label` / `aria-labelledby`).
+- Watch DS components that emit their own heading (e.g. `Card.Title` renders a heading) — don't let
+  them create a skipped level or duplicate the page `<h1>`.
+
 ## Accessibility (baseline, non-negotiable)
 - Every input has a label; every icon-only button has an accessible name.
 - Keyboard: everything reachable and operable; focus order is logical; focus visible.
+- Prefer native semantics over ARIA; add `aria-*` only to fill gaps. Meaningful images get `alt`,
+  decorative ones get `alt=""`.
 - Don't rely on color alone to convey meaning (pair with text/icon).
-- Respect contrast (DS tokens generally satisfy this — don't override into failure).
+
+> Enforced automatically by **axe** in the visual gate (`npm run smoke`) on full-page scenarios.
+> For a deeper manual WCAG audit, use the **`design:accessibility-review`** skill.
 
 ## Microcopy
 - Buttons name the action ("Publish", "Delete project"), not "OK"/"Submit" where avoidable.

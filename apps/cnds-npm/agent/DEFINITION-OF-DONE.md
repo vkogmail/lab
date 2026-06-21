@@ -18,6 +18,10 @@ missing piece.
    a **stop-and-ask** (§6), not a workaround.
 4. **Self-verify before declaring done** (§5). "I wrote the code" is not done. "The checks pass
    and it renders" is done.
+5. **Data always comes through a seam** (a hook/source), never hardcoded inline. This is a
+   **standing rule** — tickets name the data *source* and link this DoD; they don't restate it
+   (see [`TICKET-GUIDE.md`](./TICKET-GUIDE.md)). If a ticket has no data source, **STOP-AND-ASK** —
+   don't invent data.
 
 ---
 
@@ -34,6 +38,9 @@ missing piece.
 - [ ] Renders in the live preview (the shareable URL works).
 - [ ] Accessible basics: labels on inputs, focus visible, sufficient contrast (token defaults
       handle most of this — don't override into failure).
+- [ ] Semantic HTML: real landmarks, content inside a `<main>`, exactly one `<h1>`, **no skipped
+      heading levels**, lists/`<dl>` for list/key-value data. Enforced by **axe** in the visual
+      gate on full-page scenarios (package-level color-contrast is excluded — tracked upstream).
 
 If any shared item can't be met **and** can't be fixed within the failure budget (§6) → escalate.
 
@@ -67,9 +74,12 @@ path where a human/designer is required — keep it the exception.
 - [ ] Shared checklist (§1) green.
 
 ### Promotion flag
-A genuinely new primitive built in the consumer app may belong in the *package*, not here. Note
-it in the PR: **"New primitive `X` — candidate for `@createnew/ui-react`."** Don't silently fork
-the system.
+A genuinely new primitive built in the consumer app may belong in the *package*, not here. It must
+be built to the [`COMPONENT-STANDARD.md`](./COMPONENT-STANDARD.md) (the contribution bar) to be
+**promotion-ready**. Note it in the PR with the readiness checklist:
+**"New primitive `X` — candidate for `@createnew/ui-react`; meets COMPONENT-STANDARD: <yes/gaps>."**
+A candidate that doesn't meet the standard is "new", not "promotion-ready". Don't silently fork the
+system, and don't bake app/domain logic into a promotable component.
 
 ---
 

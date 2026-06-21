@@ -1,40 +1,144 @@
-/* Ticket → result view — demo chrome (token-only styling). */
-.tickets {
+/* Ticket → result, side by side — demo chrome (token-only styling). */
+.ticket-split {
   display: grid;
+  grid-template-columns: 1fr 360px;
   gap: var(--spacing-l);
+  align-items: start;
 }
 
-.tickets__lead {
+@media (max-width: 1100px) {
+  .ticket-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- live result preview (large left panel) --- */
+.preview {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  background: var(--color-surface-default);
+}
+
+.preview__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  padding: var(--spacing-s) var(--spacing-m);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-surface-raised);
+}
+
+.preview__dots {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.preview__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-border-strong);
+}
+
+.preview__label {
+  font-size: var(--font-size-xs);
   color: var(--color-foreground-muted);
-  max-width: 78ch;
 }
 
-.ticket__request {
-  font-style: italic;
-  color: var(--color-foreground-default);
+.preview__body {
+  padding: var(--spacing-l);
+  max-height: 78vh;
+  overflow: auto;
+}
+
+/* --- Jira-style ticket (right column) --- */
+.issue {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-l);
+  background: var(--color-surface-default);
+  padding: var(--spacing-l);
+  display: grid;
+  gap: var(--spacing-m);
+  position: sticky;
+  top: var(--spacing-l);
+}
+
+.issue__key {
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-foreground-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.issue__title {
   margin: 0;
-  line-height: var(--line-height-normal);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-tight);
 }
 
-.ticket__block {
-  margin: var(--spacing-m) 0 0;
+.issue__meta {
+  margin: 0;
+  display: grid;
+  gap: var(--spacing-s);
 }
 
-.ticket__label {
-  display: block;
+.issue__row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  gap: var(--spacing-s);
+}
+
+.issue__row dt {
+  color: var(--color-foreground-muted);
+  font-size: var(--font-size-sm);
+}
+
+.issue__row dd {
+  margin: 0;
+  color: var(--color-foreground-default);
+  font-size: var(--font-size-sm);
+}
+
+.issue__sep {
+  height: 1px;
+  background: var(--color-border-subtle);
+}
+
+.issue__field {
+  display: grid;
+  gap: var(--spacing-xs);
+}
+
+.issue__field-label {
   font-size: var(--font-size-xs);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-foreground-muted);
-  margin-bottom: var(--spacing-xs);
 }
 
-.ticket__kim {
+.issue__desc {
+  margin: 0;
+  color: var(--color-foreground-default);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.issue__muted {
+  margin: 0;
+  color: var(--color-foreground-muted);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.acceptance {
   margin: 0;
   padding-left: var(--spacing-l);
-  color: var(--color-foreground-muted);
   display: grid;
   gap: var(--spacing-xs);
+  color: var(--color-foreground-muted);
+  font-size: var(--font-size-sm);
 }
 
 .ticket__link {
@@ -42,15 +146,39 @@
   cursor: pointer;
   color: var(--color-brand-primary);
   font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
 }
 
 .ticket__link:hover {
   text-decoration: underline;
 }
 
+/* --- chips (built-from) --- */
 .chips {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-xs);
-  margin-top: var(--spacing-m);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--spacing-s);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+}
+
+.chip--link {
+  color: var(--color-brand-primary);
+  text-decoration: none;
+}
+
+.chip--link:hover {
+  background: var(--color-surface-raised);
+}
+
+.chip--new {
+  color: var(--color-foreground-muted);
+  border-style: dashed;
 }

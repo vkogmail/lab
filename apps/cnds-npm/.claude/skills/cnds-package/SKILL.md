@@ -87,6 +87,10 @@ table above are missing.)
 2. **Tokens** — semantic vars for any custom layout CSS.
 3. **Components** — fill slots from the catalog above; reuse before composing, compose before building.
 
+If you must **build a new primitive** (Create-new), it must meet the contribution bar in
+[`agent/COMPONENT-STANDARD.md`](../../../agent/COMPONENT-STANDARD.md) (pure-UI/controlled API,
+exported `Props`, token-only, states + a11y, generic not domain-specific) to be promotion-ready.
+
 ## Reuse traps (these cost DoD points)
 - Reaching for `Badge` when the thing is a *status* → use `StatusBadge`.
 - Hand-building a button row → use `ActionGroup`.

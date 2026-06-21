@@ -188,6 +188,13 @@ body {
   gap: var(--spacing-s);
 }
 
+.review-detail__summary-label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-foreground-muted);
+}
+
 .review-detail__meta {
   margin: 0;
   display: grid;

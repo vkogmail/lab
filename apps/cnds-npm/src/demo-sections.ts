@@ -5,7 +5,6 @@ export type DemoSection =
   | "components"
   | "templates"
   | "flows"
-  | "review-detail"
   | "agents";
 
 /**

@@ -48,7 +48,9 @@ export function ReviewItemDetail({ result }: { result?: ReviewItemResult }) {
           <Card>
             <Card.Header>
               <div className="review-detail__summary-head">
-                <Card.Title>{data.title}</Card.Title>
+                {/* The applicant name is the page H1 — a Card.Title here would duplicate it
+                    and (rendered as H3) skip a heading level. A plain label keeps H1 → H2. */}
+                <span className="review-detail__summary-label">Application summary</span>
                 <StatusBadge status={data.status}>{data.step}</StatusBadge>
               </div>
               <Card.Description>{data.description}</Card.Description>
@@ -68,9 +70,9 @@ export function ReviewItemDetail({ result }: { result?: ReviewItemResult }) {
           </Card>
 
           <section className="review-detail__activity" aria-labelledby="activity-heading">
-            <h3 id="activity-heading" className="review-detail__activity-title">
+            <h2 id="activity-heading" className="review-detail__activity-title">
               Activity
-            </h3>
+            </h2>
             <ActivityTimeline
               events={data.activity}
               emptyLabel="No activity on this item yet."

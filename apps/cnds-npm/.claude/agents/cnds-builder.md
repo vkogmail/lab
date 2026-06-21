@@ -28,9 +28,16 @@ Every request is one of two modes (DEMO-PLAN.md §11c):
 - **Create-new** (exception): something needed doesn't exist and can't be composed. This needs
   human/designer **taste** — do NOT free-style it into the product. Either **STOP-AND-ASK for a
   sketch/spec/approval**, or build a clearly-flagged **candidate** and route it to design review →
-  promotion. Once promoted it becomes Compose for everyone after.
+  promotion. Build the candidate to [`agent/COMPONENT-STANDARD.md`](../../agent/COMPONENT-STANDARD.md)
+  (the contribution bar) and report its readiness checklist — a candidate that doesn't meet the
+  standard is "new", not "promotion-ready". Keep app/domain logic OUT of a promotable component.
+  Once promoted it becomes Compose for everyone after.
 
 ## Workflow
+0. **Normalize the request into a ticket** per [`agent/TICKET-GUIDE.md`](../../agent/TICKET-GUIDE.md):
+   extract the intent, name the entity/**data source**, write feature-specific acceptance, link the
+   DoD. Drop any generic rules the prompt restates (they're the standing bar). **If there's no
+   concrete data source or no acceptance, STOP-AND-ASK** — don't invent data or guess intent.
 1. **Classify** the ticket: component / screen / flow, AND its mode (Compose vs Create-new).
 2. **Reuse first** (the mode test): use existing → compose from existing → only then create new.
    Search `@createnew/ui-react` exports before creating anything. If you reach "create new", you've

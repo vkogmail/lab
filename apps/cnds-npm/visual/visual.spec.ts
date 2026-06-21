@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 import { mkdirSync } from "node:fs";
 
 /**
@@ -83,4 +84,24 @@ test.describe("screen states (these branches are dead under the static data seam
 
     await shoot(page, "screen-data");
   });
+});
+
+// Semantic HTML / ARIA / heading order — enforced with axe.
+// color-contrast is EXCLUDED: those failures are in CNDS package components (StatusBadge/Alert),
+// which we can't fix without forking — they're tracked as upstream package a11y debt, not our gate.
+// Audited on the SCREEN scenarios (full pages). Page-level rules (one-h1, main landmark) don't
+// apply to a component rendered in isolation — the component's a11y is covered within screen-data.
+test.describe("accessibility (axe)", () => {
+  for (const scenario of ["screen-data", "screen-error", "screen-notfound"]) {
+    test(`${scenario}: no a11y violations`, async ({ page }) => {
+      await go(page, scenario);
+      const { violations } = await new AxeBuilder({ page })
+        .disableRules(["color-contrast"])
+        .analyze();
+      const report = violations
+        .map((v) => `[${v.impact}] ${v.id} @ ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`)
+        .join("\n");
+      expect(violations, report).toEqual([]);
+    });
+  }
 });

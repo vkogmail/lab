@@ -46,6 +46,7 @@ const node = scenarios[key] ?? <div>unknown scenario: {key}</div>;
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <div data-scenario={key}>{node}</div>
+    {/* <main> mirrors the real app shell so landmark/region a11y checks are representative. */}
+    <main data-scenario={key}>{node}</main>
   </StrictMode>,
 );

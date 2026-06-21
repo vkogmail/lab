@@ -12,7 +12,6 @@ import {
   type ColumnDef,
 } from "@createnew/ui-react";
 import { NAV_GROUPS, type DemoSection } from "./demo-sections";
-import { ReviewItemDetail } from "./screens/ReviewItemDetail";
 import { Tickets } from "./Tickets";
 
 const TOKEN_SWATCHES = [
@@ -96,11 +95,7 @@ export function App() {
       </aside>
 
       <main className="demo-main">
-        {section === "tickets" && (
-          <section className="demo-panel">
-            <Tickets onOpen={setSection} />
-          </section>
-        )}
+        {section === "tickets" && <Tickets onOpen={setSection} />}
 
         {section === "overview" && (
           <section className="demo-panel">
@@ -244,12 +239,6 @@ import { Button, PageTemplate, DataTable } from "@createnew/ui-react";`}</pre>
                 }
               />
             </PageTemplate>
-          </section>
-        )}
-
-        {section === "review-detail" && (
-          <section className="demo-panel">
-            <ReviewItemDetail />
           </section>
         )}
 
