@@ -1,6 +1,23 @@
 @import "./tokens.css";
 @import "./nav.css";
 
+/* Self-hosted type — Cabinet Grotesk + Supreme (variable woff2), Fontshare, free for commercial.
+   Vendored to each app's public/brand/fonts/ by sync.mjs. */
+@font-face {
+  font-family: "Cabinet Grotesk";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./fonts/cabinet-variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Supreme";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("./fonts/supreme-variable.woff2") format("woff2");
+}
+
 body {
   font-family: var(--sans);
   background: var(--bg);
@@ -29,12 +46,13 @@ body::before {
 
 h1, h2, h3, .label {
   font-family: var(--serif);
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -.02em;
 }
 
 .label {
-  font-style: italic;
+  font-weight: 600;
+  font-style: normal;
   color: var(--ink-soft);
 }
 
@@ -103,9 +121,9 @@ button:hover, .btn:hover {
 .demo-header h1 {
   margin: 0;
   font-family: var(--serif);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(32px, 4.5vw, 52px);
-  line-height: 1.05;
+  line-height: 0.92;
   letter-spacing: -.02em;
   color: var(--ink);
 }
@@ -212,7 +230,8 @@ body.lab-modal-open .demo-actions {
 .modal-content h2 {
   font-family: var(--serif);
   font-size: clamp(24px, 3vw, 32px);
-  font-weight: 300;
+  font-weight: 500;
+  line-height: 1.02;
   color: var(--ink);
   margin: 0 0 28px;
   padding-right: 40px;
