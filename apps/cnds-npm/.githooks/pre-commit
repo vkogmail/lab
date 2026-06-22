@@ -1,0 +1,8 @@
+#!/bin/sh
+# CNDS drift pre-commit hook — fast local feedback before code leaves the machine.
+# Runs the drift scan only (no build) so it's quick. CI (drift.yml / azure-pipelines.yml) is the
+# hard gate; this just catches mistakes earlier. Opt-in: `npm run hooks:install`.
+# Assumes the repo root is the consumer app (the standalone sandbox repo, DEMO-PLAN.md §12).
+set -e
+echo "[pre-commit] CNDS drift check…"
+npm run --silent drift

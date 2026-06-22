@@ -4,3 +4,7 @@ dist
 .vercel
 public/fonts
 *.tsbuildinfo
+visual/.results
+visual/__screens__
+playwright-report
+test-results

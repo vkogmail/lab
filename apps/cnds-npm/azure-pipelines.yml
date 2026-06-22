@@ -1,0 +1,27 @@
+# CNDS drift gate for Azure DevOps — the client-env equivalent of .github/workflows/drift.yml.
+# Same AUTOMATED Definition-of-Done tier (agent/DEFINITION-OF-DONE.md §7): blocks the PR if the
+# design-system contract is broken. Set this pipeline as a required PR build-validation policy on
+# the main branch so non-dev-initiated changes can't merge with drift. (DEMO-PLAN.md §12.)
+
+trigger:
+  branches:
+    include: [main]
+
+pr:
+  branches:
+    include: ["*"]
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "20.x"
+    displayName: Use Node 20
+  - script: npm install
+    displayName: Install
+  - script: npx playwright install --with-deps chromium
+    displayName: Install Playwright browser
+  - script: npm run smoke
+    displayName: Smoke (drift + composition + build + visual)

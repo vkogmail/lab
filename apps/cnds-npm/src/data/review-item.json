@@ -1,0 +1,45 @@
+{
+  "id": "pro-2048",
+  "title": "Maya de Vries",
+  "step": "Domain review",
+  "owner": "Joris Bakker",
+  "status": "info",
+  "description": "Independent Product Designer applying to join the network. Focus on design systems and UX strategy.",
+  "activity": [
+    {
+      "id": "a1",
+      "actor": "Maya de Vries",
+      "action": "Submitted an application to join the network",
+      "at": "2026-06-15T09:12:00Z",
+      "status": "neutral"
+    },
+    {
+      "id": "a2",
+      "actor": "Sanne Visser",
+      "action": "Screened the portfolio — strong design-systems work",
+      "at": "2026-06-16T13:40:00Z",
+      "status": "success"
+    },
+    {
+      "id": "a3",
+      "actor": "Joris Bakker",
+      "action": "Asked for a reference on the fintech engagement",
+      "at": "2026-06-17T10:05:00Z",
+      "status": "warning"
+    },
+    {
+      "id": "a4",
+      "actor": "Maya de Vries",
+      "action": "Added two client references",
+      "at": "2026-06-18T08:30:00Z",
+      "status": "info"
+    },
+    {
+      "id": "a5",
+      "actor": "Joris Bakker",
+      "action": "Handpicked and approved for the network",
+      "at": "2026-06-19T15:20:00Z",
+      "status": "success"
+    }
+  ]
+}

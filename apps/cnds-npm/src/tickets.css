@@ -1,0 +1,212 @@
+/* Tickets workspace — demo chrome (token-only styling). */
+.tickets {
+  display: grid;
+  gap: var(--spacing-l);
+}
+
+/* --- workspace: ticket accordion (left) + result (right) --- */
+.ticket-workspace {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: var(--spacing-l);
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .ticket-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- vertical ticket accordion (left) --- */
+.ticket-list {
+  display: grid;
+  gap: var(--spacing-s);
+}
+
+.tcard {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-l);
+  background: var(--color-surface-default);
+  overflow: hidden;
+}
+
+.tcard[data-active="true"] {
+  border-color: var(--color-brand-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.tcard__head {
+  all: unset;
+  cursor: pointer;
+  display: grid;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-m);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tcard__head:hover {
+  background: var(--color-surface-raised);
+}
+
+.tcard__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+}
+
+.tcard__key {
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-foreground-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.tcard__title {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-foreground-default);
+}
+
+.tcard__preview {
+  color: var(--color-foreground-muted);
+  font-size: var(--font-size-sm);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tcard__body {
+  display: grid;
+  gap: var(--spacing-m);
+  padding: 0 var(--spacing-m) var(--spacing-m);
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: var(--spacing-m);
+}
+
+.issue__field {
+  display: grid;
+  gap: var(--spacing-xs);
+}
+
+.issue__field-label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-foreground-muted);
+}
+
+.issue__desc {
+  margin: 0;
+  color: var(--color-foreground-default);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.issue__muted {
+  margin: 0;
+  color: var(--color-foreground-muted);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.acceptance {
+  margin: 0;
+  padding-left: var(--spacing-l);
+  display: grid;
+  gap: var(--spacing-xs);
+  color: var(--color-foreground-muted);
+  font-size: var(--font-size-sm);
+}
+
+.ticket__link {
+  all: unset;
+  cursor: pointer;
+  color: var(--color-brand-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+}
+
+.ticket__link:hover {
+  text-decoration: underline;
+}
+
+/* --- chips --- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--spacing-s);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+}
+
+.chip--link {
+  color: var(--color-brand-primary);
+  text-decoration: none;
+}
+
+.chip--link:hover {
+  background: var(--color-surface-raised);
+}
+
+.chip--new {
+  color: var(--color-foreground-muted);
+  border-style: dashed;
+}
+
+/* --- result preview (right) --- */
+.preview {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  background: var(--color-surface-default);
+}
+
+.preview__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  padding: var(--spacing-s) var(--spacing-m);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-surface-raised);
+}
+
+.preview__dots {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.preview__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-border-strong);
+}
+
+.preview__label {
+  font-size: var(--font-size-xs);
+  color: var(--color-foreground-muted);
+}
+
+.preview__body {
+  padding: var(--spacing-l);
+  max-height: 78vh;
+  overflow: auto;
+}
+
+.preview__empty {
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+  text-align: center;
+  padding: var(--spacing-xl);
+}

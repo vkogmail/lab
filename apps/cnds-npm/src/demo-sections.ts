@@ -1,16 +1,12 @@
-export type DemoSection =
-  | "overview"
-  | "tokens"
-  | "components"
-  | "templates"
-  | "flows"
-  | "agents";
+export type DemoSection = "tickets" | "how";
 
-export const DEMO_SECTIONS: Array<{ id: DemoSection; label: string }> = [
-  { id: "overview", label: "Overview" },
-  { id: "tokens", label: "Tokens (npm)" },
-  { id: "components", label: "Components (npm)" },
-  { id: "templates", label: "Templates (npm)" },
-  { id: "flows", label: "Composed flow" },
-  { id: "agents", label: "Agent workflow" },
+/**
+ * Two destinations, matching what we're actually building:
+ *  - the work (ticket → result), and
+ *  - how it works (the method — why agent output is trustworthy and how it improves).
+ * The design system itself is not re-exhibited here — it lives in the playground.
+ */
+export const NAV_ITEMS: Array<{ id: DemoSection; label: string }> = [
+  { id: "tickets", label: "Ticket → result" },
+  { id: "how", label: "How it works" },
 ];

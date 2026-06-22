@@ -1,0 +1,24 @@
+# CNDS drift gate — the AUTOMATED tier of the Definition of Done (agent/DEFINITION-OF-DONE.md §7).
+# Fails the PR if the design-system contract is broken, so non-dev-initiated work can't merge
+# with drift even when the agent's judgment slips. Lives at the repo root of the GitHub sandbox
+# (DEMO-PLAN.md §12). For the client's Azure DevOps env, see azure-pipelines.yml.
+name: CNDS drift
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm install
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: Smoke (drift + composition + build + visual)
+        run: npm run smoke
