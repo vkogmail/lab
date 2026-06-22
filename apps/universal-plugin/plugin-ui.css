@@ -324,22 +324,22 @@ header {
   justify-content: center;
   gap: 7px;
 }
-.btn.primary {
+.btn-primary {
   background: var(--accent);
   color: var(--bg);
   border-color: transparent;
 }
-.btn.primary:hover:not(:disabled) {
+.btn-primary:hover:not(:disabled) {
   background: #b9f2c8;
   transform: translateY(-1px);
 }
-.btn.primary:active:not(:disabled) { transform: translateY(0); }
-.btn.secondary {
+.btn-primary:active:not(:disabled) { transform: translateY(0); }
+.btn-ghost {
   background: transparent;
   color: var(--ink);
   border-color: var(--line);
 }
-.btn.secondary:hover:not(:disabled) {
+.btn-ghost:hover:not(:disabled) {
   border-color: var(--accent-border);
   background: var(--accent-dim);
 }

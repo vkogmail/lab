@@ -331,22 +331,22 @@ header {
   justify-content: center;
   gap: 7px;
 }
-.btn.primary {
+.btn-primary {
   background: var(--accent);
   color: var(--bg);
   border-color: transparent;
 }
-.btn.primary:hover:not(:disabled) {
+.btn-primary:hover:not(:disabled) {
   background: #b9f2c8;
   transform: translateY(-1px);
 }
-.btn.primary:active:not(:disabled) { transform: translateY(0); }
-.btn.secondary {
+.btn-primary:active:not(:disabled) { transform: translateY(0); }
+.btn-ghost {
   background: transparent;
   color: var(--ink);
   border-color: var(--line);
 }
-.btn.secondary:hover:not(:disabled) {
+.btn-ghost:hover:not(:disabled) {
   border-color: var(--accent-border);
   background: var(--accent-dim);
 }
@@ -499,7 +499,7 @@ header {
         </div>
       </label>
       <p class="hint" id="pat-hint"></p>
-      <div class="save-row"><button id="save" class="btn primary sm">Save Settings</button></div>
+      <div class="save-row"><button id="save" class="btn btn-primary sm">Save Settings</button></div>
       </div>
     </div>
 
@@ -525,8 +525,8 @@ header {
       <div class="console-head" id="console-label">Pull changes</div>
       <div class="console" id="log"></div>
       <div class="action-bar">
-        <button id="apply" class="btn primary pane-action visible" disabled>Update variables &amp; styles</button>
-        <button id="pushApply" class="btn primary pane-action" disabled>Push changes</button>
+        <button id="apply" class="btn btn-primary pane-action visible" disabled>Update variables &amp; styles</button>
+        <button id="pushApply" class="btn btn-primary pane-action" disabled>Push changes</button>
       </div>
     </div>
 
@@ -586,7 +586,7 @@ header {
     var clean = same && hasPat(a.pat);
     var btn = $('save');
     if (clean) { btn.className = 'btn saved sm'; btn.disabled = true; btn.innerHTML = '<span>Saved</span>' + CHECK; }
-    else { btn.className = 'btn primary sm'; btn.disabled = false; btn.textContent = 'Save Settings'; }
+    else { btn.className = 'btn btn-primary sm'; btn.disabled = false; btn.textContent = 'Save Settings'; }
   }
   function openSettings(open) {
     $('modal').classList.toggle('open', open);
@@ -752,24 +752,24 @@ header {
   function renderTabs() {
     if (!lastStatus) return;
     var p = lastStatus.pull, a = $('apply');
-    a.classList.remove('saved', 'primary');
+    a.classList.remove('saved', 'btn-primary');
     if (p.nothingToDo) {
       a.classList.add('saved');
       a.disabled = true;
       a.innerHTML = '<span>In sync</span>' + CHECK;
     } else {
-      a.classList.add('primary');
+      a.classList.add('btn-primary');
       a.disabled = false;
       a.textContent = 'Update variables & styles (' + p.count + ')';
     }
     var pu = lastStatus.push, pa = $('pushApply');
-    pa.classList.remove('saved', 'primary');
+    pa.classList.remove('saved', 'btn-primary');
     if (pu.nothingToDo) {
       pa.classList.add('saved');
       pa.disabled = true;
       pa.innerHTML = '<span>Nothing to push</span>';
     } else {
-      pa.classList.add('primary');
+      pa.classList.add('btn-primary');
       pa.disabled = false;
       pa.textContent = 'Push ' + pu.count + ' change' + (pu.count === 1 ? '' : 's');
     }

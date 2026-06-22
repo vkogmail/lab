@@ -90,24 +90,21 @@ button.btn:hover svg {
   transform: translateX(4px);
 }
 
-.btn-primary,
-.btn.primary {
+.btn-primary {
   color: var(--btn-on-accent);
   background: var(--accent);
   padding: 14.5px 22px 15px;
   border-color: transparent;
 }
 
-.btn-ghost,
-.btn.ghost {
+.btn-ghost {
   color: var(--ink);
   background: transparent;
   border-color: var(--line);
   padding: 15.5px 23px 16px;
 }
 
-.btn-ghost:hover,
-.btn.ghost:hover {
+.btn-ghost:hover {
   background: var(--bg2);
 }
 
@@ -162,14 +159,12 @@ button.btn:hover svg {
   flex-shrink: 0;
 }
 
-.demo-actions .btn-ghost.is-copied,
-.demo-actions .btn.ghost.is-copied {
+.demo-actions .btn-ghost.is-copied {
   color: var(--accent-text);
   border-color: color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
-.demo-actions a.btn-ghost,
-.demo-actions a.btn.ghost {
+.demo-actions a.btn-ghost {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
