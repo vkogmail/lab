@@ -246,7 +246,7 @@ function clearColors() {
         stepsContainer.replaceChildren();
     }
     
-    reloadBtn.className = 'btn ghost refresh-btn';
+    reloadBtn.className = 'btn btn-ghost refresh-btn';
 }
 
 // Find the closest predefined hue value
@@ -296,7 +296,7 @@ async function displayResults(colors) {
         `;
         
         // Update button using only the class
-        reloadBtn.className = 'btn ghost refresh-btn';
+        reloadBtn.className = 'btn btn-ghost refresh-btn';
         
         // Apply instant color scale using CSS variables
         displayPredefinedColorScale(extractedHue);

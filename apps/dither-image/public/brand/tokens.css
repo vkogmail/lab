@@ -1,6 +1,5 @@
 :root {
-  /* Typography — Cabinet Grotesk (display) + Supreme (body), matching the portfolio.
-     --serif is kept as the token name but is now a grotesque, not a serif. */
+  /* Typography — Cabinet Grotesk (display) + Supreme (body), matching the portfolio. */
   --serif: "Cabinet Grotesk", system-ui, sans-serif;
   --sans: "Supreme", -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
@@ -12,6 +11,19 @@
   --nav-top: max(12px, env(safe-area-inset-top));
   --nav-bottom: max(18px, env(safe-area-inset-bottom));
   --lab-nav-height: 52px;
+
+  /* Type scale */
+  --fs-prose: 17px;
+  --fs-ui: 15px;
+  --fs-nav: 13px;
+  --fs-micro: 12px;
+  --fs-tag: 10px;
+
+  /* Chrome */
+  --btn-radius: 12px;
+  --nav-radius: 12px;
+  --nav-item-radius: 8px;
+  --btn-on-accent: var(--bg);
 
   /* Motion */
   --ease-out: cubic-bezier(.22, 1, .36, 1);
@@ -32,6 +44,7 @@
   --accent-text: #9ef0b0;
   --nav-bg: rgba(18, 18, 20, 0.6);
   --nav-border: rgba(244, 241, 234, 0.12);
+  --nav-active: rgba(244, 241, 234, 0.08);
   --grid: rgba(244, 241, 234, 0.035);
 }
 
@@ -47,5 +60,10 @@
   --accent-text: #147544;
   --nav-bg: rgba(243, 241, 234, 0.65);
   --nav-border: rgba(22, 21, 15, 0.10);
+  --nav-active: rgba(106, 101, 92, 0.13);
   --grid: rgba(22, 21, 15, 0.04);
+}
+
+@media (max-width: 760px) {
+  :root { --gut: 20px; }
 }

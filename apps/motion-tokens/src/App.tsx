@@ -22,7 +22,7 @@ export const App = () => {
           <div className="demo-actions">
             <TokenToggle />
             <Documentation />
-            <button id="shareBtn" className="btn ghost" type="button">
+            <button id="shareBtn" className="btn btn-ghost" type="button">
               Share
             </button>
           </div>

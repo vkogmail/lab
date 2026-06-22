@@ -161,7 +161,7 @@
       document.documentElement.dataset.repoUrl || "https://github.com/vkogmail/lab";
     const a = document.createElement("a");
     a.id = "codeBtn";
-    a.className = "btn ghost";
+    a.className = "btn btn-ghost";
     a.href = url;
     a.target = "_blank";
     a.rel = "noopener noreferrer";

@@ -93,7 +93,7 @@ export function Documentation() {
     <>
       <button
         type="button"
-        className="btn ghost"
+        className="btn btn-ghost"
         onClick={() => setIsOpen(true)}
       >
         How it works

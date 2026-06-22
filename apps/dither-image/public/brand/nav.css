@@ -32,41 +32,45 @@
   display: flex;
   align-items: center;
   gap: 2px;
-  padding: 6px;
+  padding: 7px;
   background: var(--nav-bg);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(9px) saturate(180%);
+  -webkit-backdrop-filter: blur(9px) saturate(180%);
   border: 1px solid var(--nav-border);
-  border-radius: 100px;
+  border-radius: var(--nav-radius);
   box-shadow: 0 8px 30px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .16);
 }
 
 .lab-nav-shell nav a,
 .lab-nav-shell nav button {
   font-family: var(--sans);
-  font-size: 13.5px;
-  font-weight: 500;
+  font-size: var(--fs-nav);
+  font-weight: 700;
   color: var(--ink-soft);
   text-decoration: none;
   background: none;
   border: none;
-  padding: 9px 15px;
-  border-radius: 100px;
+  padding: 9.5px 15px;
+  border-radius: var(--nav-item-radius);
   cursor: pointer;
   transition: color .2s, background .2s;
   white-space: nowrap;
 }
 
-.lab-nav-shell nav a:hover,
+.lab-nav-shell nav a:hover:not(.brand),
 .lab-nav-shell nav button:hover {
   color: var(--ink);
-  background: var(--bg2);
+  background: color-mix(in srgb, var(--ink-soft) 13%, transparent);
 }
 
 .lab-nav-shell nav a.brand {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink);
-  padding-left: 16px;
+  padding: 9.5px 15px 9.5px 16px;
+}
+
+.lab-nav-shell nav a.brand:hover {
+  background: none;
 }
 
 .lab-nav-shell nav .sep {
@@ -88,7 +92,7 @@
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 9px 12px;
+  padding: 9.5px 12px;
 }
 
 .lab-nav-shell nav .menu-btn svg {
@@ -152,12 +156,12 @@
   z-index: 98;
   width: min(264px, calc(100vw - 28px));
   background: var(--nav-bg);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(9px) saturate(180%);
+  -webkit-backdrop-filter: blur(9px) saturate(180%);
   border: 1px solid var(--nav-border);
-  border-radius: 24px;
+  border-radius: var(--nav-radius);
   box-shadow: 0 18px 44px rgba(0, 0, 0, .32), inset 0 1px 0 rgba(255, 255, 255, .16);
-  padding: 8px;
+  padding: 7px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -176,20 +180,20 @@
 }
 
 .lab-nav-drawer a {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: var(--fs-ui);
+  font-weight: 700;
   color: var(--ink-soft);
   text-decoration: none;
   text-align: center;
   padding: 13px 16px;
-  border-radius: 100px;
+  border-radius: var(--nav-item-radius);
   transition: color .18s, background .18s;
 }
 
 .lab-nav-drawer a:hover,
 .lab-nav-drawer a:active {
   color: var(--ink);
-  background: var(--bg2);
+  background: color-mix(in srgb, var(--ink-soft) 13%, transparent);
 }
 
 /* Minimal top inset only — nav lives at the bottom */
