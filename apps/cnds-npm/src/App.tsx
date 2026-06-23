@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NAV_ITEMS, type DemoSection } from "./demo-sections";
 import { Tickets } from "./Tickets";
 import { HowItWorks } from "./HowItWorks";
+import { Guide } from "./Guide";
 
 export function App() {
   const [section, setSection] = useState<DemoSection>("tickets");
@@ -54,6 +55,7 @@ export function App() {
       <main className="demo-main">
         {section === "tickets" && <Tickets onOpen={setSection} />}
         {section === "how" && <HowItWorks />}
+        {section === "guide" && <Guide />}
       </main>
     </div>
   );

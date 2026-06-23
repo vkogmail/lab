@@ -107,8 +107,8 @@
       ],
       "kind": "web-demo",
       "status": "proto",
-      "demo_url": null,
-      "repo_url": null,
+      "demo_url": "https://cnds-npm.vercel.app",
+      "repo_url": "https://github.com/vkogmail/lab/tree/main/apps/cnds-npm",
       "hero": null,
       "featured": false,
       "spec": "cnds"

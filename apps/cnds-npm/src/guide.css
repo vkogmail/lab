@@ -1,0 +1,127 @@
+.guide {
+  max-width: 860px;
+  line-height: var(--line-height-normal);
+  color: var(--color-foreground-default);
+}
+
+.guide h1,
+.guide h2,
+.guide h3 {
+  line-height: var(--line-height-tight);
+  color: var(--color-foreground-default);
+}
+
+.guide h1 {
+  margin: 0 0 var(--spacing-m);
+  font-size: var(--text-heading-2-font-size);
+  font-family: var(--text-heading-2-font-family);
+  font-weight: var(--text-heading-2-font-weight);
+}
+
+.guide h2 {
+  margin: var(--spacing-xl) 0 var(--spacing-m);
+  padding-top: var(--spacing-m);
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: var(--text-heading-3-font-size);
+  font-family: var(--text-heading-3-font-family);
+  font-weight: var(--text-heading-3-font-weight);
+}
+
+.guide h2:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.guide h3 {
+  margin: var(--spacing-l) 0 var(--spacing-s);
+  font-size: var(--font-size-md);
+}
+
+.guide p,
+.guide li {
+  margin: 0 0 var(--spacing-s);
+}
+
+.guide ul,
+.guide ol {
+  margin: 0 0 var(--spacing-m);
+  padding-left: var(--spacing-l);
+}
+
+.guide hr {
+  border: 0;
+  border-top: 1px solid var(--color-border-subtle);
+  margin: var(--spacing-xl) 0;
+}
+
+.guide a {
+  color: var(--color-brand-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.guide a:hover {
+  color: var(--color-brand-primary-hover, var(--color-brand-primary));
+}
+
+.guide code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-s);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.guide pre {
+  margin: 0 0 var(--spacing-m);
+  padding: var(--spacing-m);
+  overflow: auto;
+  border-radius: var(--radius-m);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.guide pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
+}
+
+.guide table {
+  width: 100%;
+  margin: 0 0 var(--spacing-m);
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.guide th,
+.guide td {
+  padding: var(--spacing-s) var(--spacing-m);
+  border: 1px solid var(--color-border-subtle);
+  text-align: left;
+  vertical-align: top;
+}
+
+.guide th {
+  background: var(--color-surface-raised);
+  font-weight: 600;
+}
+
+.guide strong {
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .guide {
+    overflow-x: auto;
+  }
+
+  .guide table {
+    display: block;
+    overflow-x: auto;
+  }
+}

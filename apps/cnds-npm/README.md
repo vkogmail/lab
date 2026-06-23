@@ -11,23 +11,27 @@ npm install
 npm run dev
 ```
 
-Open the URL Vite prints (default `http://localhost:5175`).
+Open the URL Vite prints (default `http://localhost:5175`), or the live deploy at https://cnds-npm.vercel.app.
+
+Use the **Session guide** tab in the sidebar to read the walkthrough doc in the browser.
 
 ## What it shows
 
 | Section | Purpose |
 |---------|---------|
-| Overview | npm install + import pattern |
-| Tokens | Semantic CSS variables from the package |
-| Components | Button, Card, Dialog, DataTable, … |
-| Templates | PageTemplate, FormPageTemplate |
-| Composed flow | Template + table + dialog from npm only |
-| Agent workflow | Guardrails and skills for AI contributors |
+| Ticket → result | Work items with live preview (CNDS-128) |
+| How it works | Method: guardrails, checks, improvement loop |
+| Session guide | Walkthrough doc (`SESSION-GUIDE.md`) rendered in the app |
 
 ## Packages
 
 - `@createnew/tokens` ^0.1.9
 - `@createnew/ui-react` ^0.1.6
+
+## Session / walkthrough
+
+- [`SESSION-GUIDE.md`](./SESSION-GUIDE.md) walkthrough: what we built, file tour, suggested order
+- [`DEMO-PLAN.md`](./DEMO-PLAN.md) — full demo strategy and client blueprint
 
 ## Agent files
 

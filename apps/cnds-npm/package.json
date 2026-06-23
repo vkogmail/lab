@@ -21,7 +21,9 @@
     "@createnew/tokens": "^0.1.9",
     "@createnew/ui-react": "^0.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
