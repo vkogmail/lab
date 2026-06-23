@@ -1,15 +1,15 @@
 import { Badge, Card } from "@createnew/ui-react";
 
 /**
- * The method page — the real substance of the demo: why agent-built screens stay on-brand and
- * correct, and how the system gets better over time. Built from CNDS components + tokens.
+ * The method page: why agent-built screens stay on-brand and correct, and how the system
+ * gets better over time. Built from CNDS components + tokens.
  */
 export function HowItWorks() {
   return (
     <div className="how">
       <h2>How it works</h2>
       <p className="how__lead">
-        Why an agent's screens stay on-brand and correct — and how the system improves with every
+        Why an agent's screens stay on-brand and correct, and how the system improves with every
         ticket.
       </p>
 
@@ -19,8 +19,8 @@ export function HowItWorks() {
         </Card.Header>
         <Card.Content>
           <p>
-            The agent builds each ticket by composing the packaged design system — tokens,
-            components, templates — guided by skills: the design-system contract plus generic
+            The agent builds each ticket by composing the packaged design system: tokens,
+            components, and templates. Skills guide it: the design-system contract plus generic
             UI / UX / front-end craft, plus your product domain. It reuses before it builds, and it
             never forks the system.
           </p>
@@ -52,7 +52,7 @@ export function HowItWorks() {
         </Card.Header>
         <Card.Content>
           <p>
-            Before anything ships, an automated gate runs — so even if the agent's judgment slips,
+            Before anything ships, an automated gate runs. So even if the agent's judgment slips,
             it can't merge with drift. Non-experts can trust the output because the check, not a
             human eye, guarantees the basics.
           </p>
@@ -71,7 +71,7 @@ export function HowItWorks() {
         </Card.Header>
         <Card.Content>
           <p>
-            Findings tighten the skills — or better, become new automated checks, so a mistake made
+            Findings tighten the skills, or better, become new automated checks, so a mistake made
             once can't happen twice. Issues found in package components flag upstream to the
             design-system team; genuinely new components get promoted into the library. The system
             gets more capable with every ticket.
