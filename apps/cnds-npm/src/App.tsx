@@ -3,6 +3,7 @@ import { NAV_ITEMS, type DemoSection } from "./demo-sections";
 import { Tickets } from "./Tickets";
 import { HowItWorks } from "./HowItWorks";
 import { Guide } from "./Guide";
+import { CNDS_PLAYGROUND_URL } from "./links";
 
 export function App() {
   const [section, setSection] = useState<DemoSection>("tickets");
@@ -45,6 +46,14 @@ export function App() {
             </nav>
 
             <div className="demo-meta">
+              <a
+                className="demo-meta__link"
+                href={CNDS_PLAYGROUND_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                CNDS design system ↗
+              </a>
               <span>@createnew/tokens ^0.1.9</span>
               <span>@createnew/ui-react ^0.1.6</span>
             </div>

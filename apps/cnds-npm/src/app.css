@@ -127,6 +127,17 @@ body {
   color: var(--color-foreground-muted);
 }
 
+.demo-meta__link {
+  color: var(--color-brand-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+}
+
+.demo-meta__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 .demo-main {
   padding: var(--spacing-xl);
   display: grid;

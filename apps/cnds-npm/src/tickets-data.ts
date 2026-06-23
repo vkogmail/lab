@@ -5,8 +5,10 @@
  * (Agent workflow + the linked Definition of Done); a ticket carries only specific intent.
  */
 
+import { CNDS_PLAYGROUND_URL } from "./links";
+
 /** CNDS component playground. Routes are /components/<slug>, e.g. /components/loading. */
-export const PLAYGROUND_URL = "https://cnds-playground.vercel.app";
+export const PLAYGROUND_URL = CNDS_PLAYGROUND_URL;
 export function playgroundUrl(block: BuiltBlock): string {
   const slug = block.slug ?? block.name.toLowerCase();
   return `${PLAYGROUND_URL}/components/${slug}`;
