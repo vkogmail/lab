@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lab-title="Dither head (temp)" data-lab-description="Temporary sandbox: 3D bust with Bayer post-process dither.">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dither head · temp</title>
+    <script src="/brand/theme-init.js"></script>
+    <script src="/brand/meta.js"></script>
+    <link rel="stylesheet" href="/brand/brand.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="/brand/header.js"></script>
+</head>
+<body>
+    <main id="app">
+        <header class="demo-header">
+            <div class="demo-header-main">
+                <p class="label">Temp sandbox</p>
+                <h1>3D head + ordered dither</h1>
+                <p class="lead">WebGL scene with a Bayer post-process pass. Drop your reconstructed <code>head.glb</code> in <code>public/models/</code> or follow <code>CAPTURE.md</code> for photos.</p>
+            </div>
+        </header>
+
+        <div class="demo-layout">
+            <aside class="settings-panel" aria-label="Dither settings">
+                <details class="settings-group" open>
+                    <summary><span>Dither</span></summary>
+                    <label class="field-label" for="pixelSize">Pixel size</label>
+                    <input id="pixelSize" type="range" min="2" max="12" step="1" value="4">
+                    <label class="field-label" for="gridSize">Bayer grid</label>
+                    <select id="gridSize" class="field-select">
+                        <option value="4" selected>4×4</option>
+                        <option value="8">8×8</option>
+                    </select>
+                    <label class="field-check">
+                        <input id="heroBurst" type="checkbox" checked>
+                        Hero bursts (halo + scatter)
+                    </label>
+                    <label class="field-check">
+                        <input id="autoRotate" type="checkbox" checked>
+                        Auto-rotate
+                    </label>
+                    <label class="field-label" for="baseCut">Hide base (clip)</label>
+                    <input id="baseCut" type="range" min="0" max="35" step="1" value="17">
+                    <label class="field-label" for="bottomFade">Bottom dissolve</label>
+                    <input id="bottomFade" type="range" min="0" max="100" step="1" value="78">
+                    <label class="field-label" for="bottomStart">Dissolve starts</label>
+                    <input id="bottomStart" type="range" min="0" max="40" step="1" value="10">
+                </details>
+                <div class="status-panel" id="statusPanel" aria-live="polite"></div>
+            </aside>
+
+            <div class="stage-wrap">
+                <canvas id="stage" aria-label="3D dither preview"></canvas>
+                <p class="fps" id="fps" aria-hidden="true"></p>
+            </div>
+        </div>
+    </main>
+    <script src="/brand/chrome.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
