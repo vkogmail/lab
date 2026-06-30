@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
-import { ditherHeroFrame, updateSubjectBounds } from './hero-dither-cpu.js';
+import { ditherHeroFrame } from './hero-dither-cpu.js';
 
 const displayCanvas = document.getElementById('stage');
 const displayCtx = displayCanvas.getContext('2d');
@@ -22,7 +22,6 @@ const DITHER_SCALE = 3;
 
 const baseClipPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 let loadedRoot = null;
-let subjectBounds = null;
 
 const renderCanvas = document.createElement('canvas');
 const renderer = new THREE.WebGLRenderer({ canvas: renderCanvas, antialias: false, alpha: false });
@@ -204,7 +203,6 @@ function readRenderPixels() {
 function tick(now) {
     requestAnimationFrame(tick);
     controls.update();
-    subjectBounds = updateSubjectBounds(loadedRoot, camera) || subjectBounds;
 
     renderer.render(scene, camera);
     const src = readRenderPixels();
@@ -218,10 +216,6 @@ function tick(now) {
         bottomFade: Number(bottomFadeInput.value) / 100,
         bottomStart: Number(bottomStartInput.value) / 100,
         bottomSoft: 0.22,
-        fcx: subjectBounds?.fcx ?? 0.5,
-        fcy: subjectBounds ? (theme.isLight ? subjectBounds.fcy : subjectBounds.fcy - 0.02) : 0.4,
-        frx: subjectBounds?.frx ?? 0.3,
-        fry: subjectBounds?.fry ?? 0.34,
     });
 
     displayCtx.putImageData(new ImageData(out, cw * scale, ch * scale), 0, 0);

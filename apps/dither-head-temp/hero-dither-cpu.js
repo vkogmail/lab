@@ -1,12 +1,24 @@
 import * as THREE from 'three';
 
 /**
- * Homepage hero dither — literal port of index.html renderDither inner loop.
- * `imageData` = RGBA from the WebGL bust render (replaces vincent.jpg).
+ * Homepage hero dither — port of index.html renderDither inner loop.
+ * `src` = RGBA from the WebGL bust render (replaces vincent.jpg).
+ *
+ * Burst/halo uses fixed homepage ellipse (fcx 0.40 …) — never tracks the GLB.
+ * Model pixels are tone-only; scatter/cull applies to clear (bg) pixels only.
  */
 const B4 = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]].map((r) =>
     r.map((v) => (v + 0.5) / 16),
 );
+
+/** Desktop wide — index.html renderDither (not mobile). */
+const BURST_FCX = 0.4;
+const BURST_FRX = 0.3;
+const BURST_FRY = 0.34;
+
+function burstFcy(isLight) {
+    return isLight ? 0.4 : 0.36;
+}
 
 function hsh(x, y) {
     return Math.abs(Math.sin((x + 1) * 12.9898 + (y + 1) * 78.233) * 43758.5453) % 1;
@@ -15,6 +27,40 @@ function hsh(x, y) {
 function smoothKeep(t) {
     t = Math.min(1, Math.max(0, t));
     return t * t * (3 - 2 * t);
+}
+
+function burstDist(nx, ny, isLight) {
+    const ddx = (nx - BURST_FCX) / BURST_FRX;
+    const ddy = (ny - burstFcy(isLight)) / BURST_FRY;
+    return Math.sqrt(ddx * ddx + ddy * ddy);
+}
+
+function lightBurstHalo(nx, ny, isLight) {
+    const fcy = burstFcy(isLight);
+    const fd = burstDist(nx, ny, isLight);
+    const lwob = 0.5 + 0.5 * Math.sin(nx * 13.0 + ny * 7.0) * Math.cos(ny * 9.0 - nx * 4.0);
+    const reach = 1.3 + Math.max(0, nx - BURST_FCX) * 2.4;
+    const tc = Math.min(1, Math.max(0, (fd - 0.85) / 0.45));
+    const core = 1 - smoothKeep(tc);
+    const tt = Math.min(1, Math.max(0, (fd - 1.1) / (reach - 1.1)));
+    const tail = (1 - smoothKeep(tt)) * (0.28 + 0.5 * lwob);
+    return Math.max(core, tail);
+}
+
+function burstKeepOutside(nx, ny, fd, isLight) {
+    if (fd <= 1) return 1;
+    const rightBias = Math.max(0, nx - BURST_FCX);
+    const falloff = 0.5 + rightBias * 1.9;
+    const tv = Math.min(1, (fd - 1) / falloff);
+    return 1 - smoothKeep(tv);
+}
+
+/** Flat WebGL clear — unlike the photo's dark background in light mode. */
+function isBgPixel(src, i, bgRgb, tolerance = 24) {
+    const dr = src[i] - bgRgb[0];
+    const dg = src[i + 1] - bgRgb[1];
+    const db = src[i + 2] - bgRgb[2];
+    return dr * dr + dg * dg + db * db <= tolerance * tolerance;
 }
 
 function parseInkRgb(inkCss) {
@@ -46,10 +92,6 @@ export function ditherHeroFrame(src, cw, ch, opts) {
         contrast = isLight ? 1.22 : 1.25,
         dotAlpha = isLight ? 0.8 : 0.88,
         heroBurst = true,
-        fcx = 0.5,
-        fcy = isLight ? 0.4 : 0.36,
-        frx = 0.3,
-        fry = 0.34,
         bottomFade = 0,
         bottomStart = 0.1,
         bottomSoft = 0.22,
@@ -90,35 +132,26 @@ export function ditherHeroFrame(src, cw, ch, opts) {
                 }
             }
 
-            let cov = isLight ? 1 - g : g;
-
             const nx = (x + 0.5) / cw;
             const ny2 = (y + 0.5) / ch;
-            const ddx = (nx - fcx) / frx;
-            const ddy = (ny2 - fcy) / fry;
-            const faceDist = Math.sqrt(ddx * ddx + ddy * ddy);
+            const bgLike = isBgPixel(src, i, bgRgb);
+            const fd = burstDist(nx, ny2, isLight);
 
-            if (heroBurst && isLight) {
-                const lwob = 0.5 + 0.5 * Math.sin(nx * 13.0 + ny2 * 7.0) * Math.cos(ny2 * 9.0 - nx * 4.0);
-                const reach = 1.3 + Math.max(0, nx - fcx) * 2.4;
-                const tc = Math.min(1, Math.max(0, (faceDist - 0.85) / 0.45));
-                const core = 1 - smoothKeep(tc);
-                const tt = Math.min(1, Math.max(0, (faceDist - 1.1) / (reach - 1.1)));
-                const tail = (1 - smoothKeep(tt)) * (0.28 + 0.5 * lwob);
-                cov *= Math.max(core, tail);
+            // Model: tone only. Bg: homepage burst (fixed ellipse, not GLB bounds).
+            let cov = isLight ? 1 - g : g;
+            if (heroBurst && bgLike && isLight) {
+                // Photo: cov *= halo with dark bg (1-g) high. GLB clear: inject halo directly.
+                cov = lightBurstHalo(nx, ny2, isLight);
             }
 
             let ink = false;
 
             if (cov > B4[y % 4][x % 4]) {
                 let skip = false;
-                if (heroBurst) {
-                    if (faceDist > 1) {
-                        const rightBias = Math.max(0, nx - fcx);
-                        const falloff = 0.5 + rightBias * 1.9;
-                        const tv = Math.min(1, (faceDist - 1) / falloff);
-                        const keep = 1 - smoothKeep(tv);
-                        if (!isLight && keep < 1 && hsh(x, y) > keep) skip = true;
+                if (heroBurst && bgLike) {
+                    if (!isLight && fd > 1) {
+                        const keep = burstKeepOutside(nx, ny2, fd, isLight);
+                        if (keep < 1 && hsh(x, y) > keep) skip = true;
                     }
                     if (!skip && !isLight) {
                         const sV = y / ch;
@@ -129,14 +162,8 @@ export function ditherHeroFrame(src, cw, ch, opts) {
                     }
                 }
                 if (!skip) ink = true;
-            } else if (heroBurst && !isLight) {
-                let keep = 1;
-                if (faceDist > 1) {
-                    const rightBias = Math.max(0, nx - fcx);
-                    const falloff = 0.5 + rightBias * 1.9;
-                    const tv = Math.min(1, (faceDist - 1) / falloff);
-                    keep = 1 - smoothKeep(tv);
-                }
+            } else if (heroBurst && !isLight && bgLike) {
+                const keep = burstKeepOutside(nx, ny2, fd, isLight);
                 const wob = 0.5 + 0.5 * Math.sin(nx * 13.0 + ny2 * 7.0) * Math.cos(ny2 * 9.0 - nx * 4.0);
                 const present = (1 - g) * keep * (0.04 + 0.24 * wob);
                 if (present > B4[y % 4][x % 4]) ink = true;
@@ -145,7 +172,6 @@ export function ditherHeroFrame(src, cw, ch, opts) {
             const r = ink ? INK[0] : bgRgb[0];
             const gOut = ink ? INK[1] : bgRgb[1];
             const bOut = ink ? INK[2] : bgRgb[2];
-            const a = ink ? Math.round(255 * dotAlpha) + Math.round(bgRgb[0] * (1 - dotAlpha)) : bgRgb[0];
 
             for (let sy = 0; sy < scale; sy++) {
                 for (let sx = 0; sx < scale; sx++) {
@@ -168,6 +194,7 @@ export function ditherHeroFrame(src, cw, ch, opts) {
     return out;
 }
 
+/** Screen bounds of the GLB — for layout/debug only, not used by dither burst. */
 export function updateSubjectBounds(object, camera) {
     if (!object) return null;
     object.updateMatrixWorld(true);
