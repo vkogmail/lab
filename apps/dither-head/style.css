@@ -1,0 +1,123 @@
+#app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--gut, 24px) 48px;
+}
+
+.demo-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.settings-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.settings-group {
+    border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+    border-radius: 12px;
+    padding: 12px 14px;
+    background: color-mix(in srgb, var(--surface) 80%, transparent);
+}
+
+.settings-group summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+}
+
+.field-label {
+    display: block;
+    margin: 12px 0 6px;
+    font-size: var(--fs-micro, 13px);
+    color: var(--muted);
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+.field-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: var(--fs-ui, 16px);
+}
+
+.status-panel {
+    font-size: var(--fs-micro, 13px);
+    line-height: 1.5;
+    color: var(--muted);
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.status-panel strong {
+    color: var(--ink);
+}
+
+.stage-wrap {
+    position: relative;
+    min-height: min(72vh, 720px);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg);
+    border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+.stage-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+    background: radial-gradient(72% 64% at 80% 36%, color-mix(in srgb, var(--accent) 16%, transparent) 0%, transparent 74%);
+}
+
+#stage {
+    display: block;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: min(72vh, 720px);
+    touch-action: none;
+}
+
+.stage-wrap canvas {
+    cursor: grab;
+}
+
+.stage-wrap.stage-dragging canvas {
+    cursor: grabbing;
+}
+
+.fps {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    z-index: 2;
+    margin: 0;
+    font: 11px/1.2 ui-monospace, monospace;
+    color: var(--muted);
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .demo-layout {
+        grid-template-columns: 1fr;
+    }
+
+    #stage,
+    .stage-wrap {
+        min-height: 52vh;
+        height: 52vh;
+    }
+}

@@ -1,0 +1,6 @@
+dist
+.vercel
+.DS_Store
+.env
+.env.*
+*.zip

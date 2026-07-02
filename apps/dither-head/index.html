@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-repo-url="https://github.com/vkogmail/lab/tree/main/apps/dither-head" data-theme="dark" data-lab-title="Cursor-tracking dither bust" data-lab-description="A 3D bust that follows your cursor, rendered through real-time Bayer dither.">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dither head · Lab</title>
+    <script src="/brand/theme-init.js"></script>
+    <script src="/brand/meta.js"></script>
+    <link rel="stylesheet" href="/brand/brand.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="/brand/header.js"></script>
+</head>
+<body>
+    <main id="app">
+        <header class="demo-header">
+            <div class="demo-header-main">
+                <p class="label">Dither head</p>
+                <h1>3D bust that tracks your cursor</h1>
+                <p class="lead">Offscreen Three.js renders a GLB each frame; a CPU Bayer pass turns it into ordered dots that recolor with the lab theme. Drag to override, idle to auto-rotate.</p>
+            </div>
+        </header>
+
+        <div class="demo-layout">
+            <aside class="settings-panel" aria-label="Dither settings">
+                <details class="settings-group" open>
+                    <summary><span>Interaction</span></summary>
+                    <label class="field-check">
+                        <input id="mouseTrack" type="checkbox" checked>
+                        Cursor tracking (desktop)
+                    </label>
+                    <label class="field-check">
+                        <input id="heroBurst" type="checkbox" checked>
+                        Hero bursts (halo + scatter)
+                    </label>
+                </details>
+                <details class="settings-group" open>
+                    <summary><span>Dither</span></summary>
+                    <label class="field-label" for="pixelSize">Pixel size</label>
+                    <input id="pixelSize" type="range" min="2" max="8" step="1" value="3">
+                </details>
+                <div class="status-panel" id="statusPanel" aria-live="polite"></div>
+            </aside>
+
+            <div class="stage-wrap">
+                <canvas id="stage" aria-label="3D dither preview"></canvas>
+                <p class="fps" id="fps" aria-hidden="true"></p>
+            </div>
+        </div>
+    </main>
+    <script src="/brand/chrome.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
