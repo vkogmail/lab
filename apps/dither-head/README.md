@@ -1,4 +1,4 @@
-# Cursor-tracking dither bust
+# Cursor-tracking 3D dither bust
 
 A 3D bust rendered offscreen each frame, then rebuilt as 4×4 Bayer ordered dots that recolor with the lab theme. The mesh tracks your cursor with spring easing; drag to override, release to resume.
 

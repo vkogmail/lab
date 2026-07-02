@@ -1,10 +1,10 @@
 {
   "$schema": "../../schema/lab-card.schema.json",
   "slug": "dither-head",
-  "title": "Cursor-tracking dither bust",
+  "title": "Cursor-tracking 3D dither bust",
   "intent": "A 3D bust that follows your cursor and renders as theme-aware ordered dots in real time.",
   "move": "offscreen Three.js GLB render, neck-pivot yaw/pitch with spring cursor tracking, 4×4 Bayer CPU dither",
-  "tags": ["Three.js", "WebGL", "Bayer 4×4", "cursor tracking"],
+  "tags": ["Three.js", "WebGL", "Bayer 4×4"],
   "stack": ["Three.js", "Canvas"],
   "kind": "web-demo",
   "status": "live",
@@ -12,5 +12,5 @@
   "repo_url": "https://github.com/vkogmail/lab/tree/main/apps/dither-head",
   "hero": null,
   "featured": true,
-  "spec": "dither"
+  "spec": "head"
 }
