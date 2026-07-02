@@ -271,10 +271,10 @@ function createModelLoader() {
 }
 
 async function loadModel() {
-    neckPivot.clear();
-    modelRoot = null;
     try {
         const gltf = await createModelLoader().loadAsync(MODEL_URL);
+        neckPivot.clear();
+        modelRoot = null;
         modelSource = 'bust.glb';
         prepareModel(gltf.scene);
         setStatus(
@@ -283,10 +283,18 @@ async function loadModel() {
         );
     } catch (err) {
         console.error('bust.glb failed to load', err);
+        neckPivot.clear();
+        modelRoot = null;
         modelSource = 'placeholder';
         prepareModel(makePlaceholderBust());
         setStatus(`<strong>Placeholder mesh</strong> — ${err?.message || err}`);
     }
+}
+
+function mountPlaceholder() {
+    modelSource = 'loading';
+    prepareModel(makePlaceholderBust());
+    setStatus('Loading bust…');
 }
 
 function layout() {
@@ -458,4 +466,6 @@ if (prefersReducedMotion) {
 layout();
 bindDrag();
 bindMouseTrack();
-loadModel().then(() => requestAnimationFrame(tick));
+mountPlaceholder();
+requestAnimationFrame(tick);
+loadModel();
